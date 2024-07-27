@@ -1,4 +1,15 @@
 {
+  "compilerOptions": {
+    "target": "ES2019",
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "outDir": "./dist",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "module": "NodeNext",
+    "types": ["vite/client"],
+  },
   "files": [],
   "references": [
     {
