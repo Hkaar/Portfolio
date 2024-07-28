@@ -96,7 +96,7 @@ import Footer from '../components/Footer.vue';
                         </div>
 
                         <div class="bg-gray-800 rounded-b-lg">
-                            <img class="max-w-full h-auto rounded-b-lg" src="../assets/img/1618x1010/img1.jpg"
+                            <img class="max-w-full h-auto rounded-b-lg"
                                 alt="Browser Placeholder">
                         </div>
                     </figure>
