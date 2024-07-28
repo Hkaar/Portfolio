@@ -7,6 +7,10 @@ export default {
   ],
   theme: {
     extend: {
+      container: {
+        padding: "2rem",
+        center: true,
+      },
       colors: {
         "primary": "#17153B",
         "secondary": "#2E236C",
@@ -14,6 +18,9 @@ export default {
         "primary-dark": "#C8ACD6",
         "secondary-dark": "#433D8B",
         "tertiary-dark": "#2E236C"
+      },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
       }
     },
   },
