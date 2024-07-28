@@ -4,7 +4,5 @@
 </script>
 
 <template>
-    <div class="overflow-y-auto overflow-x-hidden">
-        <router-view></router-view>
-    </div>
+    <router-view></router-view>
 </template>
