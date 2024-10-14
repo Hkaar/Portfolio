@@ -2,26 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .container {
+    @apply max-w-[85rem]
+  }
+
+  .font-var-thin {
+    font-variation-settings: "wght" 100;
+  }
+
+  .font-var-extralight {
+    font-variation-settings: "wght" 200;
+  }
+
+  .font-var-light {
+    font-variation-settings: "wght" 300;
+  }
+
+  .font-var-normal {
+    font-variation-settings: "wght" 400;
+  }
+
+  .font-var-medium {
+    font-variation-settings: "wght" 500;
+  }
+
+  .font-var-semibold {
+    font-variation-settings: "wght" 600;
+  }
+
+  .font-var-bold {
+    font-variation-settings: "wght" 700;
   }
 }
