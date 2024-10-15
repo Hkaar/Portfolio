@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from 'next/font/google';
 import "./globals.css";
 import 'material-symbols';
 
-const inter = localFont({
-  src: "./fonts/Inter.ttf",
-  variable: "--font-inter",
-  weight: "100 900",
-});
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "My Portfolio",
@@ -21,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} antialiased dark:bg-base-dark dark:text-base-light fill-base-dark dark:fill-base-light`}>
+      <body className={`${inter} antialiased dark:bg-base-dark dark:text-base-light fill-base-dark dark:fill-base-light`}>
         {children}
       </body>
     </html>
