@@ -23,7 +23,7 @@ const config: Config = {
         "secondary-dark": "#B1BAEF",
         "tertiary-dark": "#8091E5",
         "base-light": "#fafafa",
-        "base-dark": "#0a0a0a",
+        "base-dark": "#0b0b0b",
       },
     },
   },
