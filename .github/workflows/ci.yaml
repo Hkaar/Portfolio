@@ -36,7 +36,7 @@ jobs:
         run: deno install
 
       - name: Run Linter
-        run: deno lint app/ components/ lib/
+        run: ./node_modules/.bin/eslint app/ components/ lib/
 
   test:
     name: Tests
@@ -64,5 +64,5 @@ jobs:
         run: deno install
 
       - name: Run tests
-        run: deno test
+        run: deno test tests/
           
