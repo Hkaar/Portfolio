@@ -12,7 +12,7 @@ const config: Config = {
     extend: {
       container: {
         center: true,
-        padding: "1rem",
+        padding: "2rem",
       },
       colors: {
         "primary": "#070F2B",
@@ -34,7 +34,7 @@ const config: Config = {
         "success-dark": "#4ade80"
       },
       animation: {
-        "float-down": "float-down 6s ease infinite"
+        "float-down": "float-down 2.5s ease-in-out infinite"
       },
       keyframes: {
         "float-down": {
