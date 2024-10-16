@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@std/text": "npm:@jsr/std__text@^1.0.7",
     "material-symbols": "^0.25.0",
     "next": "14.2.15",
     "react": "^18",
