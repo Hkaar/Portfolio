@@ -3,15 +3,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function Layout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode
+  children: React.ReactNode;
 }>) {
-    return (
-        <>
-            <Header></Header>
-            {children}
-            <Footer></Footer>
-        </>
-    )
+  return (
+    <>
+      <Header></Header>
+      {children}
+      <Footer></Footer>
+    </>
+  );
 }
