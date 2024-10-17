@@ -2,7 +2,10 @@ import ContentSection from "@/components/ContentSection";
 import SectionContent from "@/components/ContentSection/SectionContent";
 import Hero from "@/components/Hero";
 import LinkButton from "@/components/LinkButton";
-import SkillBoard from "@/components/SkillBoard";
+import ProjectSection from "@/components/ProjectSection";
+import SkillContainer from "@/components/SkillContainer";
+import Timeline from "@/components/Timeline";
+import TimePoint from "@/components/Timeline/TimePoint";
 
 export default function HomePage() {
   return (
@@ -22,26 +25,26 @@ export default function HomePage() {
         />
       </ContentSection>
 
-      <ContentSection id="skills">
+      <ContentSection id="skills" centered>
         <SectionContent
-          title="Skills"
+          title="Skills" centered
           desc="Here are some of the languages and tools i use to develop software"
         />
 
-        <div className="flex-1 grid place-items-center">
-          <SkillBoard />
+        <div className="flex-1 w-full px-12 flex justify-center">
+          <SkillContainer></SkillContainer>
         </div>
       </ContentSection>
 
-      <ContentSection id="education">
+      <ContentSection id="education" centered>
+        <SectionContent
+          title="Education" centered
+          desc="Here is a brief timeline of what education and anything related to academics that i have achieved"
+        />
+
         <div className="flex-1 grid place-items-center">
           left
         </div>
-
-        <SectionContent
-          title="Education"
-          desc="Here is a brief timeline of what education and anything related to academics that i have achieved"
-        />
       </ContentSection>
 
       <ContentSection id="experience" centered>
@@ -64,7 +67,7 @@ export default function HomePage() {
         />
 
         <div className="grid place-items-center">
-          left
+          <ProjectSection />
         </div>
       </ContentSection>
 
