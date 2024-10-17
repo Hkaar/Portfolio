@@ -16,8 +16,8 @@ export default function Menu({ href, icon, active, children }: MenuProps) {
       passHref
       className={`${
         active
-          ? "bg-base-dark dark:bg-base-light text-base-light dark:text-base-dark font-semibold"
-          : "hover:bg-base-dark hover:dark:bg-base-light hover:text-base-light dark:hover:text-base-dark active:opacity-50 active:scale-90 hover:scale-105"
+          ? "bg-tertiary dark:bg-tertiary-dark text-base-light dark:text-base-dark font-semibold"
+          : "hover:bg-tertiary hover:dark:bg-tertiary-dark hover:text-base-light dark:hover:text-base-dark active:opacity-50 active:scale-90 hover:scale-105"
       }
             flex items-center gap-2  duration-150 ease-in-out px-3 py-2 rounded-md`}
     >
