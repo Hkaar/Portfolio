@@ -1,0 +1,3 @@
+.active {
+    @apply bg-secondary text-base-light dark:bg-secondary-dark dark:text-base-light
+}
