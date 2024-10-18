@@ -1,5 +1,8 @@
+import BlogSection from "@/components/BlogSection";
 import ContentSection from "@/components/ContentSection";
 import SectionContent from "@/components/ContentSection/SectionContent";
+import EducationSection from "@/components/EducationSection";
+import ExperienceSection from "@/components/ExperienceSection";
 import Hero from "@/components/Hero";
 import LinkButton from "@/components/LinkButton";
 import ProjectSection from "@/components/ProjectSection";
@@ -31,8 +34,8 @@ export default function HomePage() {
           desc="Here are some of the languages and tools i use to develop software"
         />
 
-        <div className="flex-1 w-full px-12 flex justify-center">
-          <SkillContainer></SkillContainer>
+        <div className="flex-1 w-full flex justify-center">
+          <SkillContainer />
         </div>
       </ContentSection>
 
@@ -42,8 +45,8 @@ export default function HomePage() {
           desc="Here is a brief timeline of what education and anything related to academics that i have achieved"
         />
 
-        <div className="flex-1 grid place-items-center">
-          left
+        <div className="flex-1 w-full flex justify-center">
+          <EducationSection />
         </div>
       </ContentSection>
 
@@ -54,8 +57,8 @@ export default function HomePage() {
           desc="Here is a list of my experiences, related to software development"
         />
 
-        <div className="flex-1 grid place-items-center">
-          left
+        <div className="flex-1 grid place-items-center w-full">
+          <ExperienceSection />
         </div>
       </ContentSection>
 
@@ -79,7 +82,7 @@ export default function HomePage() {
         />
 
         <div className="grid place-items-center">
-          left
+          <BlogSection />
         </div>
       </ContentSection>
 
@@ -92,7 +95,7 @@ export default function HomePage() {
         <div className="flex-1 grid place-items-center">
           <LinkButton
             href="/contact"
-            icon="arrow_right_alt"
+            icon="material-symbols-light:keyboard-double-arrow-right"
             className="px-6 py-4"
             type="primary"
             rightIcon
