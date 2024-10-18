@@ -7,8 +7,6 @@ import Hero from "@/components/Hero";
 import LinkButton from "@/components/LinkButton";
 import ProjectSection from "@/components/ProjectSection";
 import SkillContainer from "@/components/SkillContainer";
-import Timeline from "@/components/Timeline";
-import TimePoint from "@/components/Timeline/TimePoint";
 
 export default function HomePage() {
   return (
