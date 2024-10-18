@@ -26,7 +26,7 @@ const config: Config = {
         "base-dark": "#0b0b0b",
         "danger": "#dc2626",
         "danger-dark": "#ef4444",
-        "info": "#3b82f6",
+        "info": "#60a5fa",
         "info-dark": "#93c5fd",
         "warning": "#facc15",
         "warning-dark": "#fde047",
