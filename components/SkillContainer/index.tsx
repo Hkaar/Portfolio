@@ -4,31 +4,55 @@ import SkillContent from "./SkillContent";
 import SkillCard from "./SkillCard";
 
 import { useState } from "react";
-import { toPascalCase } from "@std/text";
+import { Icon } from "@iconify/react";
 
-import styles from "./styles.module.css";
+type SkillCard = {
+  icon: string
+  name: string
+}
+
+type Tab = {
+  icon: string
+  name: string
+}
 
 interface SkillContainerProps extends React.HTMLAttributes<HTMLElement> {}
 
 export default function SkillContainer({ ...props }: SkillContainerProps) {
-  const languages = [
-    "html5",
-    "css3",
-    "javascript",
-    "typescript",
-    "python",
-    "php",
+  const tabs: Array<Tab> = [
+    { name: "Languages", icon: "cil:language" },
+    { name: "Frameworks", icon: "bi:boxes" },
+    { name: "Tools", icon: "la:tools" }
+  ]
+  const languages: Array<SkillCard> = [
+    { name: 'HTML 5', icon: "html5" },
+    { name: 'CSS 3', icon: "css3" },
+    { name: 'JavaScript', icon: "javascript" },
+    { name: 'TypeScript', icon: "typescript" },
+    { name: 'Python', icon: "python" },
+    { name: 'PHP', icon: "php" },
   ];
-  const frameworks = [
-    "tailwindcss",
-    "bootstrap",
-    "react",
-    "vuejs",
-    "fastapi",
-    "laravel",
-    "nextjs",
+
+  const frameworks: Array<SkillCard> = [
+    { name: 'Tailwind CSS', icon: "tailwindcss" },
+    { name: 'Bootstrap', icon: "bootstrap" },
+    { name: 'React', icon: "react" },
+    { name: 'Vue.js', icon: "vuejs" },
+    { name: 'FastAPI', icon: "fastapi" },
+    { name: 'Laravel', icon: "laravel" },
+    { name: 'Next.js', icon: "nextjs" },
+    { name: 'Node JS', icon: "nodejs"},
   ];
-  const tools = ["mysql", "postgresql", "git", "figma", "github", "inkscape"];
+
+  const tools: Array<SkillCard> = [
+    { name: 'MySQL', icon: "mysql" },
+    { name: 'PostgreSQL', icon: "postgresql" },
+    { name: 'Git', icon: "git" },
+    { name: 'Figma', icon: "figma" },
+    { name: 'GitHub', icon: "github" },
+    { name: 'Inkscape', icon: "inkscape" },
+    { name: 'Vite', icon: "vitejs" },
+  ];
 
   const [tab, setTab] = useState(0);
 
@@ -41,34 +65,35 @@ export default function SkillContainer({ ...props }: SkillContainerProps) {
       className={`${props.className} shadow-md flex flex-col border rounded-md border-gray-200 dark:border-gray-800 w-full h-full`}
     >
       <div className="flex items-center rounded-t-md border-b border-gray-200 dark:border-gray-800">
-        {["Languages", "Frameworks & Libraries", "Tools"].map((
-          label,
+        {tabs.map((
+          item,
           index,
         ) => (
           <button
-            key={label}
+            key={item.name}
             onClick={() => switchTab(index)}
-            className={`px-4 py-3 ${
-              tab === index ? `${styles.active}` : ""
-            } first:rounded-tl-md border-r border-gray-200 dark:border-gray-800`}
+            className={`px-4 py-3 flex-1 ${
+              tab === index ? `dark:bg-secondary-dark bg-secondary text-base-light dark:text-base-dark font-bold` : ""
+            } first:rounded-tl-md last:rounded-tr-md border-r last:border-r-0 border-gray-200 dark:border-gray-800 flex items-center justify-center gap-2`}
           >
-            {label}
+            <Icon icon={item.icon} fontSize={24} fontWeight={400}></Icon>
+            <span className="hidden md:block">{item.name}</span>
           </button>
         ))}
       </div>
 
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
         <SkillContent
           className={`${
             tab === 0 ? null : "hidden"
-          } border-r border-gray-200 dark:border-gray-800 bg-base-light dark:bg-base-dark`}
+          } border-r border-gray-200 dark:border-gray-800`}
         >
           <div className="flex flex-wrap justify-center gap-3">
             {languages.map((item) => (
               <SkillCard
-                key={item}
-                title={toPascalCase(item)}
-                icon={`devicon:${item}`}
+                key={item.name}
+                title={item.name}
+                icon={`devicon:${item.icon}`}
               />
             ))}
           </div>
@@ -77,14 +102,14 @@ export default function SkillContainer({ ...props }: SkillContainerProps) {
         <SkillContent
           className={`${
             tab === 1 ? null : "hidden"
-          } border-r border-gray-200 dark:border-gray-800 bg-base-light dark:bg-base-dark`}
+          } border-r border-gray-200 dark:border-gray-800`}
         >
           <div className="flex flex-wrap justify-center gap-3">
             {frameworks.map((item) => (
               <SkillCard
-                key={item}
-                title={toPascalCase(item)}
-                icon={`devicon:${item}`}
+                key={item.name}
+                title={item.name}
+                icon={`devicon:${item.icon}`}
               />
             ))}
           </div>
@@ -93,20 +118,20 @@ export default function SkillContainer({ ...props }: SkillContainerProps) {
         <SkillContent
           className={`${
             tab === 2 ? null : "hidden"
-          } border-r border-gray-200 dark:border-gray-800 bg-base-light dark:bg-base-dark`}
+          } border-r border-gray-200 dark:border-gray-800`}
         >
           <div className="flex flex-wrap justify-center gap-3">
             {tools.map((item) => (
               <SkillCard
-                key={item}
-                title={toPascalCase(item)}
-                icon={`devicon:${item}`}
+                key={item.name}
+                title={item.name}
+                icon={`devicon:${item.icon}`}
               />
             ))}
           </div>
         </SkillContent>
 
-        <div className="px-6 py-4">
+        <div className="px-6 py-4 hidden lg:block">
           Description tab
         </div>
       </div>
