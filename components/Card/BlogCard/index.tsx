@@ -2,6 +2,7 @@ import Badge from "@/components/Badge";
 import ImageCard from "@/components/Card/ImageCard"
 import LinkButton from "@/components/LinkButton";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
 
 type Topic = {
   name: string;
@@ -22,7 +23,7 @@ export default function BlogCard(
   {title, topic, src, slug, date, desc, author, ...props}: BlogCardProps
 ) {
   return (
-    <ImageCard src={src}>
+    <ImageCard src={src} className={props.className}>
       <div className="flex justify-between gap-3 items-center">
         <Badge icon={topic.icon ? topic.icon : 'material-symbols-light:tag'}>
           {topic.name}
@@ -46,6 +47,20 @@ export default function BlogCard(
       <LinkButton href={`/blog/${slug}`} type="accent" icon="material-symbols-light:chevron-right" rightIcon>
         Read More
       </LinkButton>
+
+      <div className="flex items-center gap-3">
+        <Image
+          src="https://placehold.co/600x480"
+          className="block aspect-square size-12 object-cover rounded-full"
+          width={640}
+          height={480}
+          alt="No image was loaded ..."
+        />
+
+        <span className="text-accent tracking-wide">
+          {author}
+        </span>
+      </div>
     </ImageCard>
   )
 }

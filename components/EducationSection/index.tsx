@@ -2,9 +2,7 @@ import { Icon } from "@iconify/react";
 import Timeline from "../Timeline";
 import TimePoint from "../Timeline/TimePoint";
 
-interface EducationSectionProps extends React.HTMLAttributes<HTMLElement> {}
-
-export default function EducationSection({ ...props }: EducationSectionProps) {
+export default function EducationSection({ ...props }: React.HTMLAttributes<HTMLElement>) {
   return (
     <div
       className={`${props.className} shadow-md flex flex-col gap-6 lg:gap-0 lg:flex-row items-center w-full border rounded-md border-gray-200 dark:border-gray-800`}

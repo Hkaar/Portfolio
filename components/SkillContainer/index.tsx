@@ -16,9 +16,7 @@ type Tab = {
   name: string
 }
 
-interface SkillContainerProps extends React.HTMLAttributes<HTMLElement> {}
-
-export default function SkillContainer({ ...props }: SkillContainerProps) {
+export default function SkillContainer({ ...props }: React.HTMLAttributes<HTMLElement>) {
   const tabs: Array<Tab> = [
     { name: "Languages", icon: "cil:language" },
     { name: "Frameworks", icon: "bi:boxes" },

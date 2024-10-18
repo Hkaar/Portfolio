@@ -2,11 +2,9 @@ import { Suspense } from "react";
 import BlogCard from "../Card/BlogCard";
 import LinkButton from "../LinkButton";
 
-interface BlogSectionProps extends React.HTMLAttributes<HTMLElement> {}
-
-export default function BlogSection({ ...props }: BlogSectionProps) {
+export default function BlogSection({ ...props }: React.HTMLAttributes<HTMLElement>) {
   return (
-    <div className="flex flex-col gap-6 justify-center items-center">
+    <div className={`${props.className} flex flex-col gap-6 justify-center items-center`}>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <Suspense fallback={<span>Loading</span>}>
           <BlogCard
