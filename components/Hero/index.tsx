@@ -17,13 +17,13 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-col md:flex-row items-center gap-2">
-            <LinkButton href="/" type="primary" icon="download">
+            <LinkButton href="/" type="primary" icon="material-symbols-light:download">
               Download CV
             </LinkButton>
 
             <LinkButton
               href="/contact"
-              icon="arrow_right_alt"
+              icon="material-symbols-light:arrow-right-alt"
               rightIcon={true}
               type="secondary"
             >

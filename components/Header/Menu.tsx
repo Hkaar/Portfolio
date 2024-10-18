@@ -1,6 +1,5 @@
 import Link from "next/link";
-import React from "react";
-import Icon from "../Icon";
+import { Icon } from "@iconify/react";
 
 interface MenuProps {
   href: string;
@@ -21,7 +20,7 @@ export default function Menu({ href, icon, active, children }: MenuProps) {
       }
             flex items-center gap-2  duration-150 ease-in-out px-3 py-2 rounded-md`}
     >
-      {icon ? <Icon>{icon}</Icon> : null}
+      {icon ? <Icon icon={icon} fontSize={24} fontWeight={600}></Icon> : null}
       {children}
     </Link>
   );

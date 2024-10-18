@@ -2,8 +2,8 @@
 
 import Menu from "./Menu";
 import ThemeToggle from "./ThemeToggle";
-import Icon from "../Icon";
 import Button from "../Button";
+import { Icon } from "@iconify/react";
 
 import { usePathname } from "next/navigation";
 import { loadStoredTheme } from "@/lib/themeUtils";
@@ -44,11 +44,11 @@ export default function Header() {
       <div className="container flex items-center flex-col gap-4 lg:flex-row justify-between">
         <div className="flex justify-between w-full lg:w-fit lg:justify-start">
           <div className="flex lg:items-center justify-center lg:justify-start gap-2">
-            <Icon size={36}>deployed_code</Icon>
-            <h5 className="font-semibold text-xl">Shava Jaya</h5>
+            <Icon icon="material-symbols-light:code" fontSize={32} fontWeight={300}></Icon>
+            <h5 className="font-semibold text-2xl">Shava Jaya</h5>
           </div>
 
-          <Button className="lg:hidden" icon="menu" onClick={handleCollapse} />
+          <Button className="lg:hidden" icon="mdi-light:menu" onClick={handleCollapse} />
         </div>
 
         <div
@@ -58,25 +58,25 @@ export default function Header() {
           }`}
         >
           <nav className="flex lg:items-center flex-col lg:flex-row gap-2">
-            <Menu href="/" active={path === "/"} icon="home">Home</Menu>
+            <Menu href="/" active={path === "/"} icon="material-symbols-light:home-outline">Home</Menu>
             <Menu
               href="/projects"
               active={path.startsWith("/projects")}
-              icon="deployed_code"
+              icon="material-symbols-light:deployed-code-outline"
             >
               Projects
             </Menu>
             <Menu
               href="/blog"
               active={path.startsWith("/blog")}
-              icon="newspaper"
+              icon="material-symbols-light:newspaper"
             >
               Blog
             </Menu>
             <Menu
               href="/contact"
               active={path.startsWith("/contact")}
-              icon="phone"
+              icon="mdi-light:phone"
             >
               Contact
             </Menu>

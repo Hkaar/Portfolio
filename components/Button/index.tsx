@@ -1,4 +1,4 @@
-import Icon from "../Icon";
+import { Icon } from "@iconify/react";
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   type?: string;
@@ -50,9 +50,9 @@ export default function Button(
             duration-150 rounded-md px-3 py-2 border-gray-200 dark:border-gray-800`}
       disabled={disabled ? true : false}
     >
-      {!rightIcon && icon ? <Icon>{icon}</Icon> : ""}
+      {!rightIcon && icon ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon> : ""}
       {children ? children : ""}
-      {rightIcon && icon ? <Icon>{icon}</Icon> : ""}
+      {rightIcon && icon ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon> : ""}
     </button>
   );
 }

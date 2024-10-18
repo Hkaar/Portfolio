@@ -1,9 +1,9 @@
+import { Icon } from "@iconify/react";
 import Link from "next/link";
-import Icon from "../Icon";
 
 interface LinkButtonProps extends React.HTMLAttributes<HTMLAnchorElement> {
   href: string;
-  active?: boolean;
+  disabled?: boolean;
   type?: string;
   icon?: string;
   rightIcon?: boolean;
@@ -22,7 +22,7 @@ const getTypeClasses = (type?: string): string => {
     case "success":
       return "bg-success text-base-light dark:bg-success-dark border-gray-200 dark:border-gray-800";
     case "info":
-      return "bg-info text-base-light dark:bg-info-dark border-gray-200 dark:border-gray-800";
+      return "bg-info text-base-light dark:bg-info-dark dark:text-base-dark border-gray-200 dark:border-gray-800";
     case "warning":
       return "bg-warning text-base-light dark:bg-warning-dark border-gray-200 dark:border-gray-800";
     case "danger":
@@ -33,7 +33,7 @@ const getTypeClasses = (type?: string): string => {
 };
 
 export default function LinkButton(
-  { href, active, type, icon, rightIcon, ...props }: LinkButtonProps,
+  { href, disabled, type, icon, rightIcon, ...props }: LinkButtonProps,
 ) {
   return (
     <Link
@@ -41,17 +41,17 @@ export default function LinkButton(
       passHref
       className={`${props.className}
             ${
-        !active
-          ? "hover:scale-105 active:scale-90 active:opacity-50 shadow-md"
-          : null
+        disabled
+          ? 'opacity-30 cursor-not-allowed'
+          : "hover:scale-105 active:scale-90 active:opacity-50 shadow-md"
       } ${
         getTypeClasses(type)
       } w-fit flex items-center gap-2 border ease-in-out 
             duration-150 rounded-md px-3 py-2 border-gray-200 dark:border-gray-800`}
     >
-      {!rightIcon && icon ? <Icon>{icon}</Icon> : null}
+      {!rightIcon && icon ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon> : null}
       {props.children}
-      {rightIcon && icon ? <Icon>{icon}</Icon> : null}
+      {rightIcon && icon ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon> : null}
     </Link>
   );
 }
