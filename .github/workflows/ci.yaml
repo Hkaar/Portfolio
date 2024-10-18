@@ -64,5 +64,5 @@ jobs:
         run: deno install
 
       - name: Run tests
-        run: deno test tests/
+        run: npm run test -- --run
           
