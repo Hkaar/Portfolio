@@ -1,6 +1,7 @@
 import Badge from "@/components/Badge";
 import Card from "..";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
 
 type Topic = {
   name: string
@@ -13,17 +14,28 @@ interface JobCardProps extends React.HTMLAttributes<HTMLElement> {
   date: string;
   job: string;
   topics?: Array<Topic>;
+  link?: string
 }
 
 export default function JobCard(
-  { title, desc, date, job, topics, ...props }: JobCardProps,
+  { title, desc, date, job, link, topics, ...props }: JobCardProps,
 ) {
   return (
     <Card className={`${props.className} gap-5 px-6 py-4 border-l-4 border-l-primary dark:border-l-primary-dark`}>
       <div className="flex flex-col gap-3">
-        <h5 className="font-bold text-2xl tracking-tight">
-          {title}
-        </h5>
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between lg:gap-2">
+          <h5 className="font-bold text-xl tracking-tight">
+            {title}
+          </h5>
+
+          {link 
+            ? (
+              <Link href={link}>
+                <Icon icon="material-symbols-light:link" fontSize={24} fontWeight={400} className="text-accent"></Icon>
+              </Link>
+            )
+            : null}
+        </div>
 
         <span className="font-medium tracking-wide">
           {job}
