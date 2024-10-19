@@ -11,6 +11,21 @@ export default function ExperienceSection(
         job="Internship"
         date="October 2024 - Present"
         desc="Still ongoing internship process"
+        link="www.taksu.tech"
+        topics={[
+          { name: 'Next.js', icon: "nextjs" },
+          { name: 'Tailwind CSS', icon: "tailwindcss" },
+        ]}
+      >
+      </JobCard>
+
+      <JobCard
+        className="flex-1"
+        title="PT. Taksu Teknologi Indonesia"
+        job="Internship"
+        date="October 2024 - Present"
+        desc="Still ongoing internship process"
+        link="www.taksu.tech"
         topics={[
           { name: 'Next.js', icon: "nextjs" },
           { name: 'Tailwind CSS', icon: "tailwindcss" },
