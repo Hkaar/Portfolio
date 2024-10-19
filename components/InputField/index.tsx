@@ -1,14 +1,15 @@
 interface InputFieldProps extends React.HTMLAttributes<HTMLInputElement> {
   title?: string;
   labelClassName?: string;
+  placeholder?: string
   name?: string;
 }
 
 export default function InputField(
-  { className, labelClassName, title, name, ...props }: InputFieldProps,
+  { className, labelClassName, placeholder, title, name, ...props }: InputFieldProps,
 ) {
   return (
-    <div className="space-y-1">
+    <div className={`${className}`}>
       {title
         ? (
           <label
@@ -20,10 +21,11 @@ export default function InputField(
         )
         : ""}
 
-      <div className="relative">
+      <div className="relative w-full">
         <input
           type={props.datatype}
-          className={`${className} block rounded-md outline-none border px-3 py-2 border-gray-200 dark:border-gray-800 
+          placeholder={placeholder}
+          className={`w-full block rounded-md outline-none border px-3 py-2 border-gray-200 dark:border-gray-800 
                     shadow-sm focus:ring focus:ring-info dark:focus:ring-info-dark text-base-dark dark:bg-base-dark dark:text-base-light`}
           name={name}
           id={props.id}
