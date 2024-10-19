@@ -11,49 +11,34 @@ import SkillContainer from "@/components/SkillContainer";
 export default function HomePage() {
   return (
     <>
-      <Hero></Hero>
+      <Hero />
 
       <ContentSection id="about">
         <div className="flex-1 grid place-items-center">
           left
         </div>
 
-        <SectionContent
-          title="About myself"
-          desc="Hey there! i'm shava a software developer whose making
-          full-stack web apps and web sites using various languages
-          and tools"
-        />
+        <SectionContent title="About myself">
+          Hey there! i'm shava a software developer whose making
+          full-stack web apps, web sites with various languages 
+          and tools.
+        </SectionContent>
       </ContentSection>
 
       <ContentSection id="skills" centered>
-        <SectionContent
-          title="Skills" centered
-          desc="Here are some of the languages and tools i use to develop software"
-        />
+        <SectionContent title="Skills" centered>
+          Here are some of the languages and tools i use to develop software
+        </SectionContent>
 
         <div className="flex-1 w-full flex justify-center">
           <SkillContainer />
         </div>
       </ContentSection>
 
-      <ContentSection id="education" centered>
-        <SectionContent
-          title="Education" centered
-          desc="Here is a brief timeline of what education and anything related to academics that i have achieved"
-        />
-
-        <div className="flex-1 w-full flex justify-center">
-          <EducationSection />
-        </div>
-      </ContentSection>
-
       <ContentSection id="experience" centered>
-        <SectionContent
-          title="My Experiences"
-          centered
-          desc="Here is a list of my experiences, related to software development"
-        />
+        <SectionContent title="My Experiences" centered>
+            Here is a list of my experiences, related to software development
+          </SectionContent>
 
         <div className="flex-1 grid place-items-center w-full">
           <ExperienceSection />
@@ -61,23 +46,29 @@ export default function HomePage() {
       </ContentSection>
 
       <ContentSection id="projects" centered>
-        <SectionContent
-          title="Projects"
-          centered
-          desc="Here are some of the projects that i have worked on over the years"
-        />
+        <SectionContent title="Projects" centered>
+          Here are some of the projects that i have worked on over the years
+        </SectionContent>
 
         <div className="grid place-items-center">
           <ProjectSection />
         </div>
       </ContentSection>
 
+      <ContentSection id="education" centered>
+        <SectionContent title="Education" centered>
+          Here is a brief timeline of what education and anything related to academics that i have achieved
+        </SectionContent>
+
+        <div className="flex-1 w-full flex justify-center">
+          <EducationSection />
+        </div>
+      </ContentSection>
+
       <ContentSection id="blog" centered>
-        <SectionContent
-          title="The Blog"
-          centered
-          desc="Here's my personal blog where you can see what i'm up to recently"
-        />
+        <SectionContent title="The Blog" centered>
+          Here's my personal blog where you can see what i'm up to recently
+        </SectionContent>
 
         <div className="grid place-items-center">
           <BlogSection />
@@ -85,10 +76,9 @@ export default function HomePage() {
       </ContentSection>
 
       <ContentSection id="contact">
-        <SectionContent
-          title="Need help with an idea?"
-          desc="Let's get in touch!"
-        />
+        <SectionContent title="Need help with an idea?">
+          Let's get in touch!
+        </SectionContent>
 
         <div className="flex-1 grid place-items-center">
           <LinkButton
