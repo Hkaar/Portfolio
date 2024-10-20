@@ -13,7 +13,7 @@ export default function InputField(
       {title
         ? (
           <label
-            className={`block ${labelClassName} font-medium`}
+            className={`block ${labelClassName} font-medium mb-1`}
             htmlFor={props.id}
           >
             {title}
