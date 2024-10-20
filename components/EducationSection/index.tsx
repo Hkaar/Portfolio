@@ -30,14 +30,6 @@ export default function EducationSection({ ...props }: React.HTMLAttributes<HTML
               desc="Software Engineering"
             >
             </TimePoint>
-
-            <TimePoint
-              title="SMP Negeri 5 Denpasar"
-              icon="material-symbols-light:school-outline"
-              date="2019 - 2022"
-              desc="General"
-            >
-            </TimePoint>
           </Timeline>
         </div>
       </div>
