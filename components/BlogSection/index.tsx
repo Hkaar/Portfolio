@@ -43,7 +43,7 @@ export default function BlogSection({ ...props }: React.HTMLAttributes<HTMLEleme
         </Suspense>
 
         <Suspense fallback={<span>Loading</span>}>
-          <BlogCard
+          <BlogCard className="hidden lg:flex"
             src="https://placehold.co/600x480"
             title="Storage link not working?"
             slug="storage-link-not-working"
@@ -55,7 +55,7 @@ export default function BlogSection({ ...props }: React.HTMLAttributes<HTMLEleme
         </Suspense>
 
         <Suspense fallback={<span>Loading</span>}>
-          <BlogCard
+          <BlogCard className="hidden lg:flex"
             src="https://placehold.co/600x480"
             title="Storage link not working?"
             slug="storage-link-not-working"
@@ -67,7 +67,7 @@ export default function BlogSection({ ...props }: React.HTMLAttributes<HTMLEleme
         </Suspense>
 
         <Suspense fallback={<span>Loading</span>}>
-          <BlogCard
+          <BlogCard className="hidden lg:flex"
             src="https://placehold.co/600x480"
             title="Storage link not working?"
             slug="storage-link-not-working"

@@ -51,7 +51,7 @@ export default function ProjectSection() {
         </Suspense>
 
         <Suspense fallback={<span>Loading..</span>}>
-          <ProjectCard
+          <ProjectCard className="hidden lg:flex"
             src="https://placehold.co/600x480"
             title="Betutu"
             topics={[
@@ -65,7 +65,7 @@ export default function ProjectSection() {
         </Suspense>
 
         <Suspense fallback={<span>Loading..</span>}>
-          <ProjectCard
+          <ProjectCard className="hidden lg:flex"
             src="https://placehold.co/600x480"
             title="UjianOnline"
             topics={[
@@ -79,7 +79,7 @@ export default function ProjectSection() {
         </Suspense>
 
         <Suspense fallback={<span>Loading..</span>}>
-          <ProjectCard
+          <ProjectCard className="hidden lg:flex"
             src="https://placehold.co/600x480"
             title="My Portfolio"
             topics={[
