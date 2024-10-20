@@ -86,7 +86,7 @@ export default function SkillContainer({ ...props }: React.HTMLAttributes<HTMLEl
             tab === 0 ? null : "hidden"
           } border-r border-gray-200 dark:border-gray-800`}
         >
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {languages.map((item) => (
               <SkillCard
                 key={item.name}
@@ -102,7 +102,7 @@ export default function SkillContainer({ ...props }: React.HTMLAttributes<HTMLEl
             tab === 1 ? null : "hidden"
           } border-r border-gray-200 dark:border-gray-800`}
         >
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {frameworks.map((item) => (
               <SkillCard
                 key={item.name}
@@ -118,7 +118,7 @@ export default function SkillContainer({ ...props }: React.HTMLAttributes<HTMLEl
             tab === 2 ? null : "hidden"
           } border-r border-gray-200 dark:border-gray-800`}
         >
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {tools.map((item) => (
               <SkillCard
                 key={item.name}
