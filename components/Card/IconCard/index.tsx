@@ -1,3 +1,4 @@
+import { twMerge } from "tailwind-merge";
 import Card from "..";
 import { Icon } from "@iconify/react";
 
@@ -27,7 +28,7 @@ export default function IconCard(
   { title, icon, type, ...props }: IconCardProps,
 ) {
   return (
-    <Card className={`${getTypeClasses(type)} px-4 py-3`}>
+    <Card className={twMerge("px-4 py-3", getTypeClasses(type), props.className)}>
       {(icon && title) || title
         ? (
           <div className="flex flex-col gap-3">
@@ -56,12 +57,12 @@ export default function IconCard(
 
       {icon && !title
         ? (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center flex-col md:flex-row gap-4">
             <Icon icon={icon} fontSize={32} fontWeight={300}></Icon>
 
             {props.children
               ? (
-                <div className="flex-1">
+                <div className="flex-1 text-center md:text-start">
                   {props.children}
                 </div>
               )

@@ -7,7 +7,7 @@ interface ImageCardProps extends React.HTMLAttributes<HTMLElement> {
 
 export default function ImageCard({ src, ...props }: ImageCardProps) {
   return (
-    <Card>
+    <Card className={props.className}>
       <Image
         src={src}
         className="block aspect-video object-cover rounded-t-md"

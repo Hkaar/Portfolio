@@ -8,19 +8,18 @@ type Topic = {
   name: string
 }
 
-interface ProjectCardProps {
+interface ProjectCardProps extends React.HTMLAttributes<HTMLElement> {
   src: string;
   title: string;
   topics?: Array<Topic>
   previewLink?: string;
-  children?: React.ReactNode;
 }
 
 export default function ProjectCard(
-  { src, topics, title, previewLink, children }: ProjectCardProps,
+  { src, topics, title, previewLink, ...props }: ProjectCardProps,
 ) {
   return (
-    <Card>
+    <Card className={props.className}>
       <Image
         src={src}
         className="block aspect-video object-cover rounded-t-md"
@@ -42,7 +41,7 @@ export default function ProjectCard(
           <h6 className="font-bold text-2xl">{title}</h6>
 
           <p className="text-gray-400 line-clamp-3">
-            {children}
+            {props.children}
           </p>
         </div>
 
