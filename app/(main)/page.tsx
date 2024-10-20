@@ -1,10 +1,10 @@
 import BlogSection from "@/components/BlogSection";
+import ContactSection from "@/components/ContactSection";
 import ContentSection from "@/components/ContentSection";
 import SectionContent from "@/components/ContentSection/SectionContent";
 import EducationSection from "@/components/EducationSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import Hero from "@/components/Hero";
-import LinkButton from "@/components/LinkButton";
 import ProjectSection from "@/components/ProjectSection";
 import SkillContainer from "@/components/SkillContainer";
 
@@ -19,7 +19,7 @@ export default function HomePage() {
         </div>
 
         <SectionContent title="About myself">
-          Hey there! i`m shava a software developer whose making
+          Hey there! i’m shava a software developer whose making
           full-stack web apps, web sites with various languages 
           and tools.
         </SectionContent>
@@ -56,7 +56,7 @@ export default function HomePage() {
       </ContentSection>
 
       <ContentSection id="education" centered>
-        <SectionContent title="Education" centered>
+        <SectionContent title="Education" centered descriptionClassName="w-3/4">
           Here is a brief timeline of what education and anything related to academics that i have achieved
         </SectionContent>
 
@@ -67,7 +67,7 @@ export default function HomePage() {
 
       <ContentSection id="blog" centered>
         <SectionContent title="The Blog" centered>
-          Here`s my personal blog where you can see what i`m up to recently
+          Here’s my personal blog where you can see what i’m up to recently
         </SectionContent>
 
         <div className="grid place-items-center">
@@ -76,21 +76,7 @@ export default function HomePage() {
       </ContentSection>
 
       <ContentSection id="contact">
-        <SectionContent title="Need help with an idea?">
-          Let`s get in touch!
-        </SectionContent>
-
-        <div className="flex-1 grid place-items-center">
-          <LinkButton
-            href="/contact"
-            icon="material-symbols-light:keyboard-double-arrow-right"
-            className="px-6 py-4"
-            type="primary"
-            rightIcon
-          >
-            Work with me
-          </LinkButton>
-        </div>
+        <ContactSection />
       </ContentSection>
     </>
   );
