@@ -1,7 +1,7 @@
 import SectionContent from "../ContentSection/SectionContent";
 import { Icon } from "@iconify/react";
 import ContactForm from "../ContactForm";
-import IconCard from "../Card/IconCard";
+import ContactCard from "../Card/ContactCard";
 
 export default function ContactSection() {
   return (
@@ -12,33 +12,21 @@ export default function ContactSection() {
         </SectionContent>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <IconCard icon="material-symbols-light:mail-outline">
-            <div className="flex flex-col">
-              <span className="text-gray-400 text-sm">Email</span>
-              <span className="font-semibold text-lg">shavashava42@gmail.com</span>
-            </div>
-          </IconCard>
+          <ContactCard title="Email" icon="material-symbols-light:mail-outline">
+            shavashava42@gmail.com
+          </ContactCard>
 
-          <IconCard icon="mdi-light:phone">
-            <div className="flex flex-col">
-              <span className="text-gray-400 text-sm">Phone</span>
-              <span className="font-semibold text-lg">+62 81237102017</span>
-            </div>
-          </IconCard>
+          <ContactCard title="Phone number" icon="mdi-light:phone">
+            +62 81237102017
+          </ContactCard>
 
-          <IconCard icon="logos:x">
-            <div className="flex flex-col">
-              <span className="text-gray-400 text-sm">Twitter / X</span>
-              <span className="font-semibold text-lg">@Hkaar5</span>
-            </div>
-          </IconCard>
+          <ContactCard title="Twitter / X" icon="logos:x">
+            @Hkaar5
+          </ContactCard>
 
-          <IconCard icon="devicon:github">
-            <div className="flex flex-col">
-              <span className="text-gray-400 text-sm">Github</span>
-              <span className="font-semibold text-lg">Hkaar</span>
-            </div>
-          </IconCard>
+          <ContactCard title="Github" icon="devicon:github">
+            Hkaar
+          </ContactCard>
         </div>
       </div>
 
