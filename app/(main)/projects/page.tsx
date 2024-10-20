@@ -13,10 +13,10 @@ export default function ProjectPage() {
               My Projects
             </h1>
 
-            <h4 className="text-lg text-gray-400">
+            <p className="text-lg text-gray-400">
               Here are some of the projects that i have worked on as a software
               developer
-            </h4>
+            </p>
           </div>
 
           <div className="flex items-center gap-2 w-3/4">
