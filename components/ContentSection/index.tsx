@@ -11,9 +11,7 @@ export default function ContentSection(
     <section id={props.id} className={twMerge("py-12", props.className)}>
       {centered
         ? (
-          <div
-            className={`${props.className} container flex items-center flex-col gap-12`}
-          >
+          <div className="container flex items-center flex-col gap-12">
             {props.children}
           </div>
         )
@@ -21,9 +19,7 @@ export default function ContentSection(
 
       {!centered
         ? (
-          <div
-            className={`${props.className} container flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-12`}
-          >
+          <div className="container flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-12">
             {props.children}
           </div>
         )
