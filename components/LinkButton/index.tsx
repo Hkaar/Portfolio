@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
 interface LinkButtonProps extends React.HTMLAttributes<HTMLAnchorElement> {
   href: string;
@@ -39,19 +40,22 @@ export default function LinkButton(
     <Link
       href={href}
       passHref
-      className={`${props.className}
-            ${
+      className={twMerge(
+        "w-fit flex items-center gap-2 border ease-in-out duration-150 rounded-md px-3 py-2 border-gray-200 dark:border-gray-800",
         disabled
-          ? 'opacity-30 cursor-not-allowed'
-          : "hover:scale-105 active:scale-90 active:opacity-50 shadow-md"
-      } ${
-        getTypeClasses(type)
-      } w-fit flex items-center gap-2 border ease-in-out 
-            duration-150 rounded-md px-3 py-2 border-gray-200 dark:border-gray-800`}
+          ? "opacity-30 cursor-not-allowed"
+          : "hover:scale-105 active:scale-90 active:opacity-50 shadow-md",
+        getTypeClasses(type),
+        props.className,
+      )}
     >
-      {!rightIcon && icon ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon> : null}
+      {!rightIcon && icon
+        ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon>
+        : null}
       {props.children}
-      {rightIcon && icon ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon> : null}
+      {rightIcon && icon
+        ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon>
+        : null}
     </Link>
   );
 }
