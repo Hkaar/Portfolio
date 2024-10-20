@@ -5,23 +5,29 @@ export default function Hero() {
   return (
     <section className="min-h-screen flex">
       <div className="container flex-1 flex text-center lg:text-start flex-col-reverse lg:flex-row justify-between gap-6 items-center">
-        <div className="flex flex-col items-center lg:items-start gap-6 lg:gap-12 flex-1">
+        <div className="flex flex-col h-full justify-center items-center lg:items-start gap-6 lg:gap-10 flex-1">
           <div className="flex flex-col gap-3">
-            <h4 className="font-bold text-xl md:text-2xl lg:text-3xl text-gray-400 tracking-wide">
+            <h4 className="font-bold text-lg md:text-xl lg:text-2xl text-gray-400 tracking-wide">
               Hey, I’m Shava Jaya
             </h4>
 
-            <p className="font-bold text-2xl md:text-3xl lg:text-5xl xl:text-6xl tracking-tight leading-snug">
+            <p className="font-bold text-4xl md:text-5xl lg:text-6xl xl:text-6xl tracking-tight leading-snug">
               I’m a developer who designs and makes web apps and web sites
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center gap-2">
-            <LinkButton href="/" type="primary" icon="material-symbols-light:download">
+          <div className="flex flex-col md:flex-row md:justify-center items-center gap-2 w-full lg:w-fit">
+            <LinkButton
+              className="w-full md:w-fit justify-center"
+              href="/"
+              type="primary"
+              icon="material-symbols-light:download"
+            >
               Download CV
             </LinkButton>
 
             <LinkButton
+              className="w-full md:w-fit justify-center"
               href="/contact"
               icon="material-symbols-light:arrow-right-alt"
               rightIcon={true}
@@ -46,7 +52,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex-1 grid place-items-center">
+        <div className="hidden lg:grid flex-1 place-items-center">
           Image
         </div>
       </div>
