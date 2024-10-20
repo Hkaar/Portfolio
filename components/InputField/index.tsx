@@ -3,13 +3,14 @@ interface InputFieldProps extends React.HTMLAttributes<HTMLInputElement> {
   labelClassName?: string;
   placeholder?: string
   name?: string;
+  required?: boolean
 }
 
 export default function InputField(
-  { className, labelClassName, placeholder, title, name, ...props }: InputFieldProps,
+  { labelClassName, required, placeholder, title, name, ...props }: InputFieldProps,
 ) {
   return (
-    <div className={`${className}`}>
+    <div className={`${props.className}`}>
       {title
         ? (
           <label
@@ -17,6 +18,7 @@ export default function InputField(
             htmlFor={props.id}
           >
             {title}
+            {required ? '*' : null}
           </label>
         )
         : ""}
