@@ -56,8 +56,8 @@ export default function IconCard(
 
       {icon && !title
         ? (
-          <div className="flex items-center gap-2">
-            <Icon icon={icon} fontSize={48} fontWeight={300}></Icon>
+          <div className="flex items-center gap-4">
+            <Icon icon={icon} fontSize={32} fontWeight={300}></Icon>
 
             {props.children
               ? (
