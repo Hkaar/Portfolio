@@ -11,7 +11,7 @@ export default function ExperienceSection(
         job="Internship"
         date="October 2024 - Present"
         desc="Still ongoing internship process"
-        link="www.taksu.tech"
+        link="https://www.taksu.tech"
         topics={[
           { name: 'Next.js', icon: "nextjs" },
           { name: 'Tailwind CSS', icon: "tailwindcss" },
@@ -25,7 +25,7 @@ export default function ExperienceSection(
         job="Internship"
         date="October 2024 - Present"
         desc="Still ongoing internship process"
-        link="www.taksu.tech"
+        link="https://www.taksu.tech"
         topics={[
           { name: 'Next.js', icon: "nextjs" },
           { name: 'Tailwind CSS', icon: "tailwindcss" },
