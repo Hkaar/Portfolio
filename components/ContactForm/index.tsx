@@ -9,13 +9,13 @@ export default function ContactForm({ ...props }: React.HTMLAttributes<HTMLFormE
       <div className="flex flex-col gap-6">
         <div className="space-y-3">
           <div className="flex items-center gap-3">
-            <InputField title="First name" datatype="text" placeholder="Your first name ..." />
-            <InputField title="Last name" datatype="text" placeholder="Your last name ..." />
+            <InputField title="First name" datatype="text" placeholder="Your first name ..." required />
+            <InputField title="Last name" datatype="text" placeholder="Your last name ..." required />
           </div>
 
-          <InputField title="Email" datatype="email" className="w-full" placeholder="Your email address ..." />
+          <InputField title="Email" datatype="email" className="w-full" placeholder="Your email address ..." required />
 
-          <InputField title="Subject" placeholder="What do you want to discuss?"></InputField>
+          <InputField title="Subject" placeholder="What do you want to discuss?" required />
 
           <TextArea title="Message" className="w-full" placeholder="Enter your message here ..." />
         </div>
