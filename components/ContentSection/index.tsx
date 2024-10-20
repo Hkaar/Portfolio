@@ -1,3 +1,5 @@
+import { twMerge } from "tailwind-merge";
+
 interface ContentSectionProps extends React.HTMLAttributes<HTMLElement> {
   centered?: boolean;
 }
@@ -6,7 +8,7 @@ export default function ContentSection(
   { centered, ...props }: ContentSectionProps,
 ) {
   return (
-    <section id={props.id} className="py-12">
+    <section id={props.id} className={twMerge("py-12", props.className)}>
       {centered
         ? (
           <div
