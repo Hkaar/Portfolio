@@ -37,7 +37,7 @@ export default function Header() {
       className={`py-4 bg-base-light dark:bg-base-dark border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40
             ${
         isScrolled
-          ? "bg-opacity-20 dark:bg-base-light dark:bg-opacity-[7%] backdrop-blur-lg drop-shadow-lg"
+          ? "" // (THIS IS CURRENTLY DISABLED 'KAY?) bg-opacity-20 dark:bg-base-light dark:bg-opacity-[7%] backdrop-blur-lg drop-shadow-lg 
           : ""
       }`}
     >
