@@ -7,7 +7,7 @@ import process from "node:process";
 export default function Footer() {
   return (
     <footer className="py-4 border-t bg-base-light dark:bg-base-dark shadow-md border-gray-200 dark:border-gray-800">
-      <div className="container flex items-center justify-between">
+      <div className="container flex md:items-center flex-col md:flex-row gap-3 justify-between">
         <span className="font-semibold text-lg">
           Copyright &#169; 2024 Shava Jaya. All rights reserved.
         </span>

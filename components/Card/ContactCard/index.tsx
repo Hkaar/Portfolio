@@ -13,7 +13,7 @@ export default function ContactCard(
   return (
     <Card
       className={twMerge(
-        "px-4 py-3 flex items-center flex-col md:flex-row gap-3",
+        "px-4 py-3 flex items-center flex-col md:flex-row gap-1 md:gap-3",
         props.className,
       )}
     >
