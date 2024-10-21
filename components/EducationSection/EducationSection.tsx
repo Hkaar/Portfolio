@@ -28,8 +28,7 @@ export default function EducationSection({ ...props }: React.HTMLAttributes<HTML
               icon="material-symbols-light:school-outline"
               date="2022 - Present"
               desc="Software Engineering"
-            >
-            </TimePoint>
+            / >
           </Timeline>
         </div>
       </div>
@@ -55,8 +54,7 @@ export default function EducationSection({ ...props }: React.HTMLAttributes<HTML
               icon="mdi:certificate-outline"
               date="February 2023"
               desc="Robot making & design"
-            >
-            </TimePoint>
+            / >
           </Timeline>
         </div>
       </div>
