@@ -8,6 +8,7 @@ interface LinkButtonProps extends React.HTMLAttributes<HTMLAnchorElement> {
   type?: string;
   icon?: string;
   rightIcon?: boolean;
+  target?: string;
 }
 
 const getTypeClasses = (type?: string): string => {
@@ -34,10 +35,12 @@ const getTypeClasses = (type?: string): string => {
 };
 
 export default function LinkButton(
-  { href, disabled, type, icon, rightIcon, ...props }: LinkButtonProps,
+  { href, disabled, type, target, icon, rightIcon, ...props }: LinkButtonProps,
 ) {
   return (
     <Link
+      target={target}
+      {...props}
       href={href}
       passHref
       className={twMerge(

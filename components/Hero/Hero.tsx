@@ -17,9 +17,9 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-col md:flex-row md:justify-center items-center gap-2 w-full lg:w-fit">
-            <LinkButton
+            <LinkButton target="_blank"
               className="w-full md:w-fit justify-center"
-              href="/"
+              href="https://drive.google.com/uc?export=download&id=1vE1oHvbLALgxjM6YkxE5zSMnil4E4At2"
               type="primary"
               icon="material-symbols-light:download"
             >
