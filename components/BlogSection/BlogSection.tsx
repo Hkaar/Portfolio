@@ -1,12 +1,13 @@
 import { Suspense } from "react";
 import BlogCard from "../Card/BlogCard";
 import LinkButton from "../LinkButton";
+import CardLoader from "../Loader/CardLoader";
 
 export default function BlogSection({ ...props }: React.HTMLAttributes<HTMLElement>) {
   return (
     <div className={`${props.className} flex flex-col gap-6 justify-center items-center`}>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Suspense fallback={<span>Loading</span>}>
+        <Suspense fallback={<CardLoader />}>
           <BlogCard
             src="https://placehold.co/600x480"
             title="Storage link not working?"
@@ -18,7 +19,7 @@ export default function BlogSection({ ...props }: React.HTMLAttributes<HTMLEleme
           / >
         </Suspense>
 
-        <Suspense fallback={<span>Loading</span>}>
+        <Suspense fallback={<CardLoader />}>
           <BlogCard
             src="https://placehold.co/600x480"
             title="Storage link not working?"
@@ -30,7 +31,7 @@ export default function BlogSection({ ...props }: React.HTMLAttributes<HTMLEleme
           / >
         </Suspense>
 
-        <Suspense fallback={<span>Loading</span>}>
+        <Suspense fallback={<CardLoader />}>
           <BlogCard
             src="https://placehold.co/600x480"
             title="Storage link not working?"
@@ -42,7 +43,7 @@ export default function BlogSection({ ...props }: React.HTMLAttributes<HTMLEleme
           / >
         </Suspense>
 
-        <Suspense fallback={<span>Loading</span>}>
+        <Suspense fallback={<CardLoader />}>
           <BlogCard className="hidden lg:flex"
             src="https://placehold.co/600x480"
             title="Storage link not working?"
@@ -54,7 +55,7 @@ export default function BlogSection({ ...props }: React.HTMLAttributes<HTMLEleme
           / >
         </Suspense>
 
-        <Suspense fallback={<span>Loading</span>}>
+        <Suspense fallback={<CardLoader />}>
           <BlogCard className="hidden lg:flex"
             src="https://placehold.co/600x480"
             title="Storage link not working?"
@@ -66,7 +67,7 @@ export default function BlogSection({ ...props }: React.HTMLAttributes<HTMLEleme
           / >
         </Suspense>
 
-        <Suspense fallback={<span>Loading</span>}>
+        <Suspense fallback={<CardLoader />}>
           <BlogCard className="hidden lg:flex"
             src="https://placehold.co/600x480"
             title="Storage link not working?"
