@@ -34,7 +34,8 @@ const config: Config = {
         "success-dark": "#4ade80"
       },
       animation: {
-        "float-down": "float-down 2.5s ease-in-out infinite"
+        "float-down": "float-down 2.5s ease-in-out infinite",
+        "fade-pulse": "fade-in-out 2s ease-in-out infinite",
       },
       keyframes: {
         "float-down": {
@@ -46,6 +47,17 @@ const config: Config = {
           },
           "100%": {
             "transform": "translateY(0)"
+          }
+        },
+        "fade-in-out": {
+          "0%": {
+            "opacity": "100%",
+          },
+          "50%": {
+            "opacity": "13%",
+          },
+          "100%": {
+            "opacity": "100%",
           }
         }
       }
