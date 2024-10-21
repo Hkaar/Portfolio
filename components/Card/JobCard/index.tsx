@@ -30,7 +30,7 @@ export default function JobCard(
 
           {link 
             ? (
-              <Link href={link}>
+              <Link href={link} target="_blank">
                 <Icon icon="material-symbols-light:link" fontSize={24} fontWeight={400} className="text-accent"></Icon>
               </Link>
             )
