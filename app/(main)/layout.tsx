@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageUpButton from "@/components/PageUpButton";
 
 export default function Layout({
   children,
@@ -12,6 +13,8 @@ export default function Layout({
       <Header></Header>
       {children}
       <Footer></Footer>
+
+      <PageUpButton />
     </>
   );
 }
