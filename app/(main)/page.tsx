@@ -7,8 +7,17 @@ import ExperienceSection from "@/components/ExperienceSection";
 import Hero from "@/components/Hero";
 import ProjectSection from "@/components/ProjectSection";
 import SkillContainer from "@/components/SkillContainer";
+import client from "@/lib/client";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const skills = await client.fetch(`*[_type == "skill"] | order(name asc) {
+    name, 
+    "icon": icon->icon, 
+    "level": level->name, 
+    "category": category->title, 
+    description
+  }`);
+
   return (
     <>
       <Hero />
@@ -19,9 +28,8 @@ export default function HomePage() {
         </div>
 
         <SectionContent title="About myself">
-          Hey there! i’m shava a software developer whose making
-          full-stack web apps, web sites with various languages 
-          and tools.
+          Hey there! i’m shava a software developer whose making full-stack web
+          apps, web sites with various languages and tools.
         </SectionContent>
       </ContentSection>
 
@@ -31,14 +39,14 @@ export default function HomePage() {
         </SectionContent>
 
         <div className="flex-1 w-full flex justify-center">
-          <SkillContainer />
+          <SkillContainer skills={skills} />
         </div>
       </ContentSection>
 
       <ContentSection id="experience" centered>
         <SectionContent title="My Experiences" centered>
-            Here is a list of my experiences, related to software development
-          </SectionContent>
+          Here is a list of my experiences, related to software development
+        </SectionContent>
 
         <div className="flex-1 grid place-items-center w-full">
           <ExperienceSection />
@@ -57,7 +65,8 @@ export default function HomePage() {
 
       <ContentSection id="education" centered>
         <SectionContent title="Education" centered descriptionClassName="w-3/4">
-          Here is a brief timeline of what education and anything related to academics that i have achieved
+          Here is a brief timeline of what education and anything related to
+          academics that i have achieved
         </SectionContent>
 
         <div className="flex-1 w-full flex justify-center">
