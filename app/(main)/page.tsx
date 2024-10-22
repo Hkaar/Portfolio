@@ -43,9 +43,7 @@ export default async function HomePage() {
         </SectionContent>
 
         <div className="flex-1 w-full flex justify-center">
-          <SlideRight>
-            <SkillContainer skills={skills} />
-          </SlideRight>  
+          <SkillContainer skills={skills} />
         </div>
       </ContentSection>
 
