@@ -218,7 +218,7 @@ export default function SkillContainer(
             )
             : (
               <div className="font-bold text-2xl tracking-tight">
-                Select a card to display it's information!
+                Select a card to display it’s information!
               </div>
             )}
         </div>
