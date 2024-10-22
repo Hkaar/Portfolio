@@ -5,7 +5,8 @@ import SkillCard from "./SkillCard";
 
 import { useState } from "react";
 import { Icon } from "@iconify/react";
-import LabeledBadge from "../Badge/LabeledBadge";
+import { twMerge } from "tailwind-merge";
+import SlideUp from "../Transitions/SlideUp";
 
 type Skill = {
   name: string;
@@ -68,13 +69,16 @@ export default function SkillContainer(
       setLevel(level);
       setDesc(description);
 
-      console.log(description)
+      console.log(description);
     };
   };
 
   return (
     <div
-      className={`${props.className} shadow-md flex flex-col border rounded-md border-gray-200 dark:border-gray-800 w-full h-full`}
+      className={twMerge(
+        "shadow-md flex flex-col border rounded-md border-gray-200 dark:border-gray-800 w-full h-full",
+        props.className,
+      )}
     >
       <div className="flex items-center rounded-t-md border-b border-gray-200 dark:border-gray-800">
         {tabs.map((
@@ -103,27 +107,28 @@ export default function SkillContainer(
           } border-r border-gray-200 dark:border-gray-800`}
         >
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {languages.map((item) => (
-              <SkillCard
-                key={item.name}
-                icon={item.icon}
-                onClick={showDescription(
-                  item.name,
-                  item.icon,
-                  item.level,
-                  item.description,
-                )}
-              >
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold tracking-tight">
-                    {item.name}
-                  </span>
+            {languages.map((item, i) => (
+              <SlideUp key={item.name} delay={1 + (0.2 * i)}>
+                <SkillCard
+                  icon={item.icon}
+                  onClick={showDescription(
+                    item.name,
+                    item.icon,
+                    item.level,
+                    item.description,
+                  )}
+                >
+                  <div className="flex flex-col gap-1">
+                    <span className="font-semibold tracking-tight">
+                      {item.name}
+                    </span>
 
-                  <span className="text-sm lg:hidden text-gray-400 tracking-wide">
-                    {item.level}
-                  </span>
-                </div>
-              </SkillCard>
+                    <span className="text-sm lg:hidden text-gray-400 tracking-wide">
+                      {item.level}
+                    </span>
+                  </div>
+                </SkillCard>
+              </SlideUp>
             ))}
           </div>
         </SkillContent>
@@ -134,27 +139,28 @@ export default function SkillContainer(
           } border-r border-gray-200 dark:border-gray-800`}
         >
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {frameworks.map((item) => (
-              <SkillCard
-                key={item.name}
-                icon={item.icon}
-                onClick={showDescription(
-                  item.name,
-                  item.icon,
-                  item.level,
-                  item.description,
-                )}
-              >
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold tracking-tight">
-                    {item.name}
-                  </span>
+            {frameworks.map((item, i) => (
+              <SlideUp key={item.name} delay={1 + (0.2 * i)}>
+                <SkillCard
+                  icon={item.icon}
+                  onClick={showDescription(
+                    item.name,
+                    item.icon,
+                    item.level,
+                    item.description,
+                  )}
+                >
+                  <div className="flex flex-col gap-1">
+                    <span className="font-semibold tracking-tight">
+                      {item.name}
+                    </span>
 
-                  <span className="text-sm lg:hidden text-gray-400 tracking-wide">
-                    {item.level}
-                  </span>
-                </div>
-              </SkillCard>
+                    <span className="text-sm lg:hidden text-gray-400 tracking-wide">
+                      {item.level}
+                    </span>
+                  </div>
+                </SkillCard>
+              </SlideUp>
             ))}
           </div>
         </SkillContent>
@@ -165,27 +171,28 @@ export default function SkillContainer(
           } border-r border-gray-200 dark:border-gray-800`}
         >
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {tools.map((item) => (
-              <SkillCard
-                key={item.name}
-                icon={item.icon}
-                onClick={showDescription(
-                  item.name,
-                  item.icon,
-                  item.level,
-                  item.description,
-                )}
-              >
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold tracking-tight">
-                    {item.name}
-                  </span>
+            {tools.map((item, i) => (
+              <SlideUp key={item.name} delay={1 + (0.2 * i)}>
+                <SkillCard
+                  icon={item.icon}
+                  onClick={showDescription(
+                    item.name,
+                    item.icon,
+                    item.level,
+                    item.description,
+                  )}
+                >
+                  <div className="flex flex-col gap-1">
+                    <span className="font-semibold tracking-tight">
+                      {item.name}
+                    </span>
 
-                  <span className="lg:hidden text-sm text-gray-400 tracking-wide">
-                    {item.level}
-                  </span>
-                </div>
-              </SkillCard>
+                    <span className="text-sm lg:hidden text-gray-400 tracking-wide">
+                      {item.level}
+                    </span>
+                  </div>
+                </SkillCard>
+              </SlideUp>
             ))}
           </div>
         </SkillContent>
@@ -193,22 +200,19 @@ export default function SkillContainer(
         <div className="px-6 py-4 hidden lg:block">
           {desc
             ? (
-              <div className="flex flex-col gap-5">
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-3">
-                    <Icon icon={icon} fontWeight={400} fontSize={64} />
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-4">
+                  <Icon icon={icon} fontWeight={400} fontSize={64} />
 
+                  <div className="flex flex-col gap-1">
                     <h5 className="font-bold text-2xl">
                       {name}
                     </h5>
-                  </div>
 
-                  <LabeledBadge
-                    title="Experience"
-                    className="w-fit bg-accent text-base-light"
-                  >
-                    {level}
-                  </LabeledBadge>
+                    <span className="text-tertiary dark:text-tertiary-dark tracking-wide">
+                      {level}
+                    </span>
+                  </div>
                 </div>
 
                 <p className="text-gray-400 leading-relaxed tracking-wide">
