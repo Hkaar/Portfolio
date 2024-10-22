@@ -31,23 +31,24 @@ const config: Config = {
         "warning": "#facc15",
         "warning-dark": "#fde047",
         "success": "#16a34a",
-        "success-dark": "#4ade80"
+        "success-dark": "#4ade80",
       },
       animation: {
         "float-down": "float-down 2.5s ease-in-out infinite",
         "fade-pulse": "fade-in-out 2s ease-in-out infinite",
+        "rotate-360": "rotate-360 1s linear infinite",
       },
       keyframes: {
         "float-down": {
           "0%": {
-            "transform": "translateY(0)"
+            "transform": "translateY(0)",
           },
           "50%": {
-            "transform": "translateY(10px)"
+            "transform": "translateY(10px)",
           },
           "100%": {
-            "transform": "translateY(0)"
-          }
+            "transform": "translateY(0)",
+          },
         },
         "fade-in-out": {
           "0%": {
@@ -58,9 +59,17 @@ const config: Config = {
           },
           "100%": {
             "opacity": "100%",
-          }
-        }
-      }
+          },
+        },
+        "rotate-360": {
+          "0%": {
+            "transform": "rotate(0deg)",
+          },
+          "100%": {
+            "transform": "rotate(360deg)",
+          },
+        },
+      },
     },
   },
   plugins: [],
