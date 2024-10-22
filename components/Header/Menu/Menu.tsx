@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Icon } from "@iconify/react";
+import TransitionLink from "@/components/TransitionLink";
 
 interface MenuProps {
   href: string;
@@ -10,7 +10,7 @@ interface MenuProps {
 
 export default function Menu({ href, icon, active, children }: MenuProps) {
   return (
-    <Link
+    <TransitionLink
       href={href}
       passHref
       className={`${
@@ -22,6 +22,6 @@ export default function Menu({ href, icon, active, children }: MenuProps) {
     >
       {icon ? <Icon icon={icon} fontSize={24} fontWeight={600}></Icon> : null}
       {children}
-    </Link>
+    </TransitionLink>
   );
 }
