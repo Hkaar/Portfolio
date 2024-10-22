@@ -2,7 +2,9 @@ import { Icon } from "@iconify/react";
 import Timeline from "../Timeline";
 import TimePoint from "../Timeline/TimePoint";
 
-export default function EducationSection({ ...props }: React.HTMLAttributes<HTMLElement>) {
+export default function EducationSection(
+  { ...props }: React.HTMLAttributes<HTMLElement>,
+) {
   return (
     <div
       className={`${props.className} shadow-md flex flex-col gap-6 lg:gap-0 lg:flex-row items-center w-full border rounded-md border-gray-200 dark:border-gray-800`}
@@ -21,14 +23,26 @@ export default function EducationSection({ ...props }: React.HTMLAttributes<HTML
           </h6>
         </div>
 
-        <div className="px-4 py-3 flex justify-center flex-1 items-center">
+        <div className="px-8 py-3 flex justify-center flex-1 items-center">
           <Timeline>
             <TimePoint
               title="SMK TI Bali Global Badung"
               icon="material-symbols-light:school-outline"
               date="2022 - Present"
               desc="Software Engineering"
-            / >
+            />
+            <TimePoint
+              title="SMPN 5 Denpasar"
+              icon="material-symbols-light:school-outline"
+              date="2019 - 2022"
+              desc="General"
+            />
+            <TimePoint
+              title="SDN 8 Padang Sambian"
+              icon="material-symbols-light:school-outline"
+              date="2013 - 2019"
+              desc="General"
+            />
           </Timeline>
         </div>
       </div>
@@ -47,14 +61,14 @@ export default function EducationSection({ ...props }: React.HTMLAttributes<HTML
           </h6>
         </div>
 
-        <div className="px-4 py-3 flex justify-center items-center flex-1">
+        <div className="px-8 py-3 flex justify-center items-center flex-1">
           <Timeline>
             <TimePoint
               title="Axioo Class Program"
               icon="mdi:certificate-outline"
               date="February 2023"
               desc="Robot making & design"
-            / >
+            />
           </Timeline>
         </div>
       </div>
