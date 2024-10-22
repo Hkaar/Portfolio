@@ -55,7 +55,7 @@ export default function JobCard(
       </p>
 
       <div className="flex items-center gap-2">
-        <div className="flex items-center gap-2 text-gray-400">
+        <div className="flex items-center gap-2 text-accent">
           <Icon icon="material-symbols-light:calendar-month-outline" fontSize={24} fontWeight={400} />
 
           <span className="tracking-normal">{date}</span>
