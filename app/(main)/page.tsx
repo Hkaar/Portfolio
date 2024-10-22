@@ -12,7 +12,7 @@ import SlideRight from "@/components/Transitions/SlideRight";
 import client from "@/lib/client";
 
 export default async function HomePage() {
-  const skills:  = await client.fetch(`*[_type == "skill"] | order(name asc) {
+  const skills = await client.fetch(`*[_type == "skill"] | order(name asc) {
     name, 
     "icon": icon->icon, 
     "level": level->name, 
