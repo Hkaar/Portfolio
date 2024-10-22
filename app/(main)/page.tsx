@@ -7,23 +7,26 @@ import ExperienceSection from "@/components/ExperienceSection";
 import Hero from "@/components/Hero";
 import ProjectSection from "@/components/ProjectSection";
 import SkillContainer from "@/components/SkillContainer";
+import SlideLeft from "@/components/Transitions/SlideLeft";
+import SlideRight from "@/components/Transitions/SlideRight";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
 
-      <ContentSection id="about">
-        <div className="flex-1 grid place-items-center">
-          left
-        </div>
+      <SlideLeft>
+        <ContentSection id="about">
+          <div className="flex-1 grid place-items-center">
+            left
+          </div>
 
-        <SectionContent title="About myself">
-          Hey there! i’m shava a software developer whose making
-          full-stack web apps, web sites with various languages 
-          and tools.
-        </SectionContent>
-      </ContentSection>
+          <SectionContent title="About myself">
+            Hey there! i’m shava a software developer whose making full-stack
+            web apps, web sites with various languages and tools.
+          </SectionContent>
+        </ContentSection>
+      </SlideLeft>
 
       <ContentSection id="skills" centered>
         <SectionContent title="Skills" centered>
@@ -31,14 +34,16 @@ export default function HomePage() {
         </SectionContent>
 
         <div className="flex-1 w-full flex justify-center">
-          <SkillContainer />
+          <SlideRight>
+            <SkillContainer />
+          </SlideRight>
         </div>
       </ContentSection>
 
       <ContentSection id="experience" centered>
         <SectionContent title="My Experiences" centered>
-            Here is a list of my experiences, related to software development
-          </SectionContent>
+          Here is a list of my experiences, related to software development
+        </SectionContent>
 
         <div className="flex-1 grid place-items-center w-full">
           <ExperienceSection />
@@ -55,15 +60,22 @@ export default function HomePage() {
         </div>
       </ContentSection>
 
-      <ContentSection id="education" centered>
-        <SectionContent title="Education" centered descriptionClassName="w-3/4">
-          Here is a brief timeline of what education and anything related to academics that i have achieved
-        </SectionContent>
+      <SlideLeft>
+        <ContentSection id="education" centered>
+          <SectionContent
+            title="Education"
+            centered
+            descriptionClassName="w-3/4"
+          >
+            Here is a brief timeline of what education and anything related to
+            academics that i have achieved
+          </SectionContent>
 
-        <div className="flex-1 w-full flex justify-center">
-          <EducationSection />
-        </div>
-      </ContentSection>
+          <div className="flex-1 w-full flex justify-center">
+            <EducationSection />
+          </div>
+        </ContentSection>
+      </SlideLeft>
 
       <ContentSection id="blog" centered>
         <SectionContent title="The Blog" centered>
