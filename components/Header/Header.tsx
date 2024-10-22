@@ -8,6 +8,7 @@ import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
 import { loadStoredTheme } from "@/lib/themeUtils";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Header() {
   const path = usePathname();
@@ -37,18 +38,30 @@ export default function Header() {
       className={`py-4 bg-base-light dark:bg-base-dark border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40
             ${
         isScrolled
-          ? "" // (THIS IS CURRENTLY DISABLED 'KAY?) bg-opacity-20 dark:bg-base-light dark:bg-opacity-[7%] backdrop-blur-lg drop-shadow-lg 
+          ? "" // (THIS IS CURRENTLY DISABLED 'KAY?) bg-opacity-20 dark:bg-base-light dark:bg-opacity-[7%] backdrop-blur-lg drop-shadow-lg
           : ""
       }`}
     >
       <div className="container flex items-center flex-col gap-4 lg:flex-row justify-between">
         <div className="flex justify-between w-full lg:w-fit lg:justify-start">
-          <div className="flex lg:items-center justify-center lg:justify-start gap-2">
-            <Icon icon="material-symbols-light:code" fontSize={32} fontWeight={300}></Icon>
-            <h5 className="font-semibold text-2xl">Shava Jaya</h5>
-          </div>
+          <Link href="/" className="flex lg:items-center justify-center lg:justify-start gap-2">
+            <Icon
+              icon="material-symbols-light:code"
+              fontSize={32}
+              fontWeight={300}
+            >
+            </Icon>
 
-          <Button className="lg:hidden" icon="mdi-light:menu" onClick={handleCollapse} />
+            <h5 className="font-semibold text-2xl">
+              Shava Jaya
+            </h5>
+          </Link>
+
+          <Button
+            className="lg:hidden"
+            icon="mdi-light:menu"
+            onClick={handleCollapse}
+          />
         </div>
 
         <div
@@ -58,7 +71,14 @@ export default function Header() {
           }`}
         >
           <nav className="flex lg:items-center flex-col lg:flex-row gap-2">
-            <Menu href="/" active={path === "/"} icon="material-symbols-light:home-outline">Home</Menu>
+            <Menu
+              href="/"
+              active={path === "/"}
+              icon="material-symbols-light:home-outline"
+            >
+              Home
+            </Menu>
+
             <Menu
               href="/projects"
               active={path.startsWith("/projects")}
@@ -66,6 +86,7 @@ export default function Header() {
             >
               Projects
             </Menu>
+
             <Menu
               href="/blog"
               active={path.startsWith("/blog")}
@@ -73,6 +94,7 @@ export default function Header() {
             >
               Blog
             </Menu>
+            
             <Menu
               href="/contact"
               active={path.startsWith("/contact")}
