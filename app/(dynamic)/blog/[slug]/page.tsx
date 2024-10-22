@@ -6,9 +6,13 @@ import Profile from "@/components/Profile";
 import Badge from "@/components/Badge";
 import { Icon } from "@iconify/react";
 
-export default function BlogPage({ params }: {
-  params: { slug: string };
-}) {
+interface BlogPageProps {
+  params: Promise<{slug: string}>
+}
+
+export default async function BlogPage(props: BlogPageProps) {
+  const params = await props.params;
+
   return (
     <>
       <ArticleContainer>
