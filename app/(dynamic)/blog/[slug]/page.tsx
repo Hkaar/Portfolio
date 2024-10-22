@@ -65,6 +65,8 @@ export default function BlogPage({ params }: {
           Sapiente magni debitis tempore amet rerum porro, consequuntur, nulla
           beatae quisquam delectus voluptatum deserunt iure, fugit quos modi
           quis ut?
+
+          {params.slug}
         </p>
 
         <h2 className="text-4xl font-bold tracking-tight">
