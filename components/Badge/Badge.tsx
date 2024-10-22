@@ -1,17 +1,17 @@
 import { Icon } from "@iconify/react";
+import { twMerge } from "tailwind-merge";
 
-interface BadgeProps {
+interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
   icon?: string;
-  children?: React.ReactNode;
 }
 
-export default function Badge({ icon, children }: BadgeProps) {
+export default function Badge({ icon, className, ...props }: BadgeProps) {
   return (
-    <span className="px-3 py-2 border rounded-md shadow flex items-center gap-2 justify-center border-gray-200 dark:border-gray-800">
+    <span {...props} className={twMerge("px-3 py-2 border rounded-md shadow flex items-center gap-2 justify-center border-gray-200 dark:border-gray-800", className)}>
       {icon
         ? <Icon icon={icon} fontWeight={300} fontSize={24} className="dark:fill-base-dark"></Icon>
         : null}
-      {children}
+      {props.children}
     </span>
   );
 }
