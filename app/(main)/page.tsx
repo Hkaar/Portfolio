@@ -9,8 +9,17 @@ import ProjectSection from "@/components/ProjectSection";
 import SkillContainer from "@/components/SkillContainer";
 import SlideLeft from "@/components/Transitions/SlideLeft";
 import SlideRight from "@/components/Transitions/SlideRight";
+import client from "@/lib/client";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const skills = await client.fetch(`*[_type == "skill"] | order(name asc) {
+    name, 
+    "icon": icon->icon, 
+    "level": level->name, 
+    "category": category->title, 
+    description
+  }`);
+
   return (
     <>
       <Hero />
@@ -35,8 +44,8 @@ export default function HomePage() {
 
         <div className="flex-1 w-full flex justify-center">
           <SlideRight>
-            <SkillContainer />
-          </SlideRight>
+            <SkillContainer skills={skills} />
+          </SlideRight>  
         </div>
       </ContentSection>
 
