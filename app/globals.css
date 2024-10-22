@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  transition-property: opacity, filter;
+  transition-timing-function: ease-in-out;
+  transition-duration: 350ms;
+}
+
+@layer components {
+  .page-transition {
+    opacity: 0;
+    filter: blur(12px);
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
