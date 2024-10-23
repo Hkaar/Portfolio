@@ -1,24 +1,27 @@
 import { twMerge } from "tailwind-merge";
 import LinkButton from "../LinkButton";
-import { randomUUID } from "crypto";
 
 interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
   currentId: number;
   href: string;
   maxId: number;
-  query?: boolean
+  query?: boolean;
 }
 
-const generateIds = (id: number, amount: number, maxId: number) => {
+const generateIds = (currentId: number, maxId: number) => {
   const results: Array<number> = [];
+  const totalDisplayed = 3;
 
-  Array(amount).keys().forEach(i => {
-    if ((id + i) < maxId) {
-      results.push(id + i);
-    } else {
-      results.push(id - i)
-    }
-  });
+  let start = Math.max(1, currentId - Math.floor(totalDisplayed / 2));
+  let end = Math.min(maxId, start + totalDisplayed);
+
+  if (end === maxId) {
+    start = Math.max(1, maxId - totalDisplayed);
+  }
+
+  for (let i = start; i < end; i++) {
+    results.push(i);
+  }
 
   return results;
 };
@@ -26,47 +29,49 @@ const generateIds = (id: number, amount: number, maxId: number) => {
 export default function Pagination(
   { currentId, maxId, href, query, ...props }: PaginationProps,
 ) {
-  const idList = generateIds(currentId, 5, maxId).toSorted((a, b) => a - b);
+  const idList = generateIds(currentId, maxId+1);
 
   return (
     <div className={twMerge("flex items-center gap-2 w-fit", props.className)}>
-      {currentId > 0
-        ? (
-          <LinkButton
+      {currentId > 0 && (
+        <LinkButton
           className="px-3 py-2"
-            href={`${href}${query ? '?page=' : '/'}${currentId - 1}`}
-            icon="mdi-light:arrow-left"
-          >
+          href={`${href}${query ? "?page=" : "/"}${currentId - 1}`}
+          icon="mdi-light:arrow-left"
+        >
+          <span className="hidden lg:block">
             Previous
-          </LinkButton>
-        )
-        : null}
+          </span>
+        </LinkButton>
+      )}
 
       {idList.map((id) => (
         <LinkButton
           className="px-3 py-2"
-          key={`paginator-${randomUUID()}`}
-          href={`${href}${query ? '?page=' : '/'}${id}`}
-          type="tertiary"
+          key={`paginator-${id}`} // Use id as key
+          href={`${href}${query ? "?page=" : "/"}${id}`}
+          type={id === currentId ? "primary" : "tertiary"} // Highlight current page
         >
-          <span className="px-1">
+          <span
+            className={twMerge("px-1", id === currentId ? "bg-opacity-50" : "")}
+          >
             {id}
           </span>
         </LinkButton>
       ))}
 
-      {currentId < maxId
-        ? (
-          <LinkButton
-            className="px-4 py-2"
-            href={`${href}${query ? '?page=' : '/'}${currentId + 1}`}
-            icon="mdi-light:arrow-right"
-            rightIcon
-          >
+      {currentId <= maxId - 1 && (
+        <LinkButton
+          className="px-4 py-2"
+          href={`${href}${query ? "?page=" : "/"}${currentId + 1}`}
+          icon="mdi-light:arrow-right"
+          rightIcon
+        >
+          <span className="hidden lg:block">
             Next
-          </LinkButton>
-        )
-        : null}
+          </span>
+        </LinkButton>
+      )}
     </div>
   );
 }
