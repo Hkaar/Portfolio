@@ -1,1 +1,1 @@
-export { default } from './BlogSectionSkeleton';
+export { default } from './CardSectionSkeleton';
