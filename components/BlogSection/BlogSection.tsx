@@ -4,6 +4,7 @@ import LinkButton from "../LinkButton";
 import CardLoader from "../Loader/CardLoader";
 import SlideUp from "../Transitions/SlideUp";
 import client from "@/lib/client";
+import { PortableTextBlock } from "@portabletext/react";
 
 type Slug = {
   current: string;
@@ -19,7 +20,7 @@ type Post = {
   author: string;
   image: string;
   intro: string;
-  body: Object;
+  body: PortableTextBlock;
 };
 
 const formatDate = (date: string) => {

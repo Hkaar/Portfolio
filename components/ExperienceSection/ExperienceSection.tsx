@@ -1,6 +1,4 @@
 import JobCard from "../Card/JobCard";
-import SlideLeft from "../Transitions/SlideLeft";
-import SlideRight from "../Transitions/SlideRight";
 
 export default function ExperienceSection(
   { ...props }: React.HTMLAttributes<HTMLElement>,

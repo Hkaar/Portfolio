@@ -1,6 +1,5 @@
 import { twMerge } from "tailwind-merge";
 import LinkButton from "../LinkButton";
-import { L } from "vitest/dist/chunks/reporters.C4ZHgdxQ.js";
 import { randomUUID } from "crypto";
 
 interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
