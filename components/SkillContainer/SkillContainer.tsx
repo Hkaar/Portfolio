@@ -221,7 +221,7 @@ export default function SkillContainer(
               </div>
             )
             : (
-              <div className="font-bold text-2xl tracking-tight">
+              <div className="text-2xl tracking-tight h-full grid place-items-center">
                 Select a card to display it’s information!
               </div>
             )}
