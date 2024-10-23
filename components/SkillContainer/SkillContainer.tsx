@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { twMerge } from "tailwind-merge";
 import SlideUp from "../Transitions/SlideUp";
+import SlideDown from "../Transitions/SlideDown";
 
 type Skill = {
   name: string;
@@ -106,7 +107,7 @@ export default function SkillContainer(
             tab === 0 ? null : "hidden"
           } border-r border-gray-200 dark:border-gray-800`}
         >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {languages.map((item, i) => (
               <SlideUp key={item.name} delay={1 + (0.2 * i)}>
                 <SkillCard
@@ -138,7 +139,7 @@ export default function SkillContainer(
             tab === 1 ? null : "hidden"
           } border-r border-gray-200 dark:border-gray-800`}
         >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {frameworks.map((item, i) => (
               <SlideUp key={item.name} delay={1 + (0.2 * i)}>
                 <SkillCard
@@ -170,7 +171,7 @@ export default function SkillContainer(
             tab === 2 ? null : "hidden"
           } border-r border-gray-200 dark:border-gray-800`}
         >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {tools.map((item, i) => (
               <SlideUp key={item.name} delay={1 + (0.2 * i)}>
                 <SkillCard
@@ -200,25 +201,32 @@ export default function SkillContainer(
         <div className="px-6 py-4 hidden lg:block">
           {desc
             ? (
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-4">
-                  <Icon icon={icon} fontWeight={400} fontSize={64} />
+              <SlideDown>
+                <div className="flex flex-col gap-5 h-full">
+                  <div className="flex items-center gap-4">
+                    <Icon
+                      icon={icon}
+                      fontWeight={400}
+                      fontSize={64}
+                      className="dark:fill-base-dark"
+                    />
 
-                  <div className="flex flex-col gap-1">
-                    <h5 className="font-bold text-2xl">
-                      {name}
-                    </h5>
+                    <div className="flex flex-col gap-1">
+                      <h5 className="font-bold text-2xl">
+                        {name}
+                      </h5>
 
-                    <span className="text-tertiary dark:text-tertiary-dark tracking-wide">
-                      {level}
-                    </span>
+                      <span className="text-tertiary dark:text-tertiary-dark font-thin tracking-wide">
+                        Experience | <span className="font-bold">{level}</span>
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                <p className="text-gray-400 leading-relaxed tracking-wide">
-                  {desc}
-                </p>
-              </div>
+                  <p className="text-gray-400 leading-relaxed tracking-wide border rounded-md h-full px-4 py-3 border-gray-200 dark:border-gray-800">
+                    {desc}
+                  </p>
+                </div>
+              </SlideDown>
             )
             : (
               <div className="text-2xl tracking-tight h-full grid place-items-center">
