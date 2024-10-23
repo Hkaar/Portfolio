@@ -1,9 +1,16 @@
 import Button from "@/components/Button";
 import ProjectCard from "@/components/Card/ProjectCard";
 import InputField from "@/components/InputField";
+import Pagination from "@/components/Pagination";
 import { Suspense } from "react";
 
-export default function ProjectPage() {
+interface ProjectPageProps {
+  searchParams: Promise<{page: number}>
+}
+
+export default async function ProjectPage(props: ProjectPageProps) {
+  const searchParams = await props.searchParams;
+
   return (
     <div className="min-h-screen flex">
       <div className="container flex-1 flex flex-col gap-12 py-12">
@@ -113,6 +120,10 @@ export default function ProjectPage() {
               a project about offload newspapers to bridges in the sky
             </ProjectCard>
           </Suspense>
+        </div>
+
+        <div className="flex justify-center w-full">
+          <Pagination currentId={searchParams.page ? Number(searchParams.page) : 1} query href="/projects" maxId={10} />
         </div>
       </div>
     </div>
