@@ -2,10 +2,11 @@ import * as motion from "framer-motion/client";
 
 interface SlideLeftProps extends React.HTMLAttributes<HTMLElement> {
   delay?: number;
+  repeat?: boolean;
 }
 
 export default function SlideLeft(
-  { delay, children }: SlideLeftProps,
+  { delay, repeat, children }: SlideLeftProps,
 ) {
   return (
     <motion.div
@@ -16,7 +17,7 @@ export default function SlideLeft(
         z: 0,
         transition: { duration: delay ? delay : 1.2 },
       }}
-      viewport={{ once: true }}
+      viewport={{ once: repeat ? false : true }}
     >
       {children}
     </motion.div>

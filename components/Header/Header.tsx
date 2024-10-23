@@ -47,12 +47,12 @@ export default function Header() {
           <Link href="/" className="flex lg:items-center justify-center lg:justify-start gap-2">
             <Icon
               icon="material-symbols-light:code-blocks"
-              fontSize={42}
+              fontSize={36}
               fontWeight={300}
             >
             </Icon>
 
-            <h5 className="font-semibold text-2xl">
+            <h5 className="font-semibold text-2xl d-flex items-center">
               Shava Jaya
             </h5>
           </Link>
@@ -63,10 +63,10 @@ export default function Header() {
             onClick={handleCollapse}
           />
         </div>
-
+        
         <div
           id="navMenu"
-          className={`flex lg:items-center flex-col lg:flex-row gap-3 w-full lg:w-fit ${
+          className={`flex lg:items-center flex-col lg:flex-row gap-3 w-full lg:w-fit transition-all ease-linear duration-200 ${
             isCollapsed ? "block" : "hidden lg:flex"
           }`}
         >

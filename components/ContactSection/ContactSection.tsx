@@ -4,6 +4,7 @@ import ContactForm from "../ContactForm";
 import ContactCard from "../Card/ContactCard";
 import SlideRight from "../Transitions/SlideRight";
 import SlideLeft from "../Transitions/SlideLeft";
+import SlideUp from "../Transitions/SlideUp";
 
 export default function ContactSection() {
   return (
@@ -18,24 +19,32 @@ export default function ContactSection() {
           </SectionContent>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <ContactCard
-              title="Email"
-              icon="material-symbols-light:mail-outline"
-            >
-              shavashava42@gmail.com
-            </ContactCard>
+            <SlideUp>
+              <ContactCard
+                title="Email"
+                icon="material-symbols-light:mail-outline"
+              >
+                shavashava42@gmail.com
+              </ContactCard>
+            </SlideUp>
 
-            <ContactCard title="Phone number" icon="mdi-light:phone">
-              +62 81237102017
-            </ContactCard>
+            <SlideUp delay={1.4}>
+              <ContactCard title="Phone number" icon="mdi-light:phone">
+                +62 81237102017
+              </ContactCard>
+            </SlideUp>
 
-            <ContactCard title="Twitter / X" icon="logos:x">
-              @Hkaar5
-            </ContactCard>
+            <SlideUp delay={1.6}>
+              <ContactCard title="Twitter / X" icon="logos:x">
+                @Hkaar5
+              </ContactCard>
+            </SlideUp>
 
-            <ContactCard title="Github" icon="devicon:github">
-              Hkaar
-            </ContactCard>
+            <SlideUp delay={1.8}>
+              <ContactCard title="Github" icon="devicon:github">
+                Hkaar
+              </ContactCard>
+            </SlideUp>
           </div>
         </div>
       </SlideRight>

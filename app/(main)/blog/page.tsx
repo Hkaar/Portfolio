@@ -117,7 +117,7 @@ export default async function BlogPage(props: BlogPageProps) {
         </div>
 
         <div className="flex justify-center">
-          <Pagination href="/blog" query currentId={searchParams.page ? Number(searchParams.page) : 0} maxId={10} />
+          <Pagination href="/blog" query currentId={searchParams.page ? Number(searchParams.page) : 1} maxId={10} />
         </div>
       </div>
     </div>

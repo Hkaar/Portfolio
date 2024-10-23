@@ -6,10 +6,12 @@ import EducationSection from "@/components/EducationSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import Hero from "@/components/Hero";
 import ProjectSection from "@/components/ProjectSection";
+import BlogSectionSkeleton from "@/components/Skeletons/CardSectionSkeleton";
 import SkillContainer from "@/components/SkillContainer";
 import SlideLeft from "@/components/Transitions/SlideLeft";
 import SlideUp from "@/components/Transitions/SlideUp";
 import client from "@/lib/client";
+import { Suspense } from "react";
 
 export default async function HomePage() {
   const skills = await client.fetch(`*[_type == "skill"] | order(name asc) {
@@ -92,7 +94,9 @@ export default async function HomePage() {
         </SectionContent>
 
         <div className="grid place-items-center">
-          <BlogSection />
+          <Suspense fallback={<BlogSectionSkeleton />}>
+            <BlogSection />
+          </Suspense>
         </div>
       </ContentSection>
 

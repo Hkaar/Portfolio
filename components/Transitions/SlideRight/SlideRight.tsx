@@ -2,10 +2,11 @@ import * as motion from "framer-motion/client";
 
 interface SlideRightProps extends React.HTMLAttributes<HTMLElement> {
   delay?: number;
+  repeat?: boolean
 }
 
 export default function SlideRight(
-  { delay, children }: SlideRightProps,
+  { delay, repeat, children }: SlideRightProps,
 ) {
   return (
     <motion.div
@@ -16,7 +17,7 @@ export default function SlideRight(
         z: 0,
         transition: { duration: delay ? delay : 1.2 },
       }}
-      viewport={{ once: true }}
+      viewport={{ once: repeat ? false : true }}
     >
       {children}
     </motion.div>
