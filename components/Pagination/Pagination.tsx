@@ -13,7 +13,7 @@ const generateIds = (currentId: number, maxId: number) => {
   const totalDisplayed = 3;
 
   let start = Math.max(1, currentId - Math.floor(totalDisplayed / 2));
-  let end = Math.min(maxId, start + totalDisplayed);
+  const end = Math.min(maxId, start + totalDisplayed);
 
   if (end === maxId) {
     start = Math.max(1, maxId - totalDisplayed);
