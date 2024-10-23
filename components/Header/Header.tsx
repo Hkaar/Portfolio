@@ -46,8 +46,8 @@ export default function Header() {
         <div className="flex justify-between w-full lg:w-fit lg:justify-start">
           <Link href="/" className="flex lg:items-center justify-center lg:justify-start gap-2">
             <Icon
-              icon="material-symbols-light:code"
-              fontSize={32}
+              icon="material-symbols-light:code-blocks"
+              fontSize={42}
               fontWeight={300}
             >
             </Icon>

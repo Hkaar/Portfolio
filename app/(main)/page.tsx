@@ -8,7 +8,7 @@ import Hero from "@/components/Hero";
 import ProjectSection from "@/components/ProjectSection";
 import SkillContainer from "@/components/SkillContainer";
 import SlideLeft from "@/components/Transitions/SlideLeft";
-import SlideRight from "@/components/Transitions/SlideRight";
+import SlideUp from "@/components/Transitions/SlideUp";
 import client from "@/lib/client";
 
 export default async function HomePage() {
@@ -43,9 +43,7 @@ export default async function HomePage() {
         </SectionContent>
 
         <div className="flex-1 w-full flex justify-center">
-          <SlideRight>
-            <SkillContainer skills={skills} />
-          </SlideRight>  
+          <SkillContainer skills={skills} />
         </div>
       </ContentSection>
 
@@ -55,7 +53,9 @@ export default async function HomePage() {
         </SectionContent>
 
         <div className="flex-1 grid place-items-center w-full">
-          <ExperienceSection />
+          <SlideUp>
+            <ExperienceSection />
+          </SlideUp>
         </div>
       </ContentSection>
 
@@ -69,22 +69,22 @@ export default async function HomePage() {
         </div>
       </ContentSection>
 
-      <SlideLeft>
-        <ContentSection id="education" centered>
-          <SectionContent
-            title="Education"
-            centered
-            descriptionClassName="w-3/4"
-          >
-            Here is a brief timeline of what education and anything related to
-            academics that i have achieved
-          </SectionContent>
+      <ContentSection id="education" centered>
+        <SectionContent
+          title="Education"
+          centered
+          descriptionClassName="w-3/4"
+        >
+          Here is a brief timeline of what education and anything related to
+          academics that i have achieved
+        </SectionContent>
 
-          <div className="flex-1 w-full flex justify-center">
+        <div className="flex-1 w-full flex justify-center">
+          <SlideUp>
             <EducationSection />
-          </div>
-        </ContentSection>
-      </SlideLeft>
+          </SlideUp>
+        </div>
+      </ContentSection>
 
       <ContentSection id="blog" centered>
         <SectionContent title="The Blog" centered>
