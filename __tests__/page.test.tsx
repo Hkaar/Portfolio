@@ -1,17 +1,12 @@
+import { assert, expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { Suspense } from "react";
 import Home from "../app/(main)/page";
-import { assert, test } from "vitest";
 
-// RESERVED!! STILL FINDING A WAY TO FIX RSC NOT RENDERING
+// RESERVED FOR THE FUTURE WHEN ASYNC COMPONENTS WORK IN TESTS
 // test("Page", async () => {
-// 	render(
-// 		<Suspense>
-// 			<Home />
-// 		</Suspense>,
-// 	);
-
-// 	await screen.findByRole("heading", {level: 3, name: "About myself"});
+//   render(await (async () => await Home())());
+//   expect(screen.getByRole("heading", { level: 3, name: "About myself" }))
+//     .toBeDefined();
 // });
 
-test('temp', () => { assert(5 == 5) })
+test('temp', () => { assert( 5 === 5) })
