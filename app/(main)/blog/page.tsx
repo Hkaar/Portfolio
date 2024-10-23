@@ -2,8 +2,15 @@ import InputField from "@/components/InputField";
 import Button from "@/components/Button";
 import { Suspense } from "react";
 import BlogCard from "@/components/Card/BlogCard";
+import Pagination from "@/components/Pagination/Pagination";
 
-export default function BlogPage() {
+interface BlogPageProps {
+  searchParams: Promise<{page: number}>
+}
+
+export default async function BlogPage(props: BlogPageProps) {
+  const searchParams = await props.searchParams;
+
   return (
     <div className="min-h-screen flex">
       <div className="container flex-1 flex flex-col gap-12 py-12">
@@ -38,7 +45,8 @@ export default function BlogPage() {
               date="18 October 2024"
               author="Shava Jaya"
               desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topic={{ name: "Laravel", icon: "devicon:laravel" }}
+              topics={["Laravel"]}
+              topicIcons={["devicon:laravel"]}
             />
           </Suspense>
 
@@ -50,7 +58,8 @@ export default function BlogPage() {
               date="18 October 2024"
               author="Shava Jaya"
               desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topic={{ name: "Laravel", icon: "devicon:laravel" }}
+              topics={["Laravel"]}
+              topicIcons={["devicon:laravel"]}
             />
           </Suspense>
 
@@ -62,7 +71,8 @@ export default function BlogPage() {
               date="18 October 2024"
               author="Shava Jaya"
               desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topic={{ name: "Laravel", icon: "devicon:laravel" }}
+              topics={["Laravel"]}
+              topicIcons={["devicon:laravel"]}
             />
           </Suspense>
 
@@ -74,7 +84,8 @@ export default function BlogPage() {
               date="18 October 2024"
               author="Shava Jaya"
               desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topic={{ name: "Laravel", icon: "devicon:laravel" }}
+              topics={["Laravel"]}
+              topicIcons={["devicon:laravel"]}
             />
           </Suspense>
 
@@ -86,7 +97,8 @@ export default function BlogPage() {
               date="18 October 2024"
               author="Shava Jaya"
               desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topic={{ name: "Laravel", icon: "devicon:laravel" }}
+              topics={["Laravel"]}
+              topicIcons={["devicon:laravel"]}
             />
           </Suspense>
 
@@ -98,9 +110,14 @@ export default function BlogPage() {
               date="18 October 2024"
               author="Shava Jaya"
               desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topic={{ name: "Laravel", icon: "devicon:laravel" }}
+              topics={["Laravel"]}
+              topicIcons={["devicon:laravel"]}
             />
           </Suspense>
+        </div>
+
+        <div className="flex justify-center">
+          <Pagination href="/blog" query currentId={searchParams.page ? Number(searchParams.page) : 0} maxId={10} />
         </div>
       </div>
     </div>
