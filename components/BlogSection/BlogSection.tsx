@@ -11,7 +11,7 @@ type Slug = {
   _type: string;
 };
 
-type Post = {
+type Blog = {
   title: string;
   slug: Slug;
   publishedAt: string;
@@ -32,19 +32,26 @@ const formatDate = (date: string) => {
   });
 };
 
-export default async function BlogSection(
-  { ...props }: React.HTMLAttributes<HTMLElement>,
-) {
-  const posts: Array<Post> = await client.fetch(`*[_type == "post"][0..5] {
+const getPosts = async () => {
+  const posts: Array<Blog> = await client.fetch(`*[_type == "post"][0..5] {
     title,
     slug,
     body,
+    "image": image.asset->url,
     "categories": categories[0..1]->title,
     "icons": categories[0..1]->icon->icon,
     "author": author->name,
     intro,
     publishedAt  
   }`);
+  
+  return posts;
+};
+
+export default async function BlogSection(
+  props: React.HTMLAttributes<HTMLElement>,
+) {
+  const posts = await getPosts();
 
   return (
     <div
@@ -56,7 +63,7 @@ export default async function BlogSection(
           <SlideUp delay={1 + (0.2 * i)} key={post.slug.current}>
             <Suspense fallback={<CardLoader />}>
               <BlogCard
-                src="https://placehold.co/600x480"
+                src={post.image || "https://placehold.co/600x480"}
                 title={post.title}
                 slug={post.slug.current ? post.slug.current : ""}
                 date={formatDate(post.publishedAt)}
