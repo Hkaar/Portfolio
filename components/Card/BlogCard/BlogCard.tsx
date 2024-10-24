@@ -47,7 +47,7 @@ export default function BlogCard(
         </LinkButton>
       </div>
 
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex items-center justify-between gap-2 mt-3">
         <div className="flex items-center gap-3">
           <Image
             src="https://placehold.co/600x480"
