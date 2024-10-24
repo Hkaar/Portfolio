@@ -1,15 +1,65 @@
 import Button from "@/components/Button";
 import ProjectCard from "@/components/Card/ProjectCard";
 import InputField from "@/components/InputField";
+import CardLoader from "@/components/Loader/CardLoader";
 import Pagination from "@/components/Pagination";
+import SlideUp from "@/components/Transitions/SlideUp";
+import client from "@/lib/client";
+import { PortableTextBlock } from "@portabletext/react";
 import { Suspense } from "react";
 
+type Slug = {
+  current: string;
+  _type: string;
+};
+
+type Project = {
+  title: string;
+  image: string;
+  slug: Slug;
+  categories: Array<string>;
+  icons: Array<string>;
+  publishedAt: string;
+  body: PortableTextBlock;
+};
+
 interface ProjectPageProps {
-  searchParams: Promise<{page: number}>
+  searchParams: Promise<{ page: number }>;
 }
+
+const getProjects = async (start: number, end: number) => {
+  const projects: Array<Project> = await client.fetch(
+    `*[_type == "project"][${start}..${end}] {
+    title,
+    slug,
+    body,
+    "image": image.asset->url,
+    "categories": categories[0..2]->title,
+    "icons": categories[0..2]->icon->icon,
+  }`,
+  );
+
+  return projects;
+};
+
+const getMaxPage = async () => {
+  const amount = await client.fetch(`count(*[_type == "project"])`);
+
+  return Math.round(amount / 5) + 1;
+};
 
 export default async function ProjectPage(props: ProjectPageProps) {
   const searchParams = await props.searchParams;
+
+  const currentPage = Number(searchParams.page);
+  const maxPage = await getMaxPage();
+
+  const start = searchParams.page && currentPage != 1
+    ? 4 * (currentPage - 1) + 1
+    : 0;
+  const end = searchParams.page ? 4 * currentPage + 1 : 4;
+
+  const projects = await getProjects(start, end);
 
   return (
     <div className="min-h-screen flex">
@@ -27,7 +77,10 @@ export default async function ProjectPage(props: ProjectPageProps) {
           </div>
 
           <div className="flex items-center gap-2 w-3/4">
-            <InputField className="flex-1" placeholder="Search for a project ..." />
+            <InputField
+              className="flex-1"
+              placeholder="Search for a project ..."
+            />
             <Button icon="material-symbols-light:search" type="accent">
               Search
             </Button>
@@ -35,95 +88,89 @@ export default async function ProjectPage(props: ProjectPageProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Suspense fallback={<span>Loading..</span>}>
-            <ProjectCard
-              src="https://placehold.co/600x480"
-              title="SevenBooks"
-              topics={[
-                { name: "Laravel", icon: "laravel" },
-                { name: "Bootstrap", icon: "bootstrap" },
-                { name: "MySQL", icon: "mysql" },
-              ]}
-            >
-              This is my project`s description. This could be like something for
-              a project about offload newspapers to bridges in the sky
-            </ProjectCard>
-          </Suspense>
+          {projects.map((project, i) => (
+            <SlideUp delay={1+(0.2*i)} key={project.slug.current}>
+              <ProjectCard
+                src={project.image || "https://placehold.co/600x480"}
+                title="SevenBooks"
+                slug={project.slug.current || ""}
+                topics={project.categories}
+                topicIcons={project.icons}
+              >
+                This is my project`s description. This could be like something for
+                a project about offload newspapers to bridges in the sky
+              </ProjectCard>
+            </SlideUp>
+          ))}
 
-          <Suspense fallback={<span>Loading..</span>}>
+          {/* <Suspense fallback={<CardLoader />}>
             <ProjectCard
               src="https://placehold.co/600x480"
               title="SiPandu"
-              topics={[
-                { name: "Laravel", icon: "laravel" },
-                { name: "MySQL", icon: "mysql" },
-                { name: "Bootstrap", icon: "bootstrap" },
-              ]}
+              topics={["Laravel", "Bootstrap"]}
+              topicIcons={["devicon:laravel", "devicon:bootstrap"]}
             >
               This is my project`s description. This could be like something for
               a project about offload newspapers to bridges in the sky
             </ProjectCard>
           </Suspense>
 
-          <Suspense fallback={<span>Loading..</span>}>
+          <Suspense fallback={<CardLoader />}>
             <ProjectCard
               src="https://placehold.co/600x480"
               title="Zahlen"
-              topics={[
-                { name: "Python", icon: "python" },
-                { name: "NumPy", icon: "numpy" },
-              ]}
+              topics={["Python", "Numpy"]}
+              topicIcons={["devicon:python", "devicon:numpy"]}
             >
               This is my project`s description. This could be like something for
               a project about offload newspapers to bridges in the sky
             </ProjectCard>
           </Suspense>
 
-          <Suspense fallback={<span>Loading..</span>}>
+          <Suspense fallback={<CardLoader />}>
             <ProjectCard
               src="https://placehold.co/600x480"
               title="Betutu"
-              topics={[
-                { name: "Python", icon: "python" },
-                { name: "FastAPI", icon: "fastapi" },
-              ]}
+              topics={["Python", "FastAPI"]}
+              topicIcons={["devicon:python", "devicon:fastapi"]}
             >
               This is my project`s description. This could be like something for
               a project about offload newspapers to bridges in the sky
             </ProjectCard>
           </Suspense>
 
-          <Suspense fallback={<span>Loading..</span>}>
+          <Suspense fallback={<CardLoader />}>
             <ProjectCard
               src="https://placehold.co/600x480"
               title="UjianOnline"
-              topics={[
-                { name: "Laravel", icon: "laravel" },
-                { name: "Tailwind CSS", icon: "tailwindcss" },
-              ]}
+              topics={["Laravel", "Tailwind CSS"]}
+              topicIcons={["devicon:laravel", "devicon:tailwindcss"]}
             >
               This is my project`s description. This could be like something for
               a project about offload newspapers to bridges in the sky
             </ProjectCard>
           </Suspense>
 
-          <Suspense fallback={<span>Loading..</span>}>
+          <Suspense fallback={<CardLoader />}>
             <ProjectCard
               src="https://placehold.co/600x480"
               title="My Portfolio"
-              topics={[
-                { name: "Next.js", icon: "nextjs" },
-                { name: "Tailwind CSS", icon: "tailwindcss" },
-              ]}
+              topics={["Next.JS", "Tailwind CSS"]}
+              topicIcons={["devicon:nextjs", "devicon:tailwindcss"]}
             >
               This is my project`s description. This could be like something for
               a project about offload newspapers to bridges in the sky
             </ProjectCard>
-          </Suspense>
+          </Suspense> */}
         </div>
 
         <div className="flex justify-center w-full">
-          <Pagination currentId={searchParams.page ? Number(searchParams.page) : 1} query href="/projects" maxId={10} />
+          <Pagination
+            currentId={searchParams.page ? currentPage : 1}
+            query
+            href="/projects"
+            maxId={maxPage}
+          />
         </div>
       </div>
     </div>
