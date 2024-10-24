@@ -8,6 +8,12 @@ const nextConfig = {
                 hostname: 'placehold.co',
                 port: '',
                 pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'cdn.sanity.io',
+                port: '',
+                pathname: '/**',
             }
         ],
         dangerouslyAllowSVG: true
