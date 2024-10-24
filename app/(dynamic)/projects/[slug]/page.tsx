@@ -3,8 +3,41 @@ import ArticleContainer from "@/components/Article/ArticleContainer";
 import ArticleHeader from "@/components/Article/ArticleHeader";
 import Badge from "@/components/Badge";
 import Profile from "@/components/Profile";
+import client from "@/lib/client";
 import { Icon } from "@iconify/react";
+import { PortableTextBlock } from "@portabletext/react";
 import Image from "next/image";
+import { notFound } from "next/navigation";
+
+type Slug = {
+  current: string;
+  _type: string;
+};
+
+type Project = {
+  title: string;
+  image: string;
+  slug: Slug;
+  categories: Array<string>;
+  icons: Array<string>;
+  publishedAt: string;
+  body: PortableTextBlock;
+};
+
+async function getProject(slug: string) {
+  const response: Project = await client.fetch(
+    `*[_type == "project" && slug.current == "${slug}"][0] {
+    title,
+    slug,
+    body,
+    "image": image.asset->url,
+    "categories": categories[0..2]->title,
+    "icons": categories[0..2]->icon->icon,
+  }`);
+
+  if (response === null) return undefined;
+  return response;
+}
 
 interface ProjectPageProps {
   params: Promise<{slug: string}>
@@ -12,6 +45,11 @@ interface ProjectPageProps {
 
 export default async function ProjectPage(props: ProjectPageProps) {
   const params = await props.params;
+  const project = await getProject(params.slug);
+
+  if (!project) {
+    notFound();
+  }
   
   return (
     <>

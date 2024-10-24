@@ -5,13 +5,55 @@ import ArticleHeader from "@/components/Article/ArticleHeader";
 import Profile from "@/components/Profile";
 import Badge from "@/components/Badge";
 import { Icon } from "@iconify/react";
+import client from "@/lib/client";
+import { PortableTextBlock } from "@portabletext/react";
+import { notFound } from "next/navigation";
+
+type Slug = {
+  current: string;
+  _type: string;
+};
+
+type Blog = {
+  title: string;
+  slug: Slug;
+  publishedAt: string;
+  categories: Array<string>;
+  icons: Array<string>;
+  author: string;
+  image: string;
+  intro: string;
+  body: PortableTextBlock;
+};
 
 interface BlogPageProps {
   params: Promise<{slug: string}>
 }
 
+async function getBlog(slug: string) {
+  const response: Blog = await client.fetch(`*[_type == "post" && slug.current == "${slug}"][0] {
+    title,
+    slug,
+    body,
+    "image": image.asset->url,
+    "categories": categories[0..1]->title,
+    "icons": categories[0..1]->icon->icon,
+    "author": author->name,
+    intro,
+    publishedAt  
+  }`);
+
+  if (response === null) return undefined;
+  return response
+}
+
 export default async function BlogPage(props: BlogPageProps) {
   const params = await props.params;
+  const blog = await getBlog(params.slug);
+
+  if (!blog) {
+    notFound();
+  }
 
   return (
     <>
