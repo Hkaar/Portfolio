@@ -44,7 +44,7 @@ export default function LinkButton(
       href={href}
       passHref
       className={twMerge(
-        "w-fit flex items-center gap-2 border ease-in-out duration-150 rounded-md px-3 py-2 border-gray-200 dark:border-gray-800",
+        "w-fit flex items-center gap-2 border ease-in-out duration-150 rounded-md px-3 py-2 border-gray-100 dark:border-gray-900",
         disabled
           ? "opacity-30 cursor-not-allowed"
           : "hover:scale-105 active:scale-90 active:opacity-50 shadow-md",
