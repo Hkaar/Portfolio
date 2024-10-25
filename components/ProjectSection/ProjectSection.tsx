@@ -16,6 +16,7 @@ type Project = {
   image: string;
   slug: Slug;
   categories: Array<string>;
+  summary: string;
   icons: Array<string>;
   publishedAt: string;
   body: PortableTextBlock;
@@ -27,7 +28,8 @@ const getProjects = async () => {
     title,
     slug,
     body,
-    "image": image.asset->url,
+    summary,
+    "image": cover.asset->url,
     "categories": categories[0..2]->title,
     "icons": categories[0..2]->icon->icon,
   }`);
@@ -45,13 +47,12 @@ export default async function ProjectSection() {
           <SlideUp delay={1 + (0.2 * i)} key={project.slug.current}>
             <ProjectCard
               src={project.image || "https://placehold.co/600x480"}
-              title="SevenBooks"
+              title={project.title}
               slug={project.slug.current || ""}
               topics={project.categories}
               topicIcons={project.icons}
             >
-              This is my project`s description. This could be like something for
-              a project about offload newspapers to bridges in the sky
+              {project.summary}
             </ProjectCard>
           </SlideUp>
         ))}
