@@ -9,26 +9,19 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 const getTypeClasses = (type?: string): string => {
-  switch (type) {
-    case "primary":
-      return "bg-primary text-base-light dark:bg-primary-dark dark:text-base-dark border-gray-200 dark:border-gray-800";
-    case "secondary":
-      return "bg-secondary text-base-light dark:bg-secondary-dark dark:text-base-dark border-gray-200 dark:border-gray-800";
-    case "tertiary":
-      return "bg-tertiary text-base-light dark:bg-tertiary-dark dark:text-base-dark border-gray-200 dark:border-gray-800";
-    case "accent":
-      return "bg-accent text-base-light border-gray-200 dark:border-gray-800";
-    case "success":
-      return "bg-success text-base-light dark:bg-success-dark border-gray-200 dark:border-gray-800";
-    case "info":
-      return "bg-info text-base-light dark:bg-info-dark border-gray-200 dark:border-gray-800";
-    case "warning":
-      return "bg-warning text-base-light dark:bg-warning-dark border-gray-200 dark:border-gray-800";
-    case "danger":
-      return "bg-danger text-base-light dark:bg-danger-dark border-gray-200 dark:border-gray-800";
-    default:
-      return "";
-  }
+  const baseClass = type && type.startsWith("outline") ? "border" : "bg";
+  const color = type?.replace("outline-", "") || "inherit";
+
+  const hoverClasses = type?.startsWith("outline-")
+    ? `hover:bg-${color} dark:hover:bg-${color}-dark hover:text-base-light dark:hover:text-base-dark`
+    : "";
+  const textClasses = type
+    ? type.startsWith("outline-")
+      ? `text-${color} dark:text-${color}-dark`
+      : "text-base-light dark:text-base-dark"
+    : "text-base-dark dark:text-base-light";
+
+  return `${baseClass}-${color} dark:${baseClass}-${color}-dark ${textClasses} ${hoverClasses}`;
 };
 
 export default function Button(

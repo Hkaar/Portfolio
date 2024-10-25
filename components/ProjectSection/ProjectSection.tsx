@@ -3,38 +3,67 @@ import LinkButton from "../LinkButton";
 import ProjectCard from "../Card/ProjectCard";
 import CardLoader from "../Loader/CardLoader";
 import SlideUp from "../Transitions/SlideUp";
+import client from "@/lib/client";
+import { PortableTextBlock } from "@portabletext/react";
 
-export default function ProjectSection() {
+type Slug = {
+  current: string;
+  _type: string;
+};
+
+type Project = {
+  title: string;
+  image: string;
+  slug: Slug;
+  categories: Array<string>;
+  summary: string;
+  icons: Array<string>;
+  publishedAt: string;
+  body: PortableTextBlock;
+};
+
+const getProjects = async () => {
+  const projects: Array<Project> = await client.fetch(
+    `*[_type == "project"][0..5] {
+    title,
+    slug,
+    body,
+    summary,
+    "image": cover.asset->url,
+    "categories": categories[0..2]->title,
+    "icons": categories[0..2]->icon->icon,
+  }`);
+
+  return projects;
+}
+
+export default async function ProjectSection() {
+  const projects = await getProjects();
+  
   return (
     <div className="flex flex-col gap-6 justify-center items-center">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <SlideUp>
-          <Suspense fallback={<CardLoader />}>
+        {projects.map((project, i) => (
+          <SlideUp delay={1 + (0.2 * i)} key={project.slug.current}>
             <ProjectCard
-              src="https://placehold.co/600x480"
-              title="SevenBooks"
-              topics={[
-                { name: "Laravel", icon: "laravel" },
-                { name: "Bootstrap", icon: "bootstrap" },
-                { name: "MySQL", icon: "mysql" },
-              ]}
+              src={project.image || "https://placehold.co/600x480"}
+              title={project.title}
+              slug={project.slug.current || ""}
+              topics={project.categories}
+              topicIcons={project.icons}
             >
-              This is my project`s description. This could be like something for
-              a project about offload newspapers to bridges in the sky
+              {project.summary}
             </ProjectCard>
-          </Suspense>
-        </SlideUp>
+          </SlideUp>
+        ))}
 
         <SlideUp delay={1.4}>
           <Suspense fallback={<CardLoader />}>
             <ProjectCard
               src="https://placehold.co/600x480"
               title="SiPandu"
-              topics={[
-                { name: "Laravel", icon: "laravel" },
-                { name: "MySQL", icon: "mysql" },
-                { name: "Bootstrap", icon: "bootstrap" },
-              ]}
+              topics={["Laravel", "Bootstrap"]}
+              topicIcons={["devicon:laravel", "devicon:bootstrap"]}
             >
               This is my project`s description. This could be like something for
               a project about offload newspapers to bridges in the sky
@@ -47,10 +76,8 @@ export default function ProjectSection() {
             <ProjectCard
               src="https://placehold.co/600x480"
               title="Zahlen"
-              topics={[
-                { name: "Python", icon: "python" },
-                { name: "NumPy", icon: "numpy" },
-              ]}
+              topics={["Python", "Numpy"]}
+              topicIcons={["devicon:python", "devicon:numpy"]}
             >
               This is my project`s description. This could be like something for
               a project about offload newspapers to bridges in the sky
@@ -64,10 +91,8 @@ export default function ProjectSection() {
               className="hidden lg:flex"
               src="https://placehold.co/600x480"
               title="Betutu"
-              topics={[
-                { name: "Python", icon: "python" },
-                { name: "FastAPI", icon: "fastapi" },
-              ]}
+              topics={["Python", "FastAPI"]}
+              topicIcons={["devicon:python", "devicon:fastapi"]}
             >
               This is my project`s description. This could be like something for
               a project about offload newspapers to bridges in the sky
@@ -81,10 +106,8 @@ export default function ProjectSection() {
               className="hidden lg:flex"
               src="https://placehold.co/600x480"
               title="UjianOnline"
-              topics={[
-                { name: "Laravel", icon: "laravel" },
-                { name: "Tailwind CSS", icon: "tailwindcss" },
-              ]}
+              topics={["Laravel", "Tailwind CSS"]}
+              topicIcons={["devicon:laravel", "devicon:tailwindcss"]}
             >
               This is my project`s description. This could be like something for
               a project about offload newspapers to bridges in the sky
@@ -98,10 +121,8 @@ export default function ProjectSection() {
               className="hidden lg:flex"
               src="https://placehold.co/600x480"
               title="My Portfolio"
-              topics={[
-                { name: "Next.js", icon: "nextjs" },
-                { name: "Tailwind CSS", icon: "tailwindcss" },
-              ]}
+              topics={["Next.JS", "Tailwind CSS"]}
+              topicIcons={["devicon:nextjs", "devicon:tailwindcss"]}
             >
               This is my project`s description. This could be like something for
               a project about offload newspapers to bridges in the sky

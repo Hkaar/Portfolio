@@ -1,129 +1,146 @@
-import ArticleBlock from "@/components/Article/ArticleBlock";
-import ArticleContainer from "@/components/Article/ArticleContainer";
 import ArticleHeader from "@/components/Article/ArticleHeader";
 import Badge from "@/components/Badge";
-import Profile from "@/components/Profile";
-import { Icon } from "@iconify/react";
+import LinkButton from "@/components/LinkButton";
+import client from "@/lib/client";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
 import Image from "next/image";
+import { notFound } from "next/navigation";
+import ImageCarousel from "@/components/Carousel/ImageCarousel";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { formatDate } from "@/lib/commonUtils";
+
+type Slug = {
+  current: string;
+  _type: string;
+};
+
+type Project = {
+  title: string;
+  image: string;
+  images: Array<string>;
+  slug: Slug;
+  summary: string;
+  categories: Array<string>;
+  icons: Array<string>;
+  publishedAt: string;
+  body: PortableTextBlock;
+};
+
+async function getProject(slug: string) {
+  const response: Project = await client.fetch(
+    `*[_type == "project" && slug.current == "${slug}"][0] {
+    title,
+    slug,
+    body,
+    summary,
+    publishedAt,
+    "image": cover.asset->url,
+    "images": images[].asset->url,
+    "categories": categories[]->title,
+    "icons": categories[]->icon->icon,
+  }`);
+
+  if (response === null) return undefined;
+  return response;
+}
 
 interface ProjectPageProps {
-  params: Promise<{slug: string}>
+  params: Promise<{ slug: string }>;
 }
+
+export const fetchCache = 'force-no-store';
 
 export default async function ProjectPage(props: ProjectPageProps) {
   const params = await props.params;
-  
+  const project = await getProject(params.slug);
+
+  if (!project) {
+    notFound();
+  }
+
   return (
     <>
-      <ArticleContainer>
+      <div className="container py-4">
         <ArticleHeader>
-          <Image
-            src="https://placehold.co/600x480"
-            alt="No Image available"
-            width={1920}
-            height={1080}
-            className="w-full h-96 object-cover"
-          />
+          <div className="flex flex-col gap-3">
+            <div className="flex items-end">
+              <h1 className="text-6xl font-bold text-primary dark:text-primary-dark tracking-tighter flex-1">
+                {project.title}
+              </h1>
 
-          <div className="flex items-center gap-2">
-            <Badge icon="devicon:laravel">
-              Laravel
-            </Badge>
+              <div className="flex items-center gap-2 flex-1 justify-end">
+                <LinkButton
+                  href="#"
+                  icon="material-symbols:share-outline"
+                  className="border-none shadow-none"
+                >
+                  Share
+                </LinkButton>
 
-            <Badge icon="devicon:bootstrap">
-              Bootstrap
-            </Badge>
+                <LinkButton
+                  href="#"
+                  type="outline-accent"
+                  icon="material-symbols:collections-bookmark-outline"
+                >
+                  Repository
+                </LinkButton>
 
-            <Badge icon="devicon:mysql">
-              MySQL
-            </Badge>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            <h1 className="text-5xl font-bold tracking-tighter">
-              Common Storage Problems in Laravel
-            </h1>
-
-            <div className="flex items-center gap-2 tracking-wide text-gray-400">
-              <Icon
-                icon="material-symbols-light:calendar-month-outline"
-                fontSize={24}
-                fontWeight={400}
-              />
-
-              Febuary 24, 2024
+                <LinkButton href="#" type="primary" icon="mdi:eye-outline">
+                  Preview
+                </LinkButton>
+              </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-5">
-            <Profile
-              name="Shava Jaya"
-              occupation="Software Engineer"
-              src="https://placehold.co/600x480"
-            />
-          </div>
+          <Image
+            src={project.image || "https://placehold.co/600x480"}
+            alt="No Image available"
+            width={1920}
+            height={1080}
+            className="w-full h-[35rem] object-cover rounded-md"
+          />
         </ArticleHeader>
 
-        <p className="tracking-wide leading-relaxed">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime, sit?
-          Sapiente magni debitis tempore amet rerum porro, consequuntur, nulla
-          beatae quisquam delectus voluptatum deserunt iure, fugit quos modi
-          quis ut?
+        <div className="flex w-full gap-8">
+          <div className="max-w-[55rem] flex-1 flex flex-col gap-6 min-h-screen py-4">
+            <ImageCarousel src={project.images} />
 
-          {params.slug}
-        </p>
+            <div className="grid grid-cols-6 gap-2">
+              {project.categories.map((category, i) => (
+                <Badge key={category} icon={project.icons[i]}>
+                  <span className="text-sm text-gray-500">{category}</span>
+                </Badge>
+              ))}
+            </div>
 
-        <h2 className="text-4xl font-bold tracking-tight">
-          Heading 1
-        </h2>
+            <div className="flex flex-col gap-3">
+              <h3 className="text-3xl font-bold">
+                About {project.title}
+              </h3>
 
-        <h3 className="text-3xl font-bold tracking-tight">
-          Heading 2
-        </h3>
+              <div className="tracking-wide leading-relaxed w-3/4">
+                <PortableText value={project.body}></PortableText>
+              </div>
+            </div>
+          </div>
 
-        <h4 className="text-2xl font-bold tracking-tight">
-          Heading 3
-        </h4>
+          <div className="flex flex-col gap-6 py-4">
+            <div className="flex flex-col gap-3">
+              <h3 className="text-3xl font-bold">
+                More info
+              </h3>
 
-        <ArticleBlock>
-          <h2 className="text-4xl font-bold tracking-tight">
-            Heading 1
-          </h2>
+              <div className="flex flex-col gap-2 text-gray-400 dark:text-gray-500 leading-relaxed">
+                <span className="flex items-center gap-2">
+                  <Icon icon="mdi:calendar-month-outline" fontSize={24} />
 
-          <p className="tracking-wide leading-relaxed">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime,
-            sit? Sapiente magni debitis tempore amet rerum porro, consequuntur,
-            nulla beatae quisquam delectus voluptatum deserunt iure, fugit quos
-            modi quis ut?
-          </p>
-        </ArticleBlock>
-
-        <ArticleBlock>
-          <h3 className="text-3xl font-bold tracking-tight">
-            Heading 2
-          </h3>
-
-          <p className="tracking-wide leading-relaxed">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime,
-            sit? Sapiente magni debitis tempore amet rerum porro, consequuntur,
-            nulla beatae quisquam delectus voluptatum deserunt iure, fugit quos
-            modi quis ut?
-          </p>
-        </ArticleBlock>
-
-        <ArticleBlock>
-          <h4 className="text-2xl font-bold tracking-tight">
-            Heading 3
-          </h4>
-
-          <p className="tracking-wide leading-relaxed">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime,
-            sit? Sapiente magni debitis tempore amet rerum porro, consequuntur,
-            nulla beatae quisquam delectus voluptatum deserunt iure, fugit quos
-            modi quis ut?
-          </p>
-        </ArticleBlock>
-      </ArticleContainer>
+                  {formatDate(project.publishedAt)}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

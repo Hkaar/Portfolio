@@ -33,7 +33,7 @@ export default function Pagination(
 
   return (
     <div className={twMerge("flex items-center gap-2 w-fit", props.className)}>
-      {currentId > 0 && (
+      {currentId > 1 && (
         <LinkButton
           className="px-3 py-2"
           href={`${href}${query ? "?page=" : "/"}${currentId - 1}`}

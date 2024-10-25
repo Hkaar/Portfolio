@@ -7,7 +7,7 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState("");
 
   useEffect(() => {
-    setTheme(getAppTheme);
+    setTheme(getAppTheme());
   }, []);
 
   const handleTheme = () => {

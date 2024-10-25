@@ -3,13 +3,77 @@ import Button from "@/components/Button";
 import { Suspense } from "react";
 import BlogCard from "@/components/Card/BlogCard";
 import Pagination from "@/components/Pagination/Pagination";
+import { PortableTextBlock } from "@portabletext/react";
+import client from "@/lib/client";
+import SlideUp from "@/components/Transitions/SlideUp";
+import CardLoader from "@/components/Loader/CardLoader";
+
+type Slug = {
+  current: string;
+  _type: string;
+};
+
+type Blog = {
+  title: string;
+  slug: Slug;
+  publishedAt: string;
+  category: string;
+  icon: string;
+  author: string;
+  image: string;
+  intro: string;
+  body: PortableTextBlock;
+};
 
 interface BlogPageProps {
-  searchParams: Promise<{page: number}>
+  searchParams: Promise<{ page: number }>;
 }
+
+const formatDate = (date: string) => {
+  const d = new Date(date);
+  return d.toLocaleDateString("en-us", {
+    day: "numeric",
+    year: "numeric",
+    month: "long",
+  });
+};
+
+const getPosts = async (start: number, end: number) => {
+  const posts: Array<Blog> = await client.fetch(
+    `*[_type == "post"][${start}..${end}] {
+    title,
+    slug,
+    body,
+    "image": image.asset->url,
+    "category": categories[0]->title,
+    "icon": categories[0]->icon->icon,
+    "author": author->name,
+    intro,
+    publishedAt  
+  }`,
+  );
+
+  return posts;
+};
+
+const getMaxPage = async () => {
+  const amount = await client.fetch(`count(*[_type == "post"])`);
+
+  return Math.round(amount / 5) + 1;
+};
 
 export default async function BlogPage(props: BlogPageProps) {
   const searchParams = await props.searchParams;
+
+  const currentPage = Number(searchParams.page);
+  const maxPage = await getMaxPage();
+
+  const start = searchParams.page && currentPage != 1
+    ? 4 * (currentPage - 1) + 1
+    : 0;
+  const end = searchParams.page ? 4 * currentPage + 1 : 4;
+
+  const posts = await getPosts(start, end);
 
   return (
     <div className="min-h-screen flex">
@@ -37,87 +101,31 @@ export default async function BlogPage(props: BlogPageProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Suspense fallback={<span>Loading</span>}>
-            <BlogCard
-              src="https://placehold.co/600x480"
-              title="Storage link not working?"
-              slug="storage-link-not-working"
-              date="18 October 2024"
-              author="Shava Jaya"
-              desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topics={["Laravel"]}
-              topicIcons={["devicon:laravel"]}
-            />
-          </Suspense>
-
-          <Suspense fallback={<span>Loading</span>}>
-            <BlogCard
-              src="https://placehold.co/600x480"
-              title="Storage link not working?"
-              slug="storage-link-not-working"
-              date="18 October 2024"
-              author="Shava Jaya"
-              desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topics={["Laravel"]}
-              topicIcons={["devicon:laravel"]}
-            />
-          </Suspense>
-
-          <Suspense fallback={<span>Loading</span>}>
-            <BlogCard
-              src="https://placehold.co/600x480"
-              title="Storage link not working?"
-              slug="storage-link-not-working"
-              date="18 October 2024"
-              author="Shava Jaya"
-              desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topics={["Laravel"]}
-              topicIcons={["devicon:laravel"]}
-            />
-          </Suspense>
-
-          <Suspense fallback={<span>Loading</span>}>
-            <BlogCard
-              src="https://placehold.co/600x480"
-              title="Storage link not working?"
-              slug="storage-link-not-working"
-              date="18 October 2024"
-              author="Shava Jaya"
-              desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topics={["Laravel"]}
-              topicIcons={["devicon:laravel"]}
-            />
-          </Suspense>
-
-          <Suspense fallback={<span>Loading</span>}>
-            <BlogCard
-              src="https://placehold.co/600x480"
-              title="Storage link not working?"
-              slug="storage-link-not-working"
-              date="18 October 2024"
-              author="Shava Jaya"
-              desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topics={["Laravel"]}
-              topicIcons={["devicon:laravel"]}
-            />
-          </Suspense>
-
-          <Suspense fallback={<span>Loading</span>}>
-            <BlogCard
-              src="https://placehold.co/600x480"
-              title="Storage link not working?"
-              slug="storage-link-not-working"
-              date="18 October 2024"
-              author="Shava Jaya"
-              desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topics={["Laravel"]}
-              topicIcons={["devicon:laravel"]}
-            />
-          </Suspense>
+          {posts.map((post, i) => (
+            <SlideUp delay={1 + (0.2 * i)} key={post.slug.current}>
+              <Suspense fallback={<CardLoader />}>
+                <BlogCard
+                  src={post.image || "https://placehold.co/600x480"}
+                  title={post.title}
+                  slug={post.slug.current ? post.slug.current : ""}
+                  date={formatDate(post.publishedAt)}
+                  author={post.author}
+                  desc={post.intro ? post.intro : ""}
+                  topic={post.category}
+                  topicIcon={post.icon}
+                />
+              </Suspense>
+            </SlideUp>
+          ))}
         </div>
 
         <div className="flex justify-center">
-          <Pagination href="/blog" query currentId={searchParams.page ? Number(searchParams.page) : 1} maxId={10} />
+          <Pagination
+            href="/blog"
+            query
+            currentId={searchParams.page ? currentPage : 1}
+            maxId={maxPage}
+          />
         </div>
       </div>
     </div>

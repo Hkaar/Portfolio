@@ -11,9 +11,10 @@ import SkillContainer from "@/components/SkillContainer";
 import SlideLeft from "@/components/Transitions/SlideLeft";
 import SlideUp from "@/components/Transitions/SlideUp";
 import client from "@/lib/client";
+import Image from "next/image";
 import { Suspense } from "react";
 
-export default async function HomePage() {
+const getSkills = async () => {
   const skills = await client.fetch(`*[_type == "skill"] | order(name asc) {
     name, 
     "icon": icon->icon, 
@@ -22,6 +23,12 @@ export default async function HomePage() {
     description
   }`);
 
+  return skills;
+} 
+
+export default async function HomePage() {
+  const skills = await getSkills();
+
   return (
     <>
       <Hero />
@@ -29,10 +36,10 @@ export default async function HomePage() {
       <SlideLeft>
         <ContentSection id="about">
           <div className="flex-1 grid place-items-center">
-            left
+            <Image src="/images/cat2.png" alt="Image was not loaded..." width={1920} height={1920} className="size-full object-contain aspect-square" />
           </div>
 
-          <SectionContent title="About myself">
+          <SectionContent title="About myself" className="lg:gap-6">
             Hey there! i’m shava a software developer whose making full-stack
             web apps, web sites with various languages and tools.
           </SectionContent>

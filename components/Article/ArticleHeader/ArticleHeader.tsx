@@ -4,8 +4,6 @@ export default function ArticleHeader({ ...props }: React.HTMLAttributes<HTMLEle
   return (
     <div className={twMerge("flex flex-col gap-5", props.className)}>
       {props.children}
-
-      <hr />
     </div>
   )
 }

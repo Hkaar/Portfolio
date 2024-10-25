@@ -1,9 +1,10 @@
 import { Icon } from "@iconify/react";
 import LinkButton from "../LinkButton";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex">
+    <section className="min-h-[90vh] flex">
       <div className="container flex-1 flex text-center lg:text-start flex-col-reverse lg:flex-row justify-between gap-6 items-center">
         <div className="flex flex-col h-full justify-center items-center lg:items-start gap-6 lg:gap-10 flex-1">
           <div className="flex flex-col gap-3">
@@ -53,7 +54,7 @@ export default function Hero() {
         </div>
 
         <div className="hidden lg:grid flex-1 place-items-center">
-          Image
+          <Image src="/images/cat1.png" alt="No image was available..." width={1920} height={1920} className="size-full object-contain aspect-square" />
         </div>
       </div>
     </section>
