@@ -4,13 +4,13 @@ import { Swiper as SwiperType } from 'swiper/types';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
+import Image from 'next/image';
 import Button from "../../Button";
 import { MutableRefObject, useRef } from "react";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Image from 'next/image';
 
 interface ImageCarouselProps {
   src: Array<string>
