@@ -31,13 +31,15 @@ export default function ProjectCard(
           ? (
             <div className="hidden md:flex items-center gap-2 flex-wrap">
               {topics.map((item, i) => (
-                <Badge key={item} icon={topicIcons[i]}>{item}</Badge>
+                <Badge key={item} icon={topicIcons[i]}>
+                  <span className="text-sm text-gray-500">{item}</span>
+                </Badge>
               ))}
             </div>
           )
           : null}
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           <h6 className="font-bold text-3xl tracking-tight">{title}</h6>
 
           <p className="text-gray-400 line-clamp-3 tracking-wide leading-relaxed">

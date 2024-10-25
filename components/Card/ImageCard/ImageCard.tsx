@@ -17,9 +17,7 @@ export default function ImageCard({ src, ...props }: ImageCardProps) {
         alt="No image was loaded ..."
       />
 
-      <div className="flex flex-col gap-3 flex-1 justify-center">
-        {props.children}
-      </div>
+      {props.children}
     </Card>
   );
 }
