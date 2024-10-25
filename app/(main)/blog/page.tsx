@@ -17,8 +17,8 @@ type Blog = {
   title: string;
   slug: Slug;
   publishedAt: string;
-  categories: Array<string>;
-  icons: Array<string>;
+  category: string;
+  icon: string;
   author: string;
   image: string;
   intro: string;
@@ -45,8 +45,8 @@ const getPosts = async (start: number, end: number) => {
     slug,
     body,
     "image": image.asset->url,
-    "categories": categories[0..1]->title,
-    "icons": categories[0..1]->icon->icon,
+    "category": categories[0]->title,
+    "icon": categories[0]->icon->icon,
     "author": author->name,
     intro,
     publishedAt  
@@ -111,8 +111,8 @@ export default async function BlogPage(props: BlogPageProps) {
                   date={formatDate(post.publishedAt)}
                   author={post.author}
                   desc={post.intro ? post.intro : ""}
-                  topics={post.categories}
-                  topicIcons={post.icons}
+                  topic={post.category}
+                  topicIcon={post.icon}
                 />
               </Suspense>
             </SlideUp>

@@ -18,6 +18,7 @@ type Project = {
   image: string;
   slug: Slug;
   categories: Array<string>;
+  summary: string;
   icons: Array<string>;
   publishedAt: string;
   body: PortableTextBlock;
@@ -33,7 +34,8 @@ const getProjects = async (start: number, end: number) => {
     title,
     slug,
     body,
-    "image": image.asset->url,
+    summary,
+    "image": cover.asset->url,
     "categories": categories[0..2]->title,
     "icons": categories[0..2]->icon->icon,
   }`,
@@ -97,71 +99,10 @@ export default async function ProjectPage(props: ProjectPageProps) {
                 topics={project.categories}
                 topicIcons={project.icons}
               >
-                This is my project`s description. This could be like something for
-                a project about offload newspapers to bridges in the sky
+                {project.summary}
               </ProjectCard>
             </SlideUp>
           ))}
-
-          {/* <Suspense fallback={<CardLoader />}>
-            <ProjectCard
-              src="https://placehold.co/600x480"
-              title="SiPandu"
-              topics={["Laravel", "Bootstrap"]}
-              topicIcons={["devicon:laravel", "devicon:bootstrap"]}
-            >
-              This is my project`s description. This could be like something for
-              a project about offload newspapers to bridges in the sky
-            </ProjectCard>
-          </Suspense>
-
-          <Suspense fallback={<CardLoader />}>
-            <ProjectCard
-              src="https://placehold.co/600x480"
-              title="Zahlen"
-              topics={["Python", "Numpy"]}
-              topicIcons={["devicon:python", "devicon:numpy"]}
-            >
-              This is my project`s description. This could be like something for
-              a project about offload newspapers to bridges in the sky
-            </ProjectCard>
-          </Suspense>
-
-          <Suspense fallback={<CardLoader />}>
-            <ProjectCard
-              src="https://placehold.co/600x480"
-              title="Betutu"
-              topics={["Python", "FastAPI"]}
-              topicIcons={["devicon:python", "devicon:fastapi"]}
-            >
-              This is my project`s description. This could be like something for
-              a project about offload newspapers to bridges in the sky
-            </ProjectCard>
-          </Suspense>
-
-          <Suspense fallback={<CardLoader />}>
-            <ProjectCard
-              src="https://placehold.co/600x480"
-              title="UjianOnline"
-              topics={["Laravel", "Tailwind CSS"]}
-              topicIcons={["devicon:laravel", "devicon:tailwindcss"]}
-            >
-              This is my project`s description. This could be like something for
-              a project about offload newspapers to bridges in the sky
-            </ProjectCard>
-          </Suspense>
-
-          <Suspense fallback={<CardLoader />}>
-            <ProjectCard
-              src="https://placehold.co/600x480"
-              title="My Portfolio"
-              topics={["Next.JS", "Tailwind CSS"]}
-              topicIcons={["devicon:nextjs", "devicon:tailwindcss"]}
-            >
-              This is my project`s description. This could be like something for
-              a project about offload newspapers to bridges in the sky
-            </ProjectCard>
-          </Suspense> */}
         </div>
 
         <div className="flex justify-center w-full">
