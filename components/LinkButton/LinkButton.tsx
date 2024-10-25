@@ -11,26 +11,60 @@ interface LinkButtonProps extends React.HTMLAttributes<HTMLAnchorElement> {
   target?: string;
 }
 
+// FOR SOME REASON THIS SOMETIMES DOESNT RENDER THE COLORS
+// const getTypeClasses = (type?: string): string => {
+//   const baseClass = type && type.startsWith("outline") ? "border" : "bg";
+//   const color = type?.replace("outline-", "") || "inherit";
+
+//   const hoverClasses = type?.startsWith("outline-")
+//     ? `hover:bg-${color} dark:hover:bg-${color}-dark hover:text-base-light dark:hover:text-base-dark`
+//     : `hover:bg-${color} dark:hover:bg-${color}-dark`;
+
+//   const textClasses = type
+//     ? type.startsWith("outline-")
+//       ? `text-${color} dark:text-${color}-dark`
+//       : "text-base-light dark:text-base-dark"
+//     : "text-base-dark dark:text-base-light";
+
+//   return `${baseClass}-${color} dark:${baseClass}-${color}-dark ${textClasses} ${hoverClasses}`.trim();
+// };
+
 const getTypeClasses = (type?: string): string => {
   switch (type) {
     case "primary":
-      return "bg-primary text-base-light dark:bg-primary-dark dark:text-base-dark border-gray-200 dark:border-gray-800";
+      return "bg-primary text-base-light dark:bg-primary-dark dark:text-base-dark";
     case "secondary":
-      return "bg-secondary text-base-light dark:bg-secondary-dark dark:text-base-dark border-gray-200 dark:border-gray-800";
+      return "bg-secondary text-base-light dark:bg-secondary-dark dark:text-base-dark";
     case "tertiary":
-      return "bg-tertiary text-base-light dark:bg-tertiary-dark dark:text-base-dark border-gray-200 dark:border-gray-800";
+      return "bg-tertiary text-base-light dark:bg-tertiary-dark dark:text-base-dark";
     case "accent":
-      return "bg-accent text-base-light border-gray-200 dark:border-gray-800";
+      return "bg-accent text-base-light";
     case "success":
-      return "bg-success text-base-light dark:bg-success-dark border-gray-200 dark:border-gray-800";
+      return "bg-success text-base-light dark:bg-success-dark";
     case "info":
-      return "bg-info text-base-light dark:bg-info-dark dark:text-base-dark border-gray-200 dark:border-gray-800";
+      return "bg-info text-base-light dark:bg-info-dark dark:text-base-dark";
     case "warning":
-      return "bg-warning text-base-light dark:bg-warning-dark border-gray-200 dark:border-gray-800";
+      return "bg-warning text-base-light dark:bg-warning-dark";
     case "danger":
-      return "bg-danger text-base-light dark:bg-danger-dark border-gray-200 dark:border-gray-800";
+      return "bg-danger text-base-light dark:bg-danger-dark";
+    case "outline-primary":
+      return "border-primary text-primary dark:border-primary-dark dark:text-primary-dark hover:bg-primary dark:hover:bg-primary-dark hover:text-base-light dark:hover:text-base-dark";
+    case "outline-secondary":
+      return "border-secondary text-secondary dark:border-secondary-dark dark:text-secondary-dark hover:bg-secondary dark:hover:bg-secondary-dark hover:text-base-light dark:hover:text-base-dark";
+    case "outline-tertiary":
+      return "border-tertiary text-tertiary dark:border-tertiary-dark dark:text-tertiary-dark hover:bg-tertiary dark:hover:bg-tertiary-dark hover:text-base-light dark:hover:text-base-dark";
+    case "outline-accent":
+      return "border-accent text-accent hover:bg-accent hover:text-base-light";
+    case "outline-success":
+      return "border-success text-success dark:border-success-dark hover:bg-success dark:hover:bg-success-dark hover:text-base-light dark:hover:text-base-dark";
+    case "outline-info":
+      return "border-info text-info dark:border-info-dark dark:text-info-dark hover:bg-info dark:hover:bg-info-dark hover:text-base-light dark:hover:text-base-dark";
+    case "outline-warning":
+      return "border-warning text-warning hover:bg-warning dark:hover:bg-warning-dark hover:text-base-light dark:hover:text-base-dark";
+    case "outline-danger":
+      return "border-danger text-danger dark:border-danger-dark hover:bg-danger dark:hover:bg-danger-dark hover:text-base-light dark:hover:text-base-dark";
     default:
-      return "";
+      return "border-gray-200 dark:border-gray-800";
   }
 };
 
