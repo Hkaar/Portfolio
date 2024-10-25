@@ -1,6 +1,5 @@
 import Image from "next/image";
 import ArticleContainer from "@/components/Article/ArticleContainer";
-import ArticleBlock from "@/components/Article/ArticleBlock";
 import ArticleHeader from "@/components/Article/ArticleHeader";
 import Profile from "@/components/Profile";
 import Badge from "@/components/Badge";

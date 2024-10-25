@@ -1,7 +1,7 @@
 "use client";
 
 import { Swiper as SwiperType } from 'swiper/types';
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
 import Button from "../../Button";

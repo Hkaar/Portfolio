@@ -1,12 +1,10 @@
 import Button from "@/components/Button";
 import ProjectCard from "@/components/Card/ProjectCard";
 import InputField from "@/components/InputField";
-import CardLoader from "@/components/Loader/CardLoader";
 import Pagination from "@/components/Pagination";
 import SlideUp from "@/components/Transitions/SlideUp";
 import client from "@/lib/client";
 import { PortableTextBlock } from "@portabletext/react";
-import { Suspense } from "react";
 
 type Slug = {
   current: string;
