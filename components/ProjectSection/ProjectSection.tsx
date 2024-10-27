@@ -1,7 +1,5 @@
-import { Suspense } from "react";
 import LinkButton from "../LinkButton";
 import ProjectCard from "../Card/ProjectCard";
-import CardLoader from "../Loader/CardLoader";
 import SlideUp from "../Transitions/SlideUp";
 import client from "@/lib/client";
 import { PortableTextBlock } from "@portabletext/react";

@@ -9,7 +9,6 @@ import Hero from "@/components/Hero";
 import ProjectSection from "@/components/ProjectSection";
 import BlogSectionSkeleton from "@/components/Skeletons/CardSectionSkeleton";
 import SkillContainer from "@/components/SkillContainer";
-import SlideLeft from "@/components/Transitions/SlideLeft";
 import SlideUp from "@/components/Transitions/SlideUp";
 import client from "@/lib/client";
 import { Suspense } from "react";
