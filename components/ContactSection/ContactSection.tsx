@@ -51,7 +51,7 @@ export default function ContactSection() {
         </div>
       </div>
 
-      <SlideUp className="flex-1 w-full h-full grid place-items-center ms-12">
+      <SlideUp className="flex-1 w-full h-full grid place-items-center">
         <div className="flex-1 w-full px-8 py-6 border border-gray-200 dark:border-gray-800 rounded-md shadow-md flex flex-col gap-7">
           <div className="flex items-center gap-2">
             <h6 className="text-xl md:text-2xl lg:text-3xl font-bold text-secondary dark:text-secondary-dark">
