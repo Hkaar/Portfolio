@@ -6,7 +6,7 @@ export default function LoadSpinner(
   return (
     <div
       className={twMerge(
-        "rounded-full border-gray-100 border-8 border-t-gray-400 dark:border-t-gray-500 dark:border-gray-900 size-16",
+        "rounded-full border-8 border-neutral-200 border-t-neutral-400 dark:border-neutral-900 dark:border-t-neutral-400 size-16",
         props.className, "animate-rotate-360"
       )}
     >
