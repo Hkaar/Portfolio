@@ -2,7 +2,7 @@ import Badge from "@/components/Badge";
 import ImageCard from "@/components/Card/ImageCard";
 import LinkButton from "@/components/LinkButton";
 import { Icon } from "@iconify/react";
-import Image from "next/image";
+// import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
 interface BlogCardProps extends React.HTMLAttributes<HTMLElement> {
