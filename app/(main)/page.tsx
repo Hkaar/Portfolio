@@ -81,7 +81,6 @@ export default async function HomePage() {
         <SectionContent
           title="Education"
           centered
-          descriptionClassName="w-3/4"
         >
           <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed w-3/4">
             Here is a brief timeline of what education and anything related to

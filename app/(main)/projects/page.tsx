@@ -102,7 +102,6 @@ export default async function ProjectPage(props: ProjectPageProps) {
         <div className="flex justify-center w-full">
           <Pagination
             currentId={searchParams.page ? currentPage : 1}
-            query
             className={projects.length <= 0 ? 'hidden' : ''}
             href="/projects"
             maxId={maxPage}

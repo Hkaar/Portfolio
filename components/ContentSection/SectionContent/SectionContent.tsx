@@ -3,11 +3,10 @@ import { twMerge } from "tailwind-merge";
 interface SectionContentProps extends React.HTMLAttributes<HTMLElement> {
   title?: string;
   centered?: boolean;
-  descriptionClassName?: string;
 }
 
 export default function SectionContent(
-  { title, centered, descriptionClassName, ...props }: SectionContentProps,
+  { title, centered, ...props }: SectionContentProps,
 ) {
   return (
     <div

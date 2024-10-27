@@ -8,7 +8,6 @@ interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
   currentId: number;
   href: string;
   maxId: number;
-  query?: boolean;
 }
 
 const generateIds = (currentId: number, maxId: number) => {
@@ -30,7 +29,7 @@ const generateIds = (currentId: number, maxId: number) => {
 };
 
 export default function Pagination(
-  { currentId, maxId, href, query, ...props }: PaginationProps,
+  { currentId, maxId, href, ...props }: PaginationProps,
 ) {
   const idList = generateIds(currentId, maxId + 1);
 

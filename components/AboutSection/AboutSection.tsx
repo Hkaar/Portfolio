@@ -1,13 +1,12 @@
-import ContentSection from "../ContentSection";
 import Image from "next/image";
 import SectionContent from "../ContentSection/SectionContent";
-import LoadSpinner from "../Loader/LoadSpinner";
+import { twMerge } from "tailwind-merge";
 
 export default function AboutSection(
   { ...props }: React.HTMLAttributes<HTMLElement>,
 ) {
   return (
-    <div id="about" className="py-12">
+    <div id="about" className={twMerge("py-12", props.className)}>
       <div className="container flex flex-col items-center md:items-start justify-center lg:justify-start">
         <h3 className="text-center md:text-start lg:hidden font-bold text-4xl md:text-4xl lg:text-5xl xl:text-6xl w-3/4">
           About me
