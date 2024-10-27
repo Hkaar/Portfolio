@@ -49,9 +49,10 @@ const getPosts = async (start: number, end: number, search?: string) => {
 };
 
 const getMaxPage = async () => {
-  const amount = await client.fetch(`count(*[_type == "post"])`);
+  const projectsAmount = await client.fetch(`count(*[_type == "post"])`);
+  const amount = Math.round(projectsAmount / 6);
 
-  return Math.round(amount / 6) + 1;
+  return amount < 1 ? 1 : amount;
 };
 
 export const fetchCache = "force-no-store";

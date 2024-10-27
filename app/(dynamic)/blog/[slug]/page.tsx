@@ -21,6 +21,7 @@ type Blog = {
   categories: Array<string>;
   icons: Array<string>;
   author: string;
+  authorImg: string;
   image: string;
   intro: string;
   body: PortableTextBlock;
@@ -36,10 +37,11 @@ async function getBlog(slug: string) {
     title,
     slug,
     body,
-    "image": image.asset->url,
+    "image": mainImage.asset->url,
     "categories": categories[]->title,
     "icons": categories[]->icon->icon,
     "author": author->name,
+    "authorImg": author->image.asset->url,
     intro,
     publishedAt  
   }`,
@@ -99,7 +101,7 @@ export default async function BlogPage(props: BlogPageProps) {
             <Profile
               name="Shava Jaya"
               occupation="Software Engineer"
-              src="https://placehold.co/600x480"
+              src={blog.authorImg || "https://placehold.co/600x480"}
             />
           </div>
 
