@@ -56,21 +56,6 @@ export default async function ProjectSection() {
             </ProjectCard>
           </SlideUp>
         ))}
-
-        <SlideUp delay={1.8}>
-          <Suspense fallback={<CardLoader />}>
-            <ProjectCard
-              className="hidden lg:flex"
-              src="https://placehold.co/600x480"
-              title="My Portfolio"
-              topics={["Next.JS", "Tailwind CSS"]}
-              topicIcons={["devicon:nextjs", "devicon:tailwindcss"]}
-            >
-              This is my project`s description. This could be like something for
-              a project about offload newspapers to bridges in the sky
-            </ProjectCard>
-          </Suspense>
-        </SlideUp>
       </div>
 
       <LinkButton
