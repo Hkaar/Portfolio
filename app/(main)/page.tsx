@@ -1,3 +1,4 @@
+import AboutSection from "@/components/AboutSection";
 import BlogSection from "@/components/BlogSection";
 import ContactSection from "@/components/ContactSection";
 import ContentSection from "@/components/ContentSection";
@@ -11,7 +12,6 @@ import SkillContainer from "@/components/SkillContainer";
 import SlideLeft from "@/components/Transitions/SlideLeft";
 import SlideUp from "@/components/Transitions/SlideUp";
 import client from "@/lib/client";
-import Image from "next/image";
 import { Suspense } from "react";
 
 const getSkills = async () => {
@@ -24,7 +24,9 @@ const getSkills = async () => {
   }`);
 
   return skills;
-} 
+};
+
+export const fetchCache = "force-no-store";
 
 export default async function HomePage() {
   const skills = await getSkills();
@@ -34,21 +36,14 @@ export default async function HomePage() {
       <Hero />
 
       <SlideLeft>
-        <ContentSection id="about">
-          <div className="flex-1 grid place-items-center">
-            <Image src="/images/cat2.png" alt="Image was not loaded..." width={1920} height={1920} className="size-full object-contain aspect-square" />
-          </div>
-
-          <SectionContent title="About myself" className="lg:gap-6">
-            Hey there! i’m shava a software developer whose making full-stack
-            web apps, web sites with various languages and tools.
-          </SectionContent>
-        </ContentSection>
+        <AboutSection />
       </SlideLeft>
 
       <ContentSection id="skills" centered>
         <SectionContent title="Skills" centered>
-          Here are some of the languages and tools i use to develop software
+          <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed">
+            Here are some of the languages and tools i use to develop software
+          </span>
         </SectionContent>
 
         <div className="flex-1 w-full flex justify-center">
@@ -57,8 +52,10 @@ export default async function HomePage() {
       </ContentSection>
 
       <ContentSection id="experience" centered>
-        <SectionContent title="My Experiences" centered>
-          Here is a list of my experiences, related to software development
+        <SectionContent title="Experiences" centered>
+          <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed">
+            Here is a list of my experiences, related to software development
+          </span>
         </SectionContent>
 
         <div className="flex-1 grid place-items-center w-full">
@@ -70,7 +67,9 @@ export default async function HomePage() {
 
       <ContentSection id="projects" centered>
         <SectionContent title="Projects" centered>
-          Here are some of the projects that i have worked on over the years
+          <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed">
+            Here are some of the projects that i have worked on over the years
+          </span>
         </SectionContent>
 
         <div className="grid place-items-center">
@@ -84,8 +83,10 @@ export default async function HomePage() {
           centered
           descriptionClassName="w-3/4"
         >
-          Here is a brief timeline of what education and anything related to
-          academics that i have achieved
+          <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed w-3/4">
+            Here is a brief timeline of what education and anything related to
+            academics that i have achieved
+          </span>
         </SectionContent>
 
         <div className="flex-1 w-full flex justify-center">
@@ -97,7 +98,9 @@ export default async function HomePage() {
 
       <ContentSection id="blog" centered>
         <SectionContent title="The Blog" centered>
-          Here’s my personal blog where you can see what i’m up to recently
+          <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed">
+            Here’s my personal blog where you can see what i’m up to recently
+          </span>
         </SectionContent>
 
         <div className="grid place-items-center">
