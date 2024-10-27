@@ -31,11 +31,11 @@ export default function PageUpButton(
 
   return (
     <Button
-      icon="mdi-light:arrow-up"
+      icon="mdi:arrow-up"
       {...props}
       type="accent"
       onClick={scrollToTop}
-      className={twMerge("z-30 right-5 bottom-4 fixed p-4", isScrolled ? 'block' : 'hidden', className)}
+      className={twMerge("z-30 right-8 bottom-6 fixed px-3 py-3", isScrolled ? 'block' : 'hidden', className)}
     >
     </Button>
   );
