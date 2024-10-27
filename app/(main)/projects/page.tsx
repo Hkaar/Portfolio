@@ -45,7 +45,7 @@ const getProjects = async (start: number, end: number, search?: string) => {
 
 const getMaxPage = async () => {
   const projectsAmount = await client.fetch(`count(*[_type == "project"])`);
-  const amount = Math.round(projectsAmount / 5);
+  const amount = Math.round(projectsAmount / 6);
 
   return amount < 1 ? 1 : amount;
 };
@@ -59,9 +59,9 @@ export default async function ProjectPage(props: ProjectPageProps) {
   const maxPage = await getMaxPage();
 
   const start = searchParams.page && currentPage != 1
-    ? 4 * (currentPage - 1) + 1
+    ? 5 * (currentPage - 1) + 1
     : 0;
-  const end = searchParams.page ? 4 * currentPage + 1 : 4;
+  const end = searchParams.page ? 5 * currentPage + 1 : 5;
 
   const projects = await getProjects(start, end, searchParams.search);
 

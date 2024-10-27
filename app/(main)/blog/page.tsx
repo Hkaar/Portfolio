@@ -51,7 +51,7 @@ const getPosts = async (start: number, end: number, search?: string) => {
 const getMaxPage = async () => {
   const amount = await client.fetch(`count(*[_type == "post"])`);
 
-  return Math.round(amount / 5) + 1;
+  return Math.round(amount / 6) + 1;
 };
 
 export const fetchCache = "force-no-store";
@@ -63,9 +63,9 @@ export default async function BlogPage(props: BlogPageProps) {
   const maxPage = await getMaxPage();
 
   const start = searchParams.page && currentPage != 1
-    ? 4 * (currentPage - 1) + 1
+    ? 5 * (currentPage - 1) + 1
     : 0;
-  const end = searchParams.page ? 4 * currentPage + 1 : 4;
+  const end = searchParams.page ? 5 * currentPage + 1 : 5;
 
   const posts = await getPosts(start, end, searchParams.search);
 
