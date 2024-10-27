@@ -75,69 +75,6 @@ export default async function BlogSection(
             </Suspense>
           </SlideUp>
         ))}
-
-        <SlideUp delay={1.8}>
-          <Suspense fallback={<CardLoader />}>
-            <BlogCard
-              src="https://placehold.co/600x480"
-              title="Storage link not working?"
-              slug="storage-link-not-working"
-              date="18 October 2024"
-              author="Shava Jaya"
-              desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topic="Laravel"
-              topicIcon="devicon:laravel"
-            />
-          </Suspense>
-        </SlideUp>
-
-        <SlideUp>
-          <Suspense fallback={<CardLoader />}>
-            <BlogCard
-              className="hidden lg:flex"
-              src="https://placehold.co/600x480"
-              title="Storage link not working?"
-              slug="storage-link-not-working"
-              date="18 October 2024"
-              author="Shava Jaya"
-              desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topic="Laravel"
-              topicIcon="devicon:laravel"
-            />
-          </Suspense>
-        </SlideUp>
-
-        <SlideUp delay={1.4}>
-          <Suspense fallback={<CardLoader />}>
-            <BlogCard
-              className="hidden lg:flex"
-              src="https://placehold.co/600x480"
-              title="Storage link not working?"
-              slug="storage-link-not-working"
-              date="18 October 2024"
-              author="Shava Jaya"
-              desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topic="Laravel"
-              topicIcon="devicon:laravel"
-            />
-          </Suspense>
-        </SlideUp>
-
-        <SlideUp delay={1.8}>
-          <Suspense fallback={<CardLoader />}>
-            <BlogCard
-              className="hidden lg:flex"
-              src="https://placehold.co/600x480"
-              title="Storage link not working?"
-              slug="storage-link-not-working"
-              date="18 October 2024"
-              author="Shava Jaya"
-              desc="Ever wondered why storage links in a shared hosting environment for laravel don't work correctly?"
-              topic="Laravel"
-              topicIcon="devicon:laravel"
-            />
-          </Suspense>
-        </SlideUp>
       </div>
 
       <LinkButton
