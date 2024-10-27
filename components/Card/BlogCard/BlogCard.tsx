@@ -27,7 +27,7 @@ export default function BlogCard(
           <Badge
             icon={topicIcon ? topicIcon : "material-symbols-light:tag"}
           >
-            <span className="text-sm text-gray-500">{topic}</span>
+            <span className="text-sm text-neutral-400">{topic}</span>
           </Badge>
 
           <div className="flex items-center gap-2 text-gray-400">
@@ -54,7 +54,7 @@ export default function BlogCard(
             <LinkButton
               href={`/blog/${slug}`}
               type="accent"
-              icon="material-symbols-light:chevron-right"
+              icon="material-symbols:chevron-right"
               rightIcon
             >
               Read More
