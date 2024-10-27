@@ -1,16 +1,20 @@
+import { twMerge } from "tailwind-merge";
+
 interface InputFieldProps extends React.HTMLAttributes<HTMLInputElement> {
   title?: string;
   labelClassName?: string;
-  placeholder?: string
+  placeholder?: string;
   name?: string;
-  required?: boolean
+  required?: boolean;
+  value?: string;
 }
 
 export default function InputField(
-  { labelClassName, required, placeholder, title, name, ...props }: InputFieldProps,
+  { labelClassName, required, placeholder, title, value, name, ...props }:
+    InputFieldProps,
 ) {
   return (
-    <div className={`${props.className}`}>
+    <>
       {title
         ? (
           <label
@@ -18,21 +22,22 @@ export default function InputField(
             htmlFor={props.id}
           >
             {title}
-            {required ? '*' : null}
+            {required ? " *" : null}
           </label>
         )
         : ""}
 
       <div className="relative w-full">
         <input
+          {...props}
+          value={value}
           type={props.datatype}
           placeholder={placeholder}
-          className={`w-full block rounded-md outline-none border px-3 py-2 border-gray-200 dark:border-gray-800 
-                    shadow-sm focus:ring focus:ring-info dark:focus:ring-info-dark text-base-dark dark:bg-base-dark dark:text-base-light`}
+          className={twMerge("w-full block rounded-md outline-none border px-3 py-2 border-neutral-200 dark:border-neutral-800 shadow-sm focus:ring focus:ring-info dark:focus:ring-info-dark text-base-dark dark:bg-base-dark dark:text-base-light", props.className)}
           name={name}
           id={props.id}
         />
       </div>
-    </div>
+    </>
   );
 }
