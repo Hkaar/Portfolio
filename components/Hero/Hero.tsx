@@ -8,11 +8,11 @@ export default function Hero() {
       <div className="container flex-1 flex text-center lg:text-start flex-col-reverse lg:flex-row justify-between gap-6 items-center">
         <div className="flex flex-col h-full justify-center items-center lg:items-start gap-6 lg:gap-10 flex-1">
           <div className="flex flex-col gap-3">
-            <h4 className="font-bold text-lg md:text-xl lg:text-2xl text-gray-400 tracking-wide">
+            <h1 className="font-bold text-lg md:text-xl lg:text-2xl text-gray-400 tracking-wide">
               Hey, I’m Shava Jaya
-            </h4>
+            </h1>
 
-            <p className="font-bold text-4xl md:text-5xl lg:text-6xl xl:text-6xl tracking-tight leading-snug">
+            <p className="font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight leading-snug">
               I’m a developer who designs and makes web apps and web sites
             </p>
           </div>
