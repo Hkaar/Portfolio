@@ -22,7 +22,7 @@ export default function ContentSection(
 
       {!centered
         ? (
-          <div className="container flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-12">
+          <div className="container flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-16">
             {props.children}
           </div>
         )
