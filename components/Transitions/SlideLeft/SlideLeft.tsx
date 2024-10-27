@@ -6,10 +6,11 @@ interface SlideLeftProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export default function SlideLeft(
-  { delay, repeat, children }: SlideLeftProps,
+  { delay, repeat, children, className }: SlideLeftProps,
 ) {
   return (
     <motion.div
+      className={className}
       initial={{ x: 100, opacity: 0, z: 30 }}
       whileInView={{
         x: 0,

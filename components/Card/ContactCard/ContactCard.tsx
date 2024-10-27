@@ -24,7 +24,7 @@ export default function ContactCard(
 
       <div className="flex-1 text-center md:text-start flex flex-col gap-1">
         <span className="text-gray-400 text-sm hidden md:block">{title}</span>
-        <span className="font-semibold text-lg">{props.children}</span>
+        <span className="font-semibold max-w-full">{props.children}</span>
       </div>
     </Card>
   );

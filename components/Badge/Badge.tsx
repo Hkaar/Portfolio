@@ -10,7 +10,7 @@ export default function Badge({ icon, className, ...props }: BadgeProps) {
     <span
       {...props}
       className={twMerge(
-        "px-2 py-1 border rounded-md shadow flex items-center gap-2 justify-center border-gray-200 dark:border-gray-800",
+        "px-2 py-1 border rounded-md shadow flex items-center gap-2 justify-center border-neutral-200 dark:border-neutral-800",
         className,
       )}
     >

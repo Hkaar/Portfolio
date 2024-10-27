@@ -35,10 +35,10 @@ export default function Header() {
 
   return (
     <header
-      className={`py-4 bg-base-light dark:bg-base-dark border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40
+      className={`py-4 bg-base-light dark:bg-base-dark sticky top-0 z-40
             ${
         isScrolled
-          ? "" // (THIS IS CURRENTLY DISABLED 'KAY?) bg-opacity-20 dark:bg-base-light dark:bg-opacity-[7%] backdrop-blur-lg drop-shadow-lg
+          ? "border-b border-neutral-200 dark:border-neutral-800 drop-shadow-md" // (THIS IS CURRENTLY DISABLED 'KAY?) bg-opacity-20 dark:bg-base-light dark:bg-opacity-[7%] backdrop-blur-lg drop-shadow-lg
           : ""
       }`}
     >

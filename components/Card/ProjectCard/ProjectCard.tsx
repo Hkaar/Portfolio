@@ -31,8 +31,8 @@ export default function ProjectCard(
           ? (
             <div className="hidden md:flex items-center gap-2 flex-wrap">
               {topics.map((item, i) => (
-                <Badge key={item} icon={topicIcons[i]}>
-                  <span className="text-sm text-gray-500">{item}</span>
+                <Badge key={item} icon={topicIcons[i] || "material-symbols-light:tag"}>
+                  <span className="text-sm text-neutral-400">{item}</span>
                 </Badge>
               ))}
             </div>
@@ -50,7 +50,7 @@ export default function ProjectCard(
         <div className="flex items-center gap-2 mt-3">
           <LinkButton
             href={slug ? `/projects/${slug}` : "#"}
-            icon="material-symbols-light:info-outline"
+            icon="material-symbols:info-outline"
             type="info"
             disabled={slug ? false : true}
           >
@@ -59,7 +59,7 @@ export default function ProjectCard(
 
           <LinkButton
             href={previewLink || ""}
-            icon="material-symbols-light:chevron-right"
+            icon="material-symbols:chevron-right"
             rightIcon
             type="accent"
             disabled={previewLink ? false : true}

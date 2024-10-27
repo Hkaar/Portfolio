@@ -6,10 +6,11 @@ interface SlideRightProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export default function SlideRight(
-  { delay, repeat, children }: SlideRightProps,
+  { delay, repeat, children, className }: SlideRightProps,
 ) {
   return (
     <motion.div
+      className={className}
       initial={{ x: -50, opacity: 0, z: 30 }}
       whileInView={{
         x: 0,

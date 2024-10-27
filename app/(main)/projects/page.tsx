@@ -1,7 +1,6 @@
-import Button from "@/components/Button";
 import ProjectCard from "@/components/Card/ProjectCard";
-import InputField from "@/components/InputField";
 import Pagination from "@/components/Pagination";
+import SearchBox from "@/components/SearchBox";
 import SlideUp from "@/components/Transitions/SlideUp";
 import client from "@/lib/client";
 import { PortableTextBlock } from "@portabletext/react";
@@ -23,12 +22,14 @@ type Project = {
 };
 
 interface ProjectPageProps {
-  searchParams: Promise<{ page: number }>;
+  searchParams: Promise<{ page: number; search: string }>;
 }
 
-const getProjects = async (start: number, end: number) => {
+const getProjects = async (start: number, end: number, search?: string) => {
+  const searchQuery = search ? `&& title match "*${search}*"` : "";
+
   const projects: Array<Project> = await client.fetch(
-    `*[_type == "project"][${start}..${end}] {
+    `*[_type == "project" ${searchQuery}][${start}..${end}] {
     title,
     slug,
     body,
@@ -43,10 +44,13 @@ const getProjects = async (start: number, end: number) => {
 };
 
 const getMaxPage = async () => {
-  const amount = await client.fetch(`count(*[_type == "project"])`);
+  const projectsAmount = await client.fetch(`count(*[_type == "project"])`);
+  const amount = Math.round(projectsAmount / 5);
 
-  return Math.round(amount / 5) + 1;
+  return amount < 1 ? 1 : amount;
 };
+
+export const fetchCache = "force-no-store";
 
 export default async function ProjectPage(props: ProjectPageProps) {
   const searchParams = await props.searchParams;
@@ -59,11 +63,11 @@ export default async function ProjectPage(props: ProjectPageProps) {
     : 0;
   const end = searchParams.page ? 4 * currentPage + 1 : 4;
 
-  const projects = await getProjects(start, end);
+  const projects = await getProjects(start, end, searchParams.search);
 
   return (
     <div className="min-h-screen flex">
-      <div className="container flex-1 flex flex-col gap-12 py-12">
+      <div className="container flex-1 flex flex-col gap-8 py-12">
         <div className="flex flex-col gap-8 items-center">
           <div className="flex flex-col gap-2 text-center items-center">
             <h1 className="text-5xl font-bold">
@@ -76,15 +80,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 w-3/4">
-            <InputField
-              className="flex-1"
-              placeholder="Search for a project ..."
-            />
-            <Button icon="material-symbols-light:search" type="accent">
-              Search
-            </Button>
-          </div>
+          <SearchBox placeholder="Search for a project ..." className="w-full lg:w-3/4" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -92,7 +88,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
             <SlideUp delay={1+(0.2*i)} key={project.slug.current}>
               <ProjectCard
                 src={project.image || "https://placehold.co/600x480"}
-                title="SevenBooks"
+                title={project.title}
                 slug={project.slug.current || ""}
                 topics={project.categories}
                 topicIcons={project.icons}
@@ -106,7 +102,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
         <div className="flex justify-center w-full">
           <Pagination
             currentId={searchParams.page ? currentPage : 1}
-            query
+            className={projects.length <= 0 ? 'hidden' : ''}
             href="/projects"
             maxId={maxPage}
           />

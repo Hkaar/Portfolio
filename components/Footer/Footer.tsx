@@ -32,7 +32,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          <Badge icon="material-symbols-light:shoppingmode-outline">
+          <Badge icon="material-symbols-light:shoppingmode-outline" className="px-3 py-2 shadow-none border-neutral-200 dark:border-neutral-800">
             {process.env.APP_VERSION ? process.env.APP_VERSION : "1.0"}
           </Badge>
         </div>

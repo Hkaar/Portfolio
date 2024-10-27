@@ -222,7 +222,7 @@ export default function SkillContainer(
                     </div>
                   </div>
 
-                  <p className="text-gray-400 leading-relaxed tracking-wide border rounded-md h-full px-4 py-3 border-gray-200 dark:border-gray-800">
+                  <p className="leading-relaxed tracking-wide border rounded-md h-full px-4 py-3 border-neutral-200 dark:border-neutral-800">
                     {desc}
                   </p>
                 </div>

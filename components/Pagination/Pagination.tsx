@@ -1,11 +1,13 @@
+"use client";
+
 import { twMerge } from "tailwind-merge";
 import LinkButton from "../LinkButton";
+import { useSearchParams } from "next/navigation";
 
 interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
   currentId: number;
   href: string;
   maxId: number;
-  query?: boolean;
 }
 
 const generateIds = (currentId: number, maxId: number) => {
@@ -27,16 +29,25 @@ const generateIds = (currentId: number, maxId: number) => {
 };
 
 export default function Pagination(
-  { currentId, maxId, href, query, ...props }: PaginationProps,
+  { currentId, maxId, href, ...props }: PaginationProps,
 ) {
-  const idList = generateIds(currentId, maxId+1);
+  const idList = generateIds(currentId, maxId + 1);
+
+  const searchParams = useSearchParams();
+
+  const buildUrl = (page: number) => {
+    const queries = new URLSearchParams(searchParams.toString());
+    queries.set("page", page.toString());
+
+    return `${href}?${queries}`;
+  };
 
   return (
     <div className={twMerge("flex items-center gap-2 w-fit", props.className)}>
       {currentId > 1 && (
         <LinkButton
           className="px-3 py-2"
-          href={`${href}${query ? "?page=" : "/"}${currentId - 1}`}
+          href={buildUrl(currentId - 1)}
           icon="mdi-light:arrow-left"
         >
           <span className="hidden lg:block">
@@ -48,9 +59,9 @@ export default function Pagination(
       {idList.map((id) => (
         <LinkButton
           className="px-3 py-2"
-          key={`paginator-${id}`} // Use id as key
-          href={`${href}${query ? "?page=" : "/"}${id}`}
-          type={id === currentId ? "primary" : "tertiary"} // Highlight current page
+          key={`paginator-${id}`}
+          href={buildUrl(id)}
+          type={id === currentId ? "primary" : "tertiary"}
         >
           <span
             className={twMerge("px-1", id === currentId ? "bg-opacity-50" : "")}
@@ -63,7 +74,7 @@ export default function Pagination(
       {currentId <= maxId - 1 && (
         <LinkButton
           className="px-4 py-2"
-          href={`${href}${query ? "?page=" : "/"}${currentId + 1}`}
+          href={buildUrl(currentId + 1)}
           icon="mdi-light:arrow-right"
           rightIcon
         >

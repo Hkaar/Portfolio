@@ -19,6 +19,8 @@ type Project = {
   image: string;
   images: Array<string>;
   slug: Slug;
+  repo: string;
+  preview: string;
   summary: string;
   categories: Array<string>;
   icons: Array<string>;
@@ -33,12 +35,15 @@ async function getProject(slug: string) {
     slug,
     body,
     summary,
+    repo,
+    preview,
     publishedAt,
     "image": cover.asset->url,
     "images": images[].asset->url,
     "categories": categories[]->title,
     "icons": categories[]->icon->icon,
-  }`);
+  }`,
+  );
 
   if (response === null) return undefined;
   return response;
@@ -48,7 +53,7 @@ interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const fetchCache = 'force-no-store';
+export const fetchCache = "force-no-store";
 
 export default async function ProjectPage(props: ProjectPageProps) {
   const params = await props.params;
@@ -60,73 +65,100 @@ export default async function ProjectPage(props: ProjectPageProps) {
 
   return (
     <>
-      <div className="container py-4">
+      <div className="container py-4 space-y-4 lg:space-y-6">
         <ArticleHeader>
           <div className="flex flex-col gap-3">
-            <div className="flex items-end">
-              <h1 className="text-6xl font-bold text-primary dark:text-primary-dark tracking-tighter flex-1">
-                {project.title}
-              </h1>
+            <div className="flex flex-col lg:flex-row lg:items-end gap-3">
+              <div className="flex items-center gap-2">
+                <h1 className="text-3xl font-bold text-primary dark:text-primary-dark tracking-tighter flex-1">
+                  {project.title}
+                </h1>
 
-              <div className="flex items-center gap-2 flex-1 justify-end">
                 <LinkButton
                   href="#"
                   icon="material-symbols:share-outline"
-                  className="border-none shadow-none"
+                  className="lg:hidden border-none shadow-none"
+                >
+                  Share
+                </LinkButton>
+              </div>
+
+              <div className="flex items-center gap-2 flex-1 lg:justify-end">
+                <LinkButton
+                  href="#"
+                  icon="material-symbols:share-outline"
+                  className="hidden lg:flex border-none shadow-none"
                 >
                   Share
                 </LinkButton>
 
                 <LinkButton
-                  href="#"
+                  href={project.repo || "#"}
                   type="outline-accent"
                   icon="material-symbols:collections-bookmark-outline"
+                  target={project.repo ? "_blank" : ""}
+                  disabled={project.repo ? false : true}
                 >
                   Repository
                 </LinkButton>
 
-                <LinkButton href="#" type="primary" icon="mdi:eye-outline">
+                <LinkButton
+                  href={project.preview || "#"}
+                  type="primary"
+                  target={project.preview ? "_blank" : ""}
+                  icon={project.preview
+                    ? "mdi:eye-outline"
+                    : "mdi:eye-off-outline"}
+                  disabled={project.preview ? false : true}
+                >
                   Preview
                 </LinkButton>
               </div>
             </div>
           </div>
 
-          <Image
-            src={project.image || "https://placehold.co/600x480"}
-            alt="No Image available"
-            width={1920}
-            height={1080}
-            className="w-full h-[35rem] object-cover rounded-md"
-          />
+          <div className="bg-neutral-100 dark:bg-neutral-900 p-4 rounded-md shadow-md space-y-5">
+            <Image
+              src={project.image || "https://placehold.co/600x480"}
+              alt="No Image available"
+              width={1920}
+              height={1080}
+              className="w-full h-[35rem] object-cover rounded-md"
+            />
+
+            <ImageCarousel
+              src={project.images}
+            />
+          </div>
         </ArticleHeader>
 
         <div className="flex w-full gap-8">
-          <div className="max-w-[55rem] flex-1 flex flex-col gap-6 min-h-screen py-4">
-            <ImageCarousel src={project.images} />
-
-            <div className="grid grid-cols-6 gap-2">
+          <div className="max-w-[55rem] flex-1 flex flex-col gap-3 md:gap-6 min-h-screen py-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
               {project.categories.map((category, i) => (
-                <Badge key={category} icon={project.icons[i]}>
+                <Badge
+                  key={category}
+                  icon={project.icons[i] || "material-symbols-light:tag"}
+                >
                   <span className="text-sm text-gray-500">{category}</span>
                 </Badge>
               ))}
             </div>
 
             <div className="flex flex-col gap-3">
-              <h3 className="text-3xl font-bold">
-                About {project.title}
+              <h3 className="text-3xl font-semibold">
+                About this project
               </h3>
 
-              <div className="tracking-wide leading-relaxed w-3/4">
+              <div className="text-neutral-400">
                 <PortableText value={project.body}></PortableText>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 py-4">
+          <div className="lg:flex flex-col gap-6 py-4 hidden">
             <div className="flex flex-col gap-3">
-              <h3 className="text-3xl font-bold">
+              <h3 className="text-3xl font-semibold">
                 More info
               </h3>
 
