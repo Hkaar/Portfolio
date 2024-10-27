@@ -35,9 +35,7 @@ export default async function HomePage() {
     <>
       <Hero />
 
-      <SlideLeft>
-        <AboutSection />
-      </SlideLeft>
+      <AboutSection />
 
       <ContentSection id="skills" centered>
         <SectionContent title="Skills" centered>
