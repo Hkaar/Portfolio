@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
 interface SectionContentProps extends React.HTMLAttributes<HTMLElement> {
-  title: string;
+  title?: string;
   centered?: boolean;
   descriptionClassName?: string;
 }
@@ -19,18 +19,15 @@ export default function SectionContent(
         props.className,
       )}
     >
-      <h3 className="font-bold text-3xl md:text-4xl xl:text-5xl w-3/4">
-        {title}
-      </h3>
+      {title
+        ? (
+          <h3 className="font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl w-3/4">
+            {title}
+          </h3>
+        )
+        : null}
 
-      <div
-        className={twMerge(
-          "md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed",
-          descriptionClassName,
-        )}
-      >
-        {props.children}
-      </div>
+      {props.children}
     </div>
   );
 }
