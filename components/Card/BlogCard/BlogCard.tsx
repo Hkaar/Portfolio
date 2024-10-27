@@ -61,13 +61,13 @@ export default function BlogCard(
             </LinkButton>
 
             <div className="flex items-center gap-3">
-              <Image
+              {/* <Image
                 src="https://placehold.co/600x480"
                 className="block aspect-square size-10 object-cover rounded-full"
                 width={640}
                 height={480}
                 alt="No image was loaded ..."
-              />
+              /> */}
 
               <span className="text-accent tracking-wide">
                 {author}

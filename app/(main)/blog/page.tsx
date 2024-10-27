@@ -37,7 +37,7 @@ const getPosts = async (start: number, end: number, search?: string) => {
     title,
     slug,
     body,
-    "image": image.asset->url,
+    "image": mainImage.asset->url,
     "category": categories[0]->title,
     "icon": categories[0]->icon->icon,
     "author": author->name,
