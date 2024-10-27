@@ -1,5 +1,3 @@
-import InputField from "@/components/InputField";
-import Button from "@/components/Button";
 import { Suspense } from "react";
 import BlogCard from "@/components/Card/BlogCard";
 import Pagination from "@/components/Pagination/Pagination";
@@ -7,6 +5,8 @@ import { PortableTextBlock } from "@portabletext/react";
 import client from "@/lib/client";
 import SlideUp from "@/components/Transitions/SlideUp";
 import CardLoader from "@/components/Loader/CardLoader";
+import SearchBox from "@/components/SearchBox";
+import { formatDate } from "@/lib/commonUtils";
 
 type Slug = {
   current: string;
@@ -26,21 +26,14 @@ type Blog = {
 };
 
 interface BlogPageProps {
-  searchParams: Promise<{ page: number }>;
+  searchParams: Promise<{ page: number; search: string }>;
 }
 
-const formatDate = (date: string) => {
-  const d = new Date(date);
-  return d.toLocaleDateString("en-us", {
-    day: "numeric",
-    year: "numeric",
-    month: "long",
-  });
-};
+const getPosts = async (start: number, end: number, search?: string) => {
+  const searchQuery = search ? `&& title match "*${search}*"` : "";
 
-const getPosts = async (start: number, end: number) => {
   const posts: Array<Blog> = await client.fetch(
-    `*[_type == "post"][${start}..${end}] {
+    `*[_type == "post" ${searchQuery}][${start}..${end}] {
     title,
     slug,
     body,
@@ -50,8 +43,7 @@ const getPosts = async (start: number, end: number) => {
     "author": author->name,
     intro,
     publishedAt  
-  }`,
-  );
+  }`);
 
   return posts;
 };
@@ -61,6 +53,8 @@ const getMaxPage = async () => {
 
   return Math.round(amount / 5) + 1;
 };
+
+export const fetchCache = "force-no-store";
 
 export default async function BlogPage(props: BlogPageProps) {
   const searchParams = await props.searchParams;
@@ -73,11 +67,11 @@ export default async function BlogPage(props: BlogPageProps) {
     : 0;
   const end = searchParams.page ? 4 * currentPage + 1 : 4;
 
-  const posts = await getPosts(start, end);
+  const posts = await getPosts(start, end, searchParams.search);
 
   return (
     <div className="min-h-screen flex">
-      <div className="container flex-1 flex flex-col gap-12 py-12">
+      <div className="container flex-1 flex flex-col gap-8 py-12">
         <div className="flex flex-col gap-8 items-center">
           <div className="flex flex-col gap-2 text-center items-center">
             <h1 className="text-5xl font-bold">
@@ -89,18 +83,13 @@ export default async function BlogPage(props: BlogPageProps) {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 w-3/4">
-            <InputField
-              className="flex-1"
-              placeholder="Search for a blog ..."
-            />
-            <Button icon="material-symbols-light:search" type="accent">
-              Search
-            </Button>
-          </div>
+          <SearchBox
+            placeholder="Search for a blog ..."
+            className="w-full lg:w-3/4"
+          />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-h-96">
           {posts.map((post, i) => (
             <SlideUp delay={1 + (0.2 * i)} key={post.slug.current}>
               <Suspense fallback={<CardLoader />}>
@@ -123,6 +112,7 @@ export default async function BlogPage(props: BlogPageProps) {
           <Pagination
             href="/blog"
             query
+            className={posts.length <= 0 ? 'hidden' : ''}
             currentId={searchParams.page ? currentPage : 1}
             maxId={maxPage}
           />
