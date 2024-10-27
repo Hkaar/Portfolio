@@ -143,10 +143,10 @@ export default async function BlogSection(
       <LinkButton
         href="/blog"
         type="tertiary"
-        icon="material-symbols-light:arrow-right-alt"
+        icon="material-symbols:arrow-right-alt"
         rightIcon
       >
-        See more blogs
+        See more
       </LinkButton>
     </div>
   );
