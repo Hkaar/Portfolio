@@ -150,7 +150,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                 About this project
               </h3>
 
-              <div className="text-neutral-400">
+              <div className="text-neutral-400 w-4/5">
                 <PortableText value={project.body}></PortableText>
               </div>
             </div>
