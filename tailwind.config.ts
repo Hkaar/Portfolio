@@ -22,7 +22,7 @@ const config: Config = {
         "primary-dark": "#E1E4F8",
         "secondary-dark": "#B1BAEF",
         "tertiary-dark": "#8091E5",
-        "base-light": "#fefefe",
+        "base-light": "#fbfbfb",
         "base-dark": "#0b0b0b",
         "danger": "#dc2626",
         "danger-dark": "#ef4444",
