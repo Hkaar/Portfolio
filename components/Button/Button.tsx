@@ -5,6 +5,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   icon?: string;
   rightIcon?: boolean;
   disabled?: boolean;
+  actionType?: "button" | "submit" | "reset" | undefined;
   children?: React.ReactNode;
 }
 
@@ -25,12 +26,12 @@ const getTypeClasses = (type?: string): string => {
 };
 
 export default function Button(
-  { disabled, type, icon, rightIcon, children, className, ...props }:
+  { disabled, type, actionType, icon, rightIcon, children, className, ...props }:
     ButtonProps,
 ) {
   return (
     <button
-      type="button"
+      type={actionType || "button"}
       {...props}
       className={`${className} 
             ${
