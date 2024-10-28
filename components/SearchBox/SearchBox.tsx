@@ -31,9 +31,17 @@ export default function SearchBox({ placeholder, ...props }: SearchBoxProps) {
     setSearch(e.target.value);
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const key = e.key.toLowerCase();
+
+    if (key === "enter" || key === "return") {
+      handleSearch();
+    }
+  }
+
   return (
     <div {...props} className={twMerge("flex items-center", props.className)}>
-      <InputField onChange={handleChange}
+      <InputField onChange={handleChange} onKeyDown={handleKeyDown}
         value={search}
         className="flex-1 rounded-none rounded-s-md focus:ring-0 dark:focus:ring-0"
         placeholder={placeholder || "Start searching here!"}
