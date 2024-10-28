@@ -3,11 +3,10 @@ import Badge from "@/components/Badge";
 import LinkButton from "@/components/LinkButton";
 import client from "@/lib/client";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import ImageCarousel from "@/components/Carousel/ImageCarousel";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { formatDate } from "@/lib/commonUtils";
+import ImagePreview from "@/components/ImagePreview";
 
 type Slug = {
   current: string;
@@ -16,7 +15,6 @@ type Slug = {
 
 type Project = {
   title: string;
-  image: string;
   images: Array<string>;
   slug: Slug;
   repo: string;
@@ -38,7 +36,6 @@ async function getProject(slug: string) {
     repo,
     preview,
     publishedAt,
-    "image": cover.asset->url,
     "images": images[].asset->url,
     "categories": categories[]->title,
     "icons": categories[]->icon->icon,
@@ -117,18 +114,8 @@ export default async function ProjectPage(props: ProjectPageProps) {
             </div>
           </div>
 
-          <div className="bg-neutral-100 dark:bg-neutral-900 p-4 rounded-md shadow-md space-y-5">
-            <Image
-              src={project.image || "https://placehold.co/600x480"}
-              alt="No Image available"
-              width={1920}
-              height={1080}
-              className="w-full h-[35rem] object-cover rounded-md"
-            />
-
-            <ImageCarousel
-              src={project.images}
-            />
+          <div className="p-6 rounded-xl shadow-md bg-neutral-100 dark:bg-neutral-900 space-y-5">
+            <ImagePreview src={project.images} />
           </div>
         </ArticleHeader>
 
