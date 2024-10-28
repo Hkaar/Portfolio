@@ -16,7 +16,7 @@ export default function Table({ headings, ...props }: TableProps) {
         <thead>
           <tr className="divide-x divide-neutral-200 dark:divide-neutral-800">
             {headings.map((heading) => (
-              <th scope="col" className={twMerge("px-4 py-3 text-start", heading.className)}>{heading.name}</th>
+              <th key={heading.name} scope="col" className={twMerge("px-4 py-3 text-start", heading.className)}>{heading.name}</th>
             ))}
           </tr>
         </thead>
