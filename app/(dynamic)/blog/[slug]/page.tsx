@@ -1,3 +1,5 @@
+import { Blog } from "@/types/blog";
+
 import Image from "next/image";
 import ArticleContainer from "@/components/Article/ArticleContainer";
 import ArticleHeader from "@/components/Article/ArticleHeader";
@@ -8,24 +10,6 @@ import client from "@/lib/client";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/commonUtils";
-
-type Slug = {
-  current: string;
-  _type: string;
-};
-
-type Blog = {
-  title: string;
-  slug: Slug;
-  publishedAt: string;
-  categories: Array<string>;
-  icons: Array<string>;
-  author: string;
-  authorImg: string;
-  image: string;
-  intro: string;
-  body: PortableTextBlock;
-};
 
 interface BlogPageProps {
   params: Promise<{ slug: string }>;

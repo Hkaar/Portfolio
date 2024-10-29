@@ -1,25 +1,10 @@
+import { Project } from "@/types/project";
+
 import ProjectCard from "@/components/Card/ProjectCard";
 import Pagination from "@/components/Pagination";
 import SearchBox from "@/components/SearchBox";
 import SlideUp from "@/components/Transitions/SlideUp";
 import client from "@/lib/client";
-import { PortableTextBlock } from "@portabletext/react";
-
-type Slug = {
-  current: string;
-  _type: string;
-};
-
-type Project = {
-  title: string;
-  image: string;
-  slug: Slug;
-  categories: Array<string>;
-  summary: string;
-  icons: Array<string>;
-  publishedAt: string;
-  body: PortableTextBlock;
-};
 
 interface ProjectPageProps {
   searchParams: Promise<{ page: number; search: string }>;
@@ -34,6 +19,7 @@ const getProjects = async (start: number, end: number, search?: string) => {
     slug,
     body,
     summary,
+    preview,
     "image": cover.asset->url,
     "categories": categories[0..2]->title,
     "icons": categories[0..2]->icon->icon,
@@ -92,6 +78,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                 slug={project.slug.current || ""}
                 topics={project.categories}
                 topicIcons={project.icons}
+                previewLink={project.preview}
               >
                 {project.summary}
               </ProjectCard>

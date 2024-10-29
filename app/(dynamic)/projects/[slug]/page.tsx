@@ -1,3 +1,5 @@
+import { Project } from "@/types/project";
+
 import ArticleHeader from "@/components/Article/ArticleHeader";
 import Badge from "@/components/Badge";
 import LinkButton from "@/components/LinkButton";
@@ -10,26 +12,6 @@ import ImagePreview from "@/components/ImagePreview";
 import Table from "@/components/Table";
 import TableRow from "@/components/Table/TableRow";
 import TableCell from "@/components/Table/TableCell";
-
-type Slug = {
-  current: string;
-  _type: string;
-};
-
-type Project = {
-  title: string;
-  images: Array<string>;
-  slug: Slug;
-  repo: string;
-  preview: string;
-  summary: string;
-  categories: Array<string>;
-  icons: Array<string>;
-  license: string,
-  status: string,
-  publishedAt: string;
-  body: PortableTextBlock;
-};
 
 async function getProject(slug: string) {
   const response: Project = await client.fetch(

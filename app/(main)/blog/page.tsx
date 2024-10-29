@@ -1,29 +1,13 @@
+import { Blog } from "@/types/blog";
+
 import { Suspense } from "react";
 import BlogCard from "@/components/Card/BlogCard";
 import Pagination from "@/components/Pagination/Pagination";
-import { PortableTextBlock } from "@portabletext/react";
 import client from "@/lib/client";
 import SlideUp from "@/components/Transitions/SlideUp";
 import CardLoader from "@/components/Loader/CardLoader";
 import SearchBox from "@/components/SearchBox";
 import { formatDate } from "@/lib/commonUtils";
-
-type Slug = {
-  current: string;
-  _type: string;
-};
-
-type Blog = {
-  title: string;
-  slug: Slug;
-  publishedAt: string;
-  category: string;
-  icon: string;
-  author: string;
-  image: string;
-  intro: string;
-  body: PortableTextBlock;
-};
 
 interface BlogPageProps {
   searchParams: Promise<{ page: number; search: string }>;

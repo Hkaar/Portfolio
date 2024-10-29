@@ -1,27 +1,11 @@
+import { Blog } from "@/types/blog";
+
 import { Suspense } from "react";
 import BlogCard from "../Card/BlogCard";
 import LinkButton from "../LinkButton";
 import CardLoader from "../Loader/CardLoader";
 import SlideUp from "../Transitions/SlideUp";
 import client from "@/lib/client";
-import { PortableTextBlock } from "@portabletext/react";
-
-type Slug = {
-  current: string;
-  _type: string;
-};
-
-type Blog = {
-  title: string;
-  slug: Slug;
-  publishedAt: string;
-  category: string;
-  icon: string;
-  author: string;
-  image: string;
-  intro: string;
-  body: PortableTextBlock;
-};
 
 const formatDate = (date: string) => {
   const d = new Date(date);
