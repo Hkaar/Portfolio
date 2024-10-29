@@ -4,7 +4,7 @@ import ArticleHeader from "@/components/Article/ArticleHeader";
 import Badge from "@/components/Badge";
 import LinkButton from "@/components/LinkButton";
 import sanityClient from "@/lib/sanity";
-import { PortableText, PortableTextBlock } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { formatDate } from "@/lib/commonUtils";

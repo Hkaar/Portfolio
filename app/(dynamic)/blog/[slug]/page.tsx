@@ -7,7 +7,7 @@ import Profile from "@/components/Profile";
 import Badge from "@/components/Badge";
 import { Icon } from "@iconify/react";
 import sanityClient from "@/lib/sanity";
-import { PortableText, PortableTextBlock } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/commonUtils";
 
