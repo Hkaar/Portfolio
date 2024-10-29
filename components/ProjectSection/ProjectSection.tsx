@@ -3,10 +3,10 @@ import { Project } from "@/types/project";
 import LinkButton from "../LinkButton";
 import ProjectCard from "../Card/ProjectCard";
 import SlideUp from "../Transitions/SlideUp";
-import client from "@/lib/client";
+import sanityClient from "@/lib/sanity";
 
 const getProjects = async () => {
-  const projects: Array<Project> = await client.fetch(
+  const projects: Array<Project> = await sanityClient.fetch(
     `*[_type == "project"][0..5] {
     title,
     slug,

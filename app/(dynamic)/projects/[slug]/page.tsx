@@ -3,7 +3,7 @@ import { Project } from "@/types/project";
 import ArticleHeader from "@/components/Article/ArticleHeader";
 import Badge from "@/components/Badge";
 import LinkButton from "@/components/LinkButton";
-import client from "@/lib/client";
+import sanityClient from "@/lib/sanity";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -14,7 +14,7 @@ import TableRow from "@/components/Table/TableRow";
 import TableCell from "@/components/Table/TableCell";
 
 async function getProject(slug: string) {
-  const response: Project = await client.fetch(
+  const response: Project = await sanityClient.fetch(
     `*[_type == "project" && slug.current == "${slug}"][0] {
     title,
     slug,

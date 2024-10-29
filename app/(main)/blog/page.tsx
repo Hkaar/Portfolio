@@ -3,7 +3,7 @@ import { Blog } from "@/types/blog";
 import { Suspense } from "react";
 import BlogCard from "@/components/Card/BlogCard";
 import Pagination from "@/components/Pagination/Pagination";
-import client from "@/lib/client";
+import sanityClient from "@/lib/sanity";
 import SlideUp from "@/components/Transitions/SlideUp";
 import CardLoader from "@/components/Loader/CardLoader";
 import SearchBox from "@/components/SearchBox";
@@ -16,7 +16,7 @@ interface BlogPageProps {
 const getPosts = async (start: number, end: number, search?: string) => {
   const searchQuery = search ? `&& title match "*${search}*"` : "";
 
-  const posts: Array<Blog> = await client.fetch(
+  const posts: Array<Blog> = await sanityClient.fetch(
     `*[_type == "post" ${searchQuery}][${start}..${end}] {
     title,
     slug,
@@ -33,7 +33,7 @@ const getPosts = async (start: number, end: number, search?: string) => {
 };
 
 const getMaxPage = async () => {
-  const projectsAmount = await client.fetch(`count(*[_type == "post"])`);
+  const projectsAmount = await sanityClient.fetch(`count(*[_type == "post"])`);
   const amount = Math.round(projectsAmount / 6);
 
   return amount < 1 ? 1 : amount;

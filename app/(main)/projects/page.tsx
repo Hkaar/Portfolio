@@ -4,7 +4,7 @@ import ProjectCard from "@/components/Card/ProjectCard";
 import Pagination from "@/components/Pagination";
 import SearchBox from "@/components/SearchBox";
 import SlideUp from "@/components/Transitions/SlideUp";
-import client from "@/lib/client";
+import sanityClient from "@/lib/sanity";
 
 interface ProjectPageProps {
   searchParams: Promise<{ page: number; search: string }>;
@@ -13,7 +13,7 @@ interface ProjectPageProps {
 const getProjects = async (start: number, end: number, search?: string) => {
   const searchQuery = search ? `&& title match "*${search}*"` : "";
 
-  const projects: Array<Project> = await client.fetch(
+  const projects: Array<Project> = await sanityClient.fetch(
     `*[_type == "project" ${searchQuery}][${start}..${end}] {
     title,
     slug,
@@ -30,7 +30,7 @@ const getProjects = async (start: number, end: number, search?: string) => {
 };
 
 const getMaxPage = async () => {
-  const projectsAmount = await client.fetch(`count(*[_type == "project"])`);
+  const projectsAmount = await sanityClient.fetch(`count(*[_type == "project"])`);
   const amount = Math.round(projectsAmount / 6);
 
   return amount < 1 ? 1 : amount;

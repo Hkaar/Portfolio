@@ -6,7 +6,7 @@ import ArticleHeader from "@/components/Article/ArticleHeader";
 import Profile from "@/components/Profile";
 import Badge from "@/components/Badge";
 import { Icon } from "@iconify/react";
-import client from "@/lib/client";
+import sanityClient from "@/lib/sanity";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/commonUtils";
@@ -16,7 +16,7 @@ interface BlogPageProps {
 }
 
 async function getBlog(slug: string) {
-  const response: Blog = await client.fetch(
+  const response: Blog = await sanityClient.fetch(
     `*[_type == "post" && slug.current == "${slug}"][0] {
     title,
     slug,
