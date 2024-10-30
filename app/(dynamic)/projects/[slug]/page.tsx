@@ -2,7 +2,6 @@ import { Project } from "@/types/project";
 
 import ArticleHeader from "@/components/Article/ArticleHeader";
 import Badge from "@/components/Badge";
-import LinkButton from "@/components/LinkButton";
 import sanityClient from "@/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
