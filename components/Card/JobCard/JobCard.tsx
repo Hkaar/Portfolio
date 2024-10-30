@@ -21,7 +21,7 @@ export default function JobCard(
   { title, desc, date, job, link, topics, ...props }: JobCardProps,
 ) {
   return (
-    <Card className={`${props.className} gap-5 px-6 py-4 border-l-4 border-l-primary dark:border-l-primary-dark`}>
+    <Card className={`${props.className} gap-5 px-6 py-4 border-l-4 border-l-primary-700 dark:border-l-primary-100`}>
       <div className="flex flex-col gap-3">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between lg:gap-2">
           <h5 className="font-bold text-xl tracking-tight">

@@ -33,7 +33,7 @@ export default function InputField(
           value={value}
           type={props.datatype}
           placeholder={placeholder}
-          className={twMerge("w-full block rounded-md outline-none border px-3 py-2 border-neutral-200 dark:border-neutral-800 shadow-sm focus:ring focus:ring-info dark:focus:ring-info-dark text-base-dark dark:bg-base-dark dark:text-base-light", props.className)}
+          className={twMerge("w-full block rounded-md outline-none border px-3 py-2 border-neutral-200 dark:border-neutral-800 shadow-sm focus:ring focus:ring-info dark:focus:ring-info-dark text-base-dark bg-inherit dark:text-base-light", props.className)}
           name={name}
           id={props.id}
         />

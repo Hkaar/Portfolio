@@ -53,8 +53,8 @@ export default async function ProjectPage(props: ProjectPageProps) {
     <>
       <div className="container py-4 space-y-4 lg:space-y-6">
         <ArticleHeader>
-          <div className="flex flex-col gap-3">
-            <div className="flex flex-col lg:flex-row lg:items-end gap-3">
+          <div className="flex flex-col gap-3 px-6 py-4 bg-primary-100 dark:bg-primary-700 rounded-lg shadow">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-3">
               <div className="flex items-center gap-2">
                 <h1 className="text-3xl font-bold text-primary dark:text-primary-dark tracking-tighter flex-1">
                   {project.title}
@@ -103,7 +103,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
             </div>
           </div>
 
-          <div className="p-6 rounded-xl shadow-md bg-neutral-50 dark:bg-neutral-900 space-y-5">
+          <div className="px-6 py-8 rounded-lg shadow-lg bg-secondary-100 dark:bg-secondary-700 space-y-5">
             <ImagePreview src={project.images} />
           </div>
         </ArticleHeader>
@@ -293,19 +293,17 @@ export default async function ProjectPage(props: ProjectPageProps) {
             </div>
           </div>
 
-          <div className="lg:flex flex-col gap-6 h-fit w-2/6 hidden bg-neutral-50 dark:bg-neutral-950 rounded-md shadow-md px-4 py-3">
+          <div className="lg:flex flex-col gap-6 h-fit w-2/6 hidden rounded-md shadow-md ">
             <div className="flex flex-col gap-3">
               <h3 className="text-3xl font-semibold">
                 More info
               </h3>
 
-              <hr />
-
-              <div className="flex flex-col gap-4 leading-relaxed px-4 py-3 rounded-md flex-1">
+              <div className="flex flex-col gap-4 leading-relaxed rounded-md flex-1 px-8 py-6 bg-tertiary-100 dark:bg-tertiary-600 ">
                 <span className="flex items-center gap-3">
                   <Icon
                     icon="mdi:calendar-month-outline"
-                    fontSize={20}
+                    fontSize={24}
                     fontWeight={400}
                   />
 
@@ -313,7 +311,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                 </span>
 
                 <span className="flex items-center gap-3">
-                  <Icon icon="octicon:law-24" fontSize={20} fontWeight={400} />
+                  <Icon icon="octicon:law-24" fontSize={24} fontWeight={400} />
 
                   {project.license}
                 </span>
@@ -321,7 +319,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                 <span className="flex items-center gap-3">
                   <Icon
                     icon="pajamas:status-health"
-                    fontSize={20}
+                    fontSize={24}
                     fontWeight={400} 
                   />
 

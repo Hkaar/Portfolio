@@ -91,9 +91,9 @@ export default function SkillContainer(
             onClick={() => switchTab(index)}
             className={`px-4 py-3 flex-1 ${
               tab === index
-                ? `dark:bg-secondary-dark bg-secondary text-base-light dark:text-base-dark font-bold`
+                ? `dark:bg-secondary-200 bg-secondary-600 text-base-light dark:text-base-dark font-bold`
                 : ""
-            } first:rounded-tl-md last:rounded-tr-md border-r last:border-r-0 border-gray-200 dark:border-gray-800 flex items-center justify-center gap-2`}
+            } first:rounded-tl-md last:rounded-tr-md border-r last:border-r-0 border-gray-200 dark:border-gray-800 flex items-center justify-center gap-2 transition-all duration-300 ease-in-out`}
           >
             <Icon icon={item.icon} fontSize={24} fontWeight={400}></Icon>
             <span className="hidden md:block">{item.name}</span>
@@ -104,8 +104,8 @@ export default function SkillContainer(
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <SkillContent
           className={`${
-            tab === 0 ? null : "hidden"
-          } border-r border-gray-200 dark:border-gray-800`}
+            tab === 0 ? null : "hidden opacity-0"
+          } border-r border-gray-200 opacity-100 transition-all duration-200 ease-in-out dark:border-gray-800`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {languages.map((item, i) => (
@@ -136,8 +136,8 @@ export default function SkillContainer(
 
         <SkillContent
           className={`${
-            tab === 1 ? null : "hidden"
-          } border-r border-gray-200 dark:border-gray-800`}
+            tab === 1 ? null : "hidden opacity-0"
+          } border-r border-gray-200 opacity-100 transition-all duration-200 ease-in-out dark:border-gray-800`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {frameworks.map((item, i) => (
@@ -168,8 +168,8 @@ export default function SkillContainer(
 
         <SkillContent
           className={`${
-            tab === 2 ? null : "hidden"
-          } border-r border-gray-200 dark:border-gray-800`}
+            tab === 2 ? null : "hidden opacity-0"
+          } border-r border-gray-200 opacity-100 transition-all duration-200 ease-in-out dark:border-gray-800`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {tools.map((item, i) => (
@@ -201,7 +201,7 @@ export default function SkillContainer(
         <div className="px-6 py-4 hidden lg:block">
           {desc
             ? (
-              <SlideDown>
+              <SlideDown className="h-full">
                 <div className="flex flex-col gap-5 h-full">
                   <div className="flex items-center gap-4">
                     <Icon
@@ -216,7 +216,7 @@ export default function SkillContainer(
                         {name}
                       </h5>
 
-                      <span className="text-tertiary dark:text-tertiary-dark font-thin tracking-wide">
+                      <span className="text-tertiary-500 dark:text-tertiary-300 font-thin tracking-wide">
                         Experience | <span className="font-bold">{level}</span>
                       </span>
                     </div>

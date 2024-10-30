@@ -43,7 +43,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
         alt="No Image available"
         width={1920}
         height={1080}
-        className="w-full h-[38rem] object-cover aspect-video rounded-md"
+        className="w-full h-[38rem] object-cover aspect-video rounded-md border border-tertiary-200"
       />
 
       <div className="flex">
@@ -81,7 +81,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
           {src.map((img) => (
             <SwiperSlide
               key={img}
-              className="bg-neutral-200 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-800 h-full rounded"
+              className="h-full rounded"
               onClick={() => {handlePreviewChange(img)}}
             >
               <Image
@@ -93,7 +93,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
               />
 
               <div className={twMerge("absolute z-10 top-0 left-0 w-full h-full place-items-center", preview === img ? "grid" : "hidden")}>
-                <span className="font-bold text-2xl">Currently selected</span>
+                <span className="font-bold text-2xl text-base-dark dark:text-base-dark">Currently selected</span>
               </div>
             </SwiperSlide>
           ))}
