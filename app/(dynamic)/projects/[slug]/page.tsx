@@ -12,6 +12,7 @@ import ImagePreview from "@/components/ImagePreview";
 import Table from "@/components/Table";
 import TableRow from "@/components/Table/TableRow";
 import TableCell from "@/components/Table/TableCell";
+import ProjectHeader from "@/components/ProjectHeader";
 
 async function getProject(slug: string) {
   const response: Project = await sanityClient.fetch(
@@ -53,55 +54,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
     <>
       <div className="container py-4 space-y-4 lg:space-y-6">
         <ArticleHeader>
-          <div className="flex flex-col gap-3 px-6 py-4 bg-primary-100 dark:bg-primary-700 rounded-lg shadow">
-            <div className="flex flex-col lg:flex-row lg:items-center gap-3">
-              <div className="flex items-center gap-2">
-                <h1 className="text-3xl font-bold text-primary dark:text-primary-dark tracking-tighter flex-1">
-                  {project.title}
-                </h1>
-
-                <LinkButton
-                  href="#"
-                  icon="material-symbols:share-outline"
-                  className="lg:hidden border-none shadow-none"
-                >
-                  Share
-                </LinkButton>
-              </div>
-
-              <div className="flex items-center gap-2 flex-1 lg:justify-end">
-                <LinkButton
-                  href="#"
-                  icon="material-symbols:share-outline"
-                  className="hidden lg:flex border-none shadow-none"
-                >
-                  Share
-                </LinkButton>
-
-                <LinkButton
-                  href={project.repo || "#"}
-                  type="outline-accent"
-                  icon="material-symbols:collections-bookmark-outline"
-                  target={project.repo ? "_blank" : ""}
-                  disabled={project.repo ? false : true}
-                >
-                  Repository
-                </LinkButton>
-
-                <LinkButton
-                  href={project.preview || "#"}
-                  type="primary"
-                  target={project.preview ? "_blank" : ""}
-                  icon={project.preview
-                    ? "mdi:eye-outline"
-                    : "mdi:eye-off-outline"}
-                  disabled={project.preview ? false : true}
-                >
-                  Preview
-                </LinkButton>
-              </div>
-            </div>
-          </div>
+          <ProjectHeader project={project} />
 
           <div className="px-6 py-8 rounded-lg shadow-lg bg-secondary-100 dark:bg-secondary-700 space-y-5">
             <ImagePreview src={project.images} />
