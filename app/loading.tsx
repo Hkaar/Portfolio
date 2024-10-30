@@ -1,3 +1,4 @@
+import FactBox from "@/components/FactBox";
 import LoadSpinner from "@/components/Loader/LoadSpinner";
 
 export default function Loading() {
@@ -7,7 +8,7 @@ export default function Loading() {
         <div className="flex flex-col items-center gap-3">
           <LoadSpinner />
 
-          <h4 className="text-2xl font-bold">Loading</h4>
+          <FactBox className="text-2xl font-semibold" />
         </div>
       </div>
     </div>

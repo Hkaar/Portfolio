@@ -1,25 +1,10 @@
+import { Project } from "@/types/project";
+
 import ProjectCard from "@/components/Card/ProjectCard";
 import Pagination from "@/components/Pagination";
 import SearchBox from "@/components/SearchBox";
 import SlideUp from "@/components/Transitions/SlideUp";
-import client from "@/lib/client";
-import { PortableTextBlock } from "@portabletext/react";
-
-type Slug = {
-  current: string;
-  _type: string;
-};
-
-type Project = {
-  title: string;
-  image: string;
-  slug: Slug;
-  categories: Array<string>;
-  summary: string;
-  icons: Array<string>;
-  publishedAt: string;
-  body: PortableTextBlock;
-};
+import sanityClient from "@/lib/sanity";
 
 interface ProjectPageProps {
   searchParams: Promise<{ page: number; search: string }>;
@@ -28,12 +13,13 @@ interface ProjectPageProps {
 const getProjects = async (start: number, end: number, search?: string) => {
   const searchQuery = search ? `&& title match "*${search}*"` : "";
 
-  const projects: Array<Project> = await client.fetch(
+  const projects: Array<Project> = await sanityClient.fetch(
     `*[_type == "project" ${searchQuery}][${start}..${end}] {
     title,
     slug,
     body,
     summary,
+    preview,
     "image": cover.asset->url,
     "categories": categories[0..2]->title,
     "icons": categories[0..2]->icon->icon,
@@ -44,7 +30,7 @@ const getProjects = async (start: number, end: number, search?: string) => {
 };
 
 const getMaxPage = async () => {
-  const projectsAmount = await client.fetch(`count(*[_type == "project"])`);
+  const projectsAmount = await sanityClient.fetch(`count(*[_type == "project"])`);
   const amount = Math.round(projectsAmount / 6);
 
   return amount < 1 ? 1 : amount;
@@ -92,6 +78,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                 slug={project.slug.current || ""}
                 topics={project.categories}
                 topicIcons={project.icons}
+                previewLink={project.preview}
               >
                 {project.summary}
               </ProjectCard>

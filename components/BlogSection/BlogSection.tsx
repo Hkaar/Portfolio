@@ -1,27 +1,11 @@
+import { Blog } from "@/types/blog";
+
 import { Suspense } from "react";
 import BlogCard from "../Card/BlogCard";
 import LinkButton from "../LinkButton";
 import CardLoader from "../Loader/CardLoader";
 import SlideUp from "../Transitions/SlideUp";
-import client from "@/lib/client";
-import { PortableTextBlock } from "@portabletext/react";
-
-type Slug = {
-  current: string;
-  _type: string;
-};
-
-type Blog = {
-  title: string;
-  slug: Slug;
-  publishedAt: string;
-  category: string;
-  icon: string;
-  author: string;
-  image: string;
-  intro: string;
-  body: PortableTextBlock;
-};
+import sanityClient from "@/lib/sanity";
 
 const formatDate = (date: string) => {
   const d = new Date(date);
@@ -33,7 +17,7 @@ const formatDate = (date: string) => {
 };
 
 const getPosts = async () => {
-  const posts: Array<Blog> = await client.fetch(`*[_type == "post"][0..5] {
+  const posts: Array<Blog> = await sanityClient.fetch(`*[_type == "post"][0..5] {
     title,
     slug,
     body,

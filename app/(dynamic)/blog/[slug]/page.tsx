@@ -1,38 +1,22 @@
+import { Blog } from "@/types/blog";
+
 import Image from "next/image";
 import ArticleContainer from "@/components/Article/ArticleContainer";
 import ArticleHeader from "@/components/Article/ArticleHeader";
 import Profile from "@/components/Profile";
 import Badge from "@/components/Badge";
 import { Icon } from "@iconify/react";
-import client from "@/lib/client";
-import { PortableText, PortableTextBlock } from "@portabletext/react";
+import sanityClient from "@/lib/sanity";
+import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/commonUtils";
-
-type Slug = {
-  current: string;
-  _type: string;
-};
-
-type Blog = {
-  title: string;
-  slug: Slug;
-  publishedAt: string;
-  categories: Array<string>;
-  icons: Array<string>;
-  author: string;
-  authorImg: string;
-  image: string;
-  intro: string;
-  body: PortableTextBlock;
-};
 
 interface BlogPageProps {
   params: Promise<{ slug: string }>;
 }
 
 async function getBlog(slug: string) {
-  const response: Blog = await client.fetch(
+  const response: Blog = await sanityClient.fetch(
     `*[_type == "post" && slug.current == "${slug}"][0] {
     title,
     slug,

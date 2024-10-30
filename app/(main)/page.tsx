@@ -10,11 +10,11 @@ import ProjectSection from "@/components/ProjectSection";
 import BlogSectionSkeleton from "@/components/Skeletons/CardSectionSkeleton";
 import SkillContainer from "@/components/SkillContainer";
 import SlideUp from "@/components/Transitions/SlideUp";
-import client from "@/lib/client";
+import sanityClient from "@/lib/sanity";
 import { Suspense } from "react";
 
 const getSkills = async () => {
-  const skills = await client.fetch(`*[_type == "skill"] | order(name asc) {
+  const skills = await sanityClient.fetch(`*[_type == "skill"] | order(name asc) {
     name, 
     "icon": icon->icon, 
     "level": level->name, 

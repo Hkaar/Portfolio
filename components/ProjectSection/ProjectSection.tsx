@@ -1,32 +1,18 @@
+import { Project } from "@/types/project";
+
 import LinkButton from "../LinkButton";
 import ProjectCard from "../Card/ProjectCard";
 import SlideUp from "../Transitions/SlideUp";
-import client from "@/lib/client";
-import { PortableTextBlock } from "@portabletext/react";
-
-type Slug = {
-  current: string;
-  _type: string;
-};
-
-type Project = {
-  title: string;
-  image: string;
-  slug: Slug;
-  categories: Array<string>;
-  summary: string;
-  icons: Array<string>;
-  publishedAt: string;
-  body: PortableTextBlock;
-};
+import sanityClient from "@/lib/sanity";
 
 const getProjects = async () => {
-  const projects: Array<Project> = await client.fetch(
+  const projects: Array<Project> = await sanityClient.fetch(
     `*[_type == "project"][0..5] {
     title,
     slug,
     body,
     summary,
+    preview,
     "image": cover.asset->url,
     "categories": categories[0..2]->title,
     "icons": categories[0..2]->icon->icon,
@@ -49,6 +35,7 @@ export default async function ProjectSection() {
               slug={project.slug.current || ""}
               topics={project.categories}
               topicIcons={project.icons}
+              previewLink={project.preview}
             >
               {project.summary}
             </ProjectCard>
