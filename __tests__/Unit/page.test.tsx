@@ -1,6 +1,6 @@
 import { assert, expect, test } from "vitest";
-import { render, screen } from "@testing-library/react";
-import Home from "../app/(main)/page";
+// import { render, screen } from "@testing-library/react";
+// import Home from "../app/(main)/page";
 
 // RESERVED FOR THE FUTURE WHEN ASYNC COMPONENTS WORK IN TESTS
 // test("Page", async () => {

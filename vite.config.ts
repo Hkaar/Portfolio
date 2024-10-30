@@ -5,7 +5,6 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [react()],
   test: {
-    setupFiles: './vitest.setup.ts',
     environment: 'jsdom',
   },
   resolve: {
