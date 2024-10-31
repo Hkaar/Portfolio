@@ -36,7 +36,7 @@ export default function AboutSection(
             </SlideDown>
 
             <SlideRight delay={1.4}>
-              <p className="text-lg md:text-xl lg:text-2xl leading-relaxed border rounded-md border-l-4 border-l-secondary-500 dark:border-l-secondary-200 border-neutral-200 dark:border-neutral-800 px-4 py-3">
+              <p className="text-lg md:text-xl lg:text-2xl leading-relaxed border rounded-md border-l-4 border-l-tertiary dark:border-l-tertiary-dark border-neutral-200 dark:border-neutral-800 px-4 py-3">
                 Hey there! I’m{" "}
                 <span className="font-bold text-tertiary dark:text-tertiary-dark">
                   Shava Jaya

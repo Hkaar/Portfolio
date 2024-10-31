@@ -33,7 +33,7 @@ export default function PageUpButton(
     <Button
       icon="mdi:arrow-up"
       {...props}
-      type="accent"
+      type="secondary"
       onClick={scrollToTop}
       className={twMerge("z-30 right-8 bottom-6 fixed px-3 py-3", isScrolled ? 'block' : 'hidden', className)}
     >

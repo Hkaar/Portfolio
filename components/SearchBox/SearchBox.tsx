@@ -47,7 +47,7 @@ export default function SearchBox({ placeholder, ...props }: SearchBoxProps) {
         placeholder={placeholder || "Start searching here!"}
       />
 
-      <Button icon="material-symbols:search" onClick={handleSearch} type="accent" className="rounded-none rounded-e-md">
+      <Button icon="material-symbols:search" onClick={handleSearch} type="primary" className="rounded-none rounded-e-md">
         <span className="hidden md:block">Search</span>
       </Button>
     </div>

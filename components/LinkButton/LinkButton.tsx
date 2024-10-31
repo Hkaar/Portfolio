@@ -32,13 +32,13 @@ interface LinkButtonProps extends React.HTMLAttributes<HTMLAnchorElement> {
 const getTypeClasses = (type?: string): string => {
   switch (type) {
     case "primary":
-      return "bg-primary-700 text-base-light dark:bg-primary-100 dark:text-base-dark";
+      return "bg-primary text-base-light dark:bg-primary-dark dark:text-base-dark";
     case "secondary":
-      return "bg-secondary-600 text-base-light dark:bg-secondary-200 dark:text-base-dark";
+      return "bg-secondary dark:bg-secondary-dark";
     case "tertiary":
-      return "bg-tertiary-500 text-base-light dark:bg-tertiary-300 dark:text-base-dark";
+      return "bg-tertiary text-base-light dark:bg-tertiary-dark dark:text-base-dark";
     case "accent":
-      return "bg-accent text-base-light";
+      return "bg-accent dark:bg-accent-dark";
     case "success":
       return "bg-success text-base-light dark:bg-success-dark";
     case "info":
@@ -48,13 +48,13 @@ const getTypeClasses = (type?: string): string => {
     case "danger":
       return "bg-danger text-base-light dark:bg-danger-dark";
     case "outline-primary":
-      return "border-primary text-primary dark:border-primary-dark dark:text-primary-dark hover:bg-primary-700 dark:hover:bg-primary-100 hover:text-base-light dark:hover:text-base-dark";
+      return "border-primary text-primary dark:border-primary-dark dark:text-primary-dark hover:bg-primary dark:hover:bg-primary-dark hover:text-base-light dark:hover:text-base-dark";
     case "outline-secondary":
-      return "border-secondary text-secondary dark:border-secondary-dark dark:text-secondary-dark hover:bg-secondary-600 dark:hover:bg-secondary-200 hover:text-base-light dark:hover:text-base-dark";
+      return "border-secondary text-secondary dark:border-secondary-dark dark:text-secondary-dark hover:bg-secondary dark:hover:bg-secondary-dark";
     case "outline-tertiary":
-      return "border-tertiary text-tertiary dark:border-tertiary-dark dark:text-tertiary-dark hover:bg-tertiary-500 dark:hover:bg-tertiary-300 hover:text-base-light dark:hover:text-base-dark";
+      return "border-tertiary text-tertiary dark:border-tertiary-dark dark:text-tertiary-dark hover:bg-tertiary dark:hover:bg-tertiary-dark hover:text-base-light dark:hover:text-base-dark";
     case "outline-accent":
-      return "border-accent text-accent hover:bg-accent hover:text-base-light";
+      return "border-accent hover:bg-accent dark:border-accent-dark dark:hover:bg-accent-dark";
     case "outline-success":
       return "border-success text-success dark:border-success-dark hover:bg-success dark:hover:bg-success-dark hover:text-base-light dark:hover:text-base-dark";
     case "outline-info":

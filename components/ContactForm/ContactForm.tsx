@@ -45,7 +45,8 @@ export default function ContactForm(
     >
       <div className="flex flex-col gap-6">
         <div className="space-y-3">
-          {/* <div className="flex items-center gap-3">
+          {
+            /* <div className="flex items-center gap-3">
             <InputField
               title="First name"
               datatype="text"
@@ -62,39 +63,48 @@ export default function ContactForm(
               placeholder="Your last name ..."
               required
             />
-          </div> */}
+          </div> */
+          }
 
-          <InputField
-            title="Name"
-            name="name"
-            datatype="text"
-            placeholder="Enter your name ..."
-            required
-          />
+          <div>
+            <InputField
+              title="Name"
+              name="name"
+              datatype="text"
+              placeholder="Enter your name ..."
+              required
+            />
+          </div>
 
-          <InputField
-            title="Email"
-            name="email"
-            datatype="email"
-            className="w-full"
-            placeholder="Enter your email address ..."
-            required
-          />
+          <div>
+            <InputField
+              title="Email"
+              name="email"
+              datatype="email"
+              className="w-full"
+              placeholder="Enter your email address ..."
+              required
+            />
+          </div>
 
-          <InputField
-            title="Subject"
-            name="subject"
-            datatype="text"
-            placeholder="What do you want to discuss?"
-            required
-          />
+          <div>
+            <InputField
+              title="Subject"
+              name="subject"
+              datatype="text"
+              placeholder="What do you want to discuss?"
+              required
+            />
+          </div>
 
-          <TextArea
-            title="Message"
-            name="message"
-            className="w-full"
-            placeholder="Enter your message here ..."
-          />
+          <div>
+            <TextArea
+              title="Message"
+              name="message"
+              className="w-full"
+              placeholder="Enter your message here ..."
+            />
+          </div>
 
           <span>{result}</span>
         </div>

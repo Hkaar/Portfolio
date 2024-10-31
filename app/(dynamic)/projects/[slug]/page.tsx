@@ -55,7 +55,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
         <ArticleHeader>
           <ProjectHeader project={project} />
 
-          <div className="px-6 py-8 rounded-lg shadow-lg bg-secondary-100 dark:bg-secondary-700 space-y-5">
+          <div className="p-6 rounded-lg shadow-lg bg-secondary dark:bg-secondary-dark space-y-5">
             <ImagePreview src={project.images} />
           </div>
         </ArticleHeader>
@@ -245,13 +245,13 @@ export default async function ProjectPage(props: ProjectPageProps) {
             </div>
           </div>
 
-          <div className="lg:flex flex-col gap-6 h-fit w-2/6 hidden rounded-md shadow-md ">
+          <div className="lg:flex flex-col gap-6 h-fit w-2/6 hidden ">
             <div className="flex flex-col gap-3">
               <h3 className="text-3xl font-semibold">
                 More info
               </h3>
 
-              <div className="flex flex-col gap-4 leading-relaxed rounded-md flex-1 px-8 py-6 bg-tertiary-100 dark:bg-tertiary-600 ">
+              <div className="flex flex-col gap-4 leading-relaxed flex-1 px-6 py-2">
                 <span className="flex items-center gap-3">
                   <Icon
                     icon="mdi:calendar-month-outline"

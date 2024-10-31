@@ -63,7 +63,7 @@ export default async function BlogSection(
 
       <LinkButton
         href="/blog"
-        type="tertiary"
+        type="secondary"
         icon="material-symbols:arrow-right-alt"
         rightIcon
       >
