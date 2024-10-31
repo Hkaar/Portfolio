@@ -33,6 +33,8 @@ test("Should navigate to a project", async ({ page }) => {
     await page.goto("/");
 
     await page.click("text=Projects");
+    await page.waitForURL("**/projects");
+
     await expect(page).toHaveURL("/projects");
 
     await page.locator("div:nth-child(3) > a").first().click();
@@ -44,6 +46,7 @@ test("Should navigate to a blog", async ({ page }) => {
     await page.goto("/");
 
     await page.click("text=Blog");
+    await page.waitForURL("**/blog");
     await expect(page).toHaveURL("/blog");
 
     await page.getByRole("link", { name: "Read More" }).nth(1).click();
