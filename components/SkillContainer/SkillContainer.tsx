@@ -8,6 +8,7 @@ import { Icon } from "@iconify/react";
 import { twMerge } from "tailwind-merge";
 import SlideUp from "../Transitions/SlideUp";
 import SlideDown from "../Transitions/SlideDown";
+import Badge from "../Badge";
 
 type Skill = {
   name: string;
@@ -91,7 +92,7 @@ export default function SkillContainer(
             onClick={() => switchTab(index)}
             className={`px-4 py-3 flex-1 ${
               tab === index
-                ? `dark:bg-secondary-200 bg-secondary-600 text-base-light dark:text-base-dark font-bold`
+                ? `dark:bg-tertiary-dark bg-tertiary text-base-light dark:text-base-dark font-bold`
                 : ""
             } first:rounded-tl-md last:rounded-tr-md border-r last:border-r-0 border-gray-200 dark:border-gray-800 flex items-center justify-center gap-2 transition-all duration-300 ease-in-out`}
           >
@@ -211,14 +212,12 @@ export default function SkillContainer(
                       className="dark:fill-base-dark"
                     />
 
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-2">
                       <h5 className="font-bold text-2xl">
                         {name}
                       </h5>
 
-                      <span className="text-tertiary-500 dark:text-tertiary-300 font-thin tracking-wide">
-                        Experience | <span className="font-bold">{level}</span>
-                      </span>
+                      <Badge icon="mdi:certificate-outline" className="bg-secondary dark:bg-secondary-dark px-3 py-2">{level}</Badge>
                     </div>
                   </div>
 

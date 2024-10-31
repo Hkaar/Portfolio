@@ -45,7 +45,7 @@ export default async function ProjectSection() {
 
       <LinkButton
         href="/projects"
-        type="tertiary"
+        type="secondary"
         icon="material-symbols:arrow-right-alt"
         rightIcon
       >
