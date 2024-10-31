@@ -47,6 +47,7 @@ test("Should navigate to a blog", async ({ page }) => {
 
     await page.click("text=Blog");
     await page.waitForURL("**/blog");
+    
     await expect(page).toHaveURL("/blog");
 
     await page.getByRole("link", { name: "Read More" }).nth(1).click();
