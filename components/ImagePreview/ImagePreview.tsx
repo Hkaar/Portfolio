@@ -51,7 +51,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
           icon="material-symbols:chevron-left"
           onClick={handlePrev}
           className="rounded-none rounded-s-md border-0"
-          type="secondary"
+          type="primary"
         >
         </Button>
 
@@ -103,7 +103,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
           icon="material-symbols:chevron-right"
           onClick={handleNext}
           className="rounded-none rounded-e-md border-0"
-          type="secondary"
+          type="primary"
         >
         </Button>
       </div>
