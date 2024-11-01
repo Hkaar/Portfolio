@@ -8,6 +8,8 @@ import SlideUp from "@/components/Transitions/SlideUp";
 import CardLoader from "@/components/Loader/CardLoader";
 import SearchBox from "@/components/SearchBox";
 import { formatDate } from "@/lib/commonUtils";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
 
 interface BlogPageProps {
   searchParams: Promise<{ page: number; search: string }>;
@@ -27,7 +29,8 @@ const getPosts = async (start: number, end: number, search?: string) => {
     "author": author->name,
     intro,
     publishedAt  
-  }`);
+  }`,
+  );
 
   return posts;
 };
@@ -77,18 +80,20 @@ export default async function BlogPage(props: BlogPageProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-h-96">
           {posts.map((post, i) => (
             <SlideUp delay={1 + (0.2 * i)} key={post.slug.current}>
-              <Suspense fallback={<CardLoader />}>
-                <BlogCard
-                  src={post.image || "https://placehold.co/600x480"}
-                  title={post.title}
-                  slug={post.slug.current ? post.slug.current : ""}
-                  date={formatDate(post.publishedAt)}
-                  author={post.author}
-                  desc={post.intro ? post.intro : ""}
-                  topic={post.category}
-                  topicIcon={post.icon}
-                />
-              </Suspense>
+              <ErrorBoundary fallback={<CardFallBack />}>
+                <Suspense fallback={<CardLoader className="w-full" />}>
+                  <BlogCard
+                    src={post.image || "https://placehold.co/600x480"}
+                    title={post.title}
+                    slug={post.slug.current ? post.slug.current : ""}
+                    date={formatDate(post.publishedAt)}
+                    author={post.author}
+                    desc={post.intro ? post.intro : ""}
+                    topic={post.category}
+                    topicIcon={post.icon}
+                  />
+                </Suspense>
+              </ErrorBoundary>
             </SlideUp>
           ))}
         </div>
@@ -96,7 +101,7 @@ export default async function BlogPage(props: BlogPageProps) {
         <div className="flex justify-center">
           <Pagination
             href="/blog"
-            className={posts.length <= 0 ? 'hidden' : ''}
+            className={posts.length <= 0 ? "hidden" : ""}
             currentId={searchParams.page ? currentPage : 1}
             maxId={maxPage}
           />

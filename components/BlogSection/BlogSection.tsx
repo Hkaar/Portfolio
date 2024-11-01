@@ -6,6 +6,8 @@ import LinkButton from "../LinkButton";
 import CardLoader from "../Loader/CardLoader";
 import SlideUp from "../Transitions/SlideUp";
 import sanityClient from "@/lib/sanity";
+import ErrorBoundary from "../ErrorBoundary";
+import CardFallBack from "../ErrorFallBack/CardFallBack";
 
 const formatDate = (date: string) => {
   const d = new Date(date);
@@ -17,7 +19,8 @@ const formatDate = (date: string) => {
 };
 
 const getPosts = async () => {
-  const posts: Array<Blog> = await sanityClient.fetch(`*[_type == "post"][0..5] {
+  const posts: Array<Blog> = await sanityClient.fetch(
+    `*[_type == "post"][0..5] {
     title,
     slug,
     body,
@@ -27,8 +30,9 @@ const getPosts = async () => {
     "author": author->name,
     intro,
     publishedAt  
-  }`);
-  
+  }`,
+  );
+
   return posts;
 };
 
@@ -45,18 +49,20 @@ export default async function BlogSection(
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {posts.map((post, i) => (
           <SlideUp delay={1 + (0.2 * i)} key={post.slug.current}>
-            <Suspense fallback={<CardLoader />}>
-              <BlogCard
-                src={post.image || "https://placehold.co/600x480"}
-                title={post.title}
-                slug={post.slug.current ? post.slug.current : ""}
-                date={formatDate(post.publishedAt)}
-                author={post.author}
-                desc={post.intro ? post.intro : ''}
-                topic={post.category}
-                topicIcon={post.icon}
-              />
-            </Suspense>
+            <ErrorBoundary fallback={<CardFallBack />}>
+              <Suspense fallback={<CardLoader className="w-full" />}>
+                <BlogCard
+                  src={post.image || "https://placehold.co/600x480"}
+                  title={post.title}
+                  slug={post.slug.current ? post.slug.current : ""}
+                  date={formatDate(post.publishedAt)}
+                  author={post.author}
+                  desc={post.intro ? post.intro : ""}
+                  topic={post.category}
+                  topicIcon={post.icon}
+                />
+              </Suspense>
+            </ErrorBoundary>
           </SlideUp>
         ))}
       </div>
