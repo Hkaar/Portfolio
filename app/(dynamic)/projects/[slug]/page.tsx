@@ -55,7 +55,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
         <ArticleHeader>
           <ProjectHeader project={project} />
 
-          <div className="p-6 rounded-lg shadow-lg bg-secondary dark:bg-secondary-dark space-y-5">
+          <div className="space-y-5">
             <ImagePreview src={project.images} />
           </div>
         </ArticleHeader>
