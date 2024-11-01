@@ -53,7 +53,7 @@ export default function BlogCard(
           <div className="flex items-center justify-between gap-2">
             <LinkButton
               href={`/blog/${slug}`}
-              type="accent"
+              type="tertiary"
               icon="material-symbols:chevron-right"
               rightIcon
             >

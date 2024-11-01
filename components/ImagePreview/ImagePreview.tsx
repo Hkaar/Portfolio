@@ -43,7 +43,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
         alt="No Image available"
         width={1920}
         height={1080}
-        className="w-full h-[38rem] object-cover aspect-video rounded-md border border-tertiary-200"
+        className="w-full h-[40rem] object-cover aspect-video rounded-md border-2 border-neutral-200 dark:border-neutral-800"
       />
 
       <div className="flex">
@@ -81,7 +81,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
           {src.map((img) => (
             <SwiperSlide
               key={img}
-              className="h-full rounded"
+              className="h-full rounded-md border-2 border-neutral-200 dark:border-neutral-800"
               onClick={() => {handlePreviewChange(img)}}
             >
               <Image
