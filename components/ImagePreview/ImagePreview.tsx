@@ -51,7 +51,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
           icon="material-symbols:chevron-left"
           onClick={handlePrev}
           className="rounded-none rounded-s-md border-0"
-          type="primary"
+          type="secondary"
         >
         </Button>
 
@@ -81,7 +81,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
           {src.map((img) => (
             <SwiperSlide
               key={img}
-              className="h-full rounded-md border-2 border-neutral-200 dark:border-neutral-800"
+              className="h-full rounded-md"
               onClick={() => {handlePreviewChange(img)}}
             >
               <Image
@@ -89,11 +89,11 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
                 alt="Image failed to load"
                 height={1080}
                 width={1920}
-                className={twMerge("max-w-full h-full max-h-full object-cover rounded-md hover:opacity-50 active:opacity-50 active:scale-95 transition-all duration-250 ease-in-out", preview === img ? "opacity-20" : '')}
+                className={twMerge("max-w-full h-full max-h-full object-cover rounded-md border-2 border-neutral-200 dark:border-neutral-800 hover:opacity-50 active:opacity-50 active:scale-95 transition-all duration-250 ease-in-out", preview === img ? "opacity-20" : '')}
               />
 
               <div className={twMerge("absolute z-10 top-0 left-0 w-full h-full place-items-center", preview === img ? "grid" : "hidden")}>
-                <span className="font-bold text-2xl text-base-dark dark:text-base-dark">Currently selected</span>
+                <span className="font-bold text-2xl">Currently selected</span>
               </div>
             </SwiperSlide>
           ))}
@@ -103,7 +103,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
           icon="material-symbols:chevron-right"
           onClick={handleNext}
           className="rounded-none rounded-e-md border-0"
-          type="primary"
+          type="secondary"
         >
         </Button>
       </div>
