@@ -28,6 +28,7 @@ const getPosts = async () => {
     "category": categories[0]->title,
     "icon": categories[0]->icon->icon,
     "author": author->name,
+    "authorImg": author->image.asset->url,
     intro,
     publishedAt  
   }`,
@@ -59,6 +60,7 @@ export default async function BlogSection(
                   author={post.author}
                   desc={post.intro ? post.intro : ""}
                   topic={post.category}
+                  authorImage={post.authorImg}
                   topicIcon={post.icon}
                 />
               </Suspense>
