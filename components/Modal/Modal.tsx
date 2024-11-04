@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface ModalProps extends React.HTMLAttributes<HTMLElement> {
+export interface ModalProps extends React.HTMLAttributes<HTMLElement> {
   isOpen: boolean;
   onClose: CallableFunction;
 }
