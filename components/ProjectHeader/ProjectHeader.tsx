@@ -3,10 +3,8 @@
 import { Project } from "@/types/project";
 
 import {toast} from 'sonner'
-import Modal from "../Modal";
 import LinkButton from "../LinkButton";
 import Button from "../Button";
-import { Icon } from "@iconify/react/dist/iconify.js";
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";

@@ -14,7 +14,6 @@ import TableCell from "@/components/Table/TableCell";
 import ProjectHeader from "@/components/ProjectHeader";
 import ProgressBar from "@/components/ProgressBar";
 import ProgressItem from "@/components/ProgressBar/ProgressItem";
-import LinkButton from "@/components/LinkButton";
 
 async function getProject(slug: string) {
   const response: Project = await sanityClient.fetch(
