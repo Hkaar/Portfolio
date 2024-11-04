@@ -12,6 +12,9 @@ import Table from "@/components/Table";
 import TableRow from "@/components/Table/TableRow";
 import TableCell from "@/components/Table/TableCell";
 import ProjectHeader from "@/components/ProjectHeader";
+import ProgressBar from "@/components/ProgressBar";
+import ProgressItem from "@/components/ProgressBar/ProgressItem";
+import LinkButton from "@/components/LinkButton";
 
 async function getProject(slug: string) {
   const response: Project = await sanityClient.fetch(
@@ -45,6 +48,8 @@ export default async function ProjectPage(props: ProjectPageProps) {
   const params = await props.params;
   const project = await getProject(params.slug);
 
+  const host = process.env.APP_HOST || "localhost:3000";
+
   if (!project) {
     notFound();
   }
@@ -53,15 +58,15 @@ export default async function ProjectPage(props: ProjectPageProps) {
     <>
       <div className="container py-4 space-y-4 lg:space-y-6">
         <ArticleHeader>
-          <ProjectHeader project={project} />
+          <ProjectHeader project={project} host={host} />
 
           <div className="space-y-5">
             <ImagePreview src={project.images} />
           </div>
         </ArticleHeader>
 
-        <div className="flex w-full gap-12">
-          <div className="w-4/6 flex-1 flex flex-col gap-3 md:gap-6 min-h-screen py-4">
+        <div className="grid grid-cols-6 gap-12">
+          <div className="col-span-4 flex flex-col gap-3 md:gap-6 min-h-screen py-4">
             <div className="flex flex-col gap-3">
               <h3 className="text-3xl font-semibold">
                 About this project
@@ -69,26 +74,6 @@ export default async function ProjectPage(props: ProjectPageProps) {
 
               <div className="text-neutral-400">
                 <PortableText value={project.body}></PortableText>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <h3 className="text-3xl font-semibold">
-                Categories
-              </h3>
-
-              <div className="text-neutral-400 w-4/5">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                  {project.categories.map((category, i) => (
-                    <Badge
-                      key={category}
-                      icon={project.icons[i] || "material-symbols-light:tag"}
-                      className="px-3 py-2"
-                    >
-                      <span className="text-sm text-gray-500">{category}</span>
-                    </Badge>
-                  ))}
-                </div>
               </div>
             </div>
 
@@ -245,13 +230,13 @@ export default async function ProjectPage(props: ProjectPageProps) {
             </div>
           </div>
 
-          <div className="lg:flex flex-col gap-6 h-fit w-2/6 hidden ">
-            <div className="flex flex-col gap-3">
-              <h3 className="text-3xl font-semibold">
+          <div className="lg:flex flex-col gap-6 h-fit col-span-2 hidden">
+            <div className="space-y-3">
+              <h5 className="text-xl font-semibold">
                 More info
-              </h3>
+              </h5>
 
-              <div className="flex flex-col gap-4 leading-relaxed flex-1 px-6 py-2">
+              <div className="space-y-3 leading-relaxed">
                 <span className="flex items-center gap-3">
                   <Icon
                     icon="mdi:calendar-month-outline"
@@ -272,12 +257,54 @@ export default async function ProjectPage(props: ProjectPageProps) {
                   <Icon
                     icon="pajamas:status-health"
                     fontSize={24}
-                    fontWeight={400} 
+                    fontWeight={400}
                   />
 
                   {project.status}
                 </span>
               </div>
+            </div>
+
+            <div className="space-y-3">
+              <h5 className="text-xl font-semibold">
+                Categories
+              </h5>
+
+              <div className="text-neutral-400">
+                <div className="flex flex-wrap items-center gap-2">
+                  {project.categories.map((category, i) => (
+                    <Badge
+                      key={category}
+                      icon={project.icons[i] || "material-symbols-light:tag"}
+                      className="px-3 py-2"
+                    >
+                      <span className="text-sm text-gray-500">{category}</span>
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h5 className="text-xl font-semibold">
+                Languages
+              </h5>
+
+              <ProgressBar className="p-0">
+                <ProgressItem value={25} className="bg-black" />
+                <ProgressItem value={25} className="bg-blue-500" />
+                <ProgressItem value={10} className="bg-red-300" />
+                <ProgressItem value={35} className="bg-green-800" />
+                <ProgressItem value={5} className="bg-orange-600" />
+              </ProgressBar>
+
+              <ul className="grid grid-cols-2 list-disc list-d px-4">
+                <li>Markdown 25.0%</li>
+                <li className="text-blue-500">TypeScript 25.0%</li>
+                <li className="text-red-300">Mako 10.0%</li>
+                <li className="text-green-800">HTML5 35.0%</li>
+                <li className="text-orange-600">Java 5.0%</li>
+              </ul>
             </div>
           </div>
         </div>
