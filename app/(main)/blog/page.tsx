@@ -27,6 +27,7 @@ const getPosts = async (start: number, end: number, search?: string) => {
     "category": categories[0]->title,
     "icon": categories[0]->icon->icon,
     "author": author->name,
+    "authorImg": author->image.asset->url,
     intro,
     publishedAt  
   }`,
@@ -88,6 +89,7 @@ export default async function BlogPage(props: BlogPageProps) {
                     slug={post.slug.current ? post.slug.current : ""}
                     date={formatDate(post.publishedAt)}
                     author={post.author}
+                    authorImage={post.authorImg}
                     desc={post.intro ? post.intro : ""}
                     topic={post.category}
                     topicIcon={post.icon}
