@@ -17,7 +17,7 @@ export default function ProjectCard(
   { src, topics, topicIcons, slug, title, previewLink, ...props }: ProjectCardProps,
 ) {
   return (
-    <Card className={twMerge("p-4 gap-5 rounded-lg", props.className)}>
+    <Card className={twMerge("p-4 gap-5 rounded-lg border-neutral-300 dark:border-neutral-700 dark:shadow-gray-800 shadow-gray-300", props.className)}>
       <Image
         src={src}
         className="block aspect-video object-cover rounded-md border border-neutral-200 dark:border-neutral-800"

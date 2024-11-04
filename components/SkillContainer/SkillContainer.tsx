@@ -78,7 +78,7 @@ export default function SkillContainer(
   return (
     <div
       className={twMerge(
-        "shadow-md flex flex-col border rounded-md border-gray-200 dark:border-gray-800 w-full h-full",
+        "shadow-md flex flex-col border rounded-md border-gray-200 dark:border-gray-800 w-full h-full shadow-gray-200 dark:shadow-gray-800",
         props.className,
       )}
     >
