@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import CardLoader from "../Loader/CardLoader";
 import ErrorBoundary from "../ErrorBoundary";
 import CardFallBack from "../ErrorFallBack/CardFallBack";
+import { PortableText } from "@portabletext/react";
 
 const getProjects = async () => {
   const projects: Array<Project> = await sanityClient.fetch(
@@ -15,7 +16,6 @@ const getProjects = async () => {
     title,
     slug,
     body,
-    summary,
     preview,
     "image": cover.asset->url,
     "categories": categories[0..2]->title,
@@ -44,7 +44,7 @@ export default async function ProjectSection() {
                   topicIcons={project.icons}
                   previewLink={project.preview}
                 >
-                  {project.summary}
+                  <PortableText value={project.body} />
                 </ProjectCard>
               </Suspense>
             </ErrorBoundary>

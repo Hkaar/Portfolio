@@ -42,9 +42,9 @@ export default function ProjectCard(
         <div className="flex flex-col gap-3">
           <h6 className="font-bold text-3xl tracking-tight">{title}</h6>
 
-          <p className="text-gray-400 line-clamp-3 tracking-wide leading-relaxed">
+          <div className="text-gray-400 line-clamp-3 tracking-wide leading-relaxed">
             {props.children}
-          </p>
+          </div>
         </div>
 
         <div className="flex items-center gap-2 mt-3">
