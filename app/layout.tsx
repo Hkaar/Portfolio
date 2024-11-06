@@ -11,6 +11,20 @@ const notoSans = Noto_Sans({
 export const metadata: Metadata = {
   title: "Shava Jaya’s Portfolio",
   description: "My personal online portfolio",
+  openGraph: {
+    title: "Shava Jaya’s Portfolio",
+    description: "My personal online portfolio",
+    url: "https://www.hkaar.vercel.app",  
+    siteName: "Shava Jaya Portfolio",
+    images: [
+      {
+        url: "https://www.hkaar.vercel.app/images/preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Shava Jaya Portfolio"
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
