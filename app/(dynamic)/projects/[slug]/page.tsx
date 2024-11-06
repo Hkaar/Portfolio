@@ -14,7 +14,6 @@ import TableCell from "@/components/Table/TableCell";
 import ProjectHeader from "@/components/ProjectHeader";
 import ProgressBar from "@/components/ProgressBar";
 import ProgressItem from "@/components/ProgressBar/ProgressItem";
-import { twMerge } from "tailwind-merge";
 
 async function getProject(slug: string) {
   const response: Project = await sanityClient.fetch(
@@ -93,7 +92,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
               </h3>
 
               <Table headings={[{ name: "Platforms" }, { name: "Status" }]}>
-                {project.platforms?.map((platform, i) => (
+                {project.platforms?.map((platform) => (
                   <TableRow key={platform.name}>
                     <TableCell>
                       <div className="flex items-center gap-2">
