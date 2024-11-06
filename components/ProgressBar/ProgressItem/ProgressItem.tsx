@@ -6,6 +6,6 @@ interface ProgressItemProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 export default function ProgressItem({ value, ...props }: ProgressItemProps) {
   return (
-    <span {...props} className={twMerge("first:rounded-s-xl last:rounded-e-xl p-2", props.className)} style={{width: `${value}%`}}></span>
+    <span {...props} className={twMerge("first:rounded-s-xl last:rounded-e-xl p-2", props.className)} style={{width: `${value}%`, ...props.style}}></span>
   )
 }
