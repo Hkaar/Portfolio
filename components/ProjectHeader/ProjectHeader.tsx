@@ -2,7 +2,7 @@
 
 import { Project } from "@/types/project";
 
-import {toast} from 'sonner'
+import { toast } from "sonner";
 import LinkButton from "../LinkButton";
 import Button from "../Button";
 
@@ -28,8 +28,8 @@ export default function ProjectHeader({ project, host }: ProjectHeaderProps) {
       toast.success("Copied to clipboard!");
     }).catch(() => {
       toast.error("Failed to copy!");
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -82,7 +82,13 @@ export default function ProjectHeader({ project, host }: ProjectHeaderProps) {
         </div>
       </div>
 
-      <ShareModal isOpen={modalOpen} onClose={closeModal} path={path} handleCopy={handleCopy} />
+      <ShareModal
+        title="Share this project"
+        isOpen={modalOpen}
+        onClose={closeModal}
+        path={path}
+        handleCopy={handleCopy}
+      />
     </>
   );
 }
