@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import CardLoader from "@/components/Loader/CardLoader";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
+import { PortableText } from "@portabletext/react";
 
 interface ProjectPageProps {
   searchParams: Promise<{ page: number; search: string }>;
@@ -22,7 +23,6 @@ const getProjects = async (start: number, end: number, search?: string) => {
     title,
     slug,
     body,
-    summary,
     preview,
     "image": cover.asset->url,
     "categories": categories[0..2]->title,
@@ -91,7 +91,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                     topicIcons={project.icons}
                     previewLink={project.preview}
                   >
-                    {project.summary}
+                    <PortableText value={project.body} />
                   </ProjectCard>
                 </Suspense>
               </ErrorBoundary>
