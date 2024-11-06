@@ -14,14 +14,13 @@ import TableCell from "@/components/Table/TableCell";
 import ProjectHeader from "@/components/ProjectHeader";
 import ProgressBar from "@/components/ProgressBar";
 import ProgressItem from "@/components/ProgressBar/ProgressItem";
+import { twMerge } from "tailwind-merge";
 
 async function getProject(slug: string) {
   const response: Project = await sanityClient.fetch(
     `*[_type == "project" && slug.current == "${slug}"][0] {
     title,
-    slug,
     body,
-    summary,
     repo,
     preview,
     publishedAt,
@@ -30,6 +29,18 @@ async function getProject(slug: string) {
     "images": images[].asset->url,
     "categories": categories[]->title,
     "icons": categories[]->icon->icon,
+    "languages": languages[]{
+      "name": language->name,
+      "color": language->color,
+      percentage
+    },
+    "platforms": platforms[]{
+      "name": platform->name,
+      "icon": platform->icon->icon,
+      "status": status->name,
+      "statusIcon": status->icon->icon,
+      "statusColor": status->color
+    }
   }`,
   );
 
@@ -82,149 +93,31 @@ export default async function ProjectPage(props: ProjectPageProps) {
               </h3>
 
               <Table headings={[{ name: "Platforms" }, { name: "Status" }]}>
-                <TableRow>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Icon
-                        icon="devicon:windows11"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Windows
-                    </div>
-                  </TableCell>
+                {project.platforms?.map((platform, i) => (
+                  <TableRow key={platform.name}>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        <Icon
+                          icon={platform.icon}
+                          fontSize={24}
+                          fontWeight={400}
+                        />
+                        {platform.name}
+                      </div>
+                    </TableCell>
 
-                  <TableCell>
-                    <div className="flex items-center gap-2 text-success">
-                      <Icon
-                        icon="material-symbols:check"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Supported
-                    </div>
-                  </TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Icon
-                        icon="devicon:apple"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Mac OS
-                    </div>
-                  </TableCell>
-
-                  <TableCell>
-                    <div className="flex items-center gap-2 text-warning">
-                      <Icon
-                        icon="material-symbols:warning"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Untested
-                    </div>
-                  </TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Icon
-                        icon="devicon:linux"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Linux
-                    </div>
-                  </TableCell>
-
-                  <TableCell>
-                    <div className="flex items-center gap-2 text-warning">
-                      <Icon
-                        icon="material-symbols:warning"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Partial Support
-                    </div>
-                  </TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Icon
-                        icon="material-symbols:globe"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Web
-                    </div>
-                  </TableCell>
-
-                  <TableCell>
-                    <div className="flex items-center gap-2 text-success">
-                      <Icon
-                        icon="material-symbols:check"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Supported
-                    </div>
-                  </TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Icon
-                        icon="devicon:android"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Android
-                    </div>
-                  </TableCell>
-
-                  <TableCell>
-                    <div className="flex items-center gap-2 text-danger">
-                      <Icon
-                        icon="material-symbols:error"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Not Supported
-                    </div>
-                  </TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Icon
-                        icon="devicon:apple"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      IOS
-                    </div>
-                  </TableCell>
-
-                  <TableCell>
-                    <div className="flex items-center gap-2 text-danger">
-                      <Icon
-                        icon="material-symbols:error"
-                        fontSize={24}
-                        fontWeight={400}
-                      />
-                      Not Supported
-                    </div>
-                  </TableCell>
-                </TableRow>
+                    <TableCell>
+                      <div className="flex items-center gap-2" style={{color: platform.statusColor || "#a1a1aa"}}>
+                        <Icon
+                          icon={platform.statusIcon || "mdi:close"}
+                          fontSize={24}
+                          fontWeight={400}
+                        />
+                        {platform.status || "Unknown"}
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
               </Table>
             </div>
           </div>
@@ -290,19 +183,25 @@ export default async function ProjectPage(props: ProjectPageProps) {
               </h5>
 
               <ProgressBar className="p-0">
-                <ProgressItem value={25} className="bg-black" />
-                <ProgressItem value={25} className="bg-blue-500" />
-                <ProgressItem value={10} className="bg-red-300" />
-                <ProgressItem value={35} className="bg-green-800" />
-                <ProgressItem value={5} className="bg-orange-600" />
+                {project.languages?.map((language, i) => (
+                  <ProgressItem
+                    style={{ backgroundColor: language.color }}
+                    key={`${language}${i}`}
+                    value={language.percentage || 0}
+                    className="p-1"
+                  />
+                ))}
               </ProgressBar>
 
               <ul className="grid grid-cols-2 list-disc list-d px-4">
-                <li>Markdown 25.0%</li>
-                <li className="text-blue-500">TypeScript 25.0%</li>
-                <li className="text-red-300">Mako 10.0%</li>
-                <li className="text-green-800">HTML5 35.0%</li>
-                <li className="text-orange-600">Java 5.0%</li>
+                {project.languages?.map((language, i) => (
+                  <li
+                    style={{ color: language.color }}
+                    key={`text-${language}${i}`}
+                  >
+                    {language.name} {language.percentage}%
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
