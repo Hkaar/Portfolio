@@ -20,6 +20,15 @@ body {
     text-wrap: balance;
   }
 
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .container {
     @apply max-w-[82rem]
   }

@@ -2,13 +2,17 @@ import { Icon } from "@iconify/react";
 import Timeline from "../Timeline";
 import TimePoint from "../Timeline/TimePoint";
 import SlideUp from "../Transitions/SlideUp";
+import { twMerge } from "tailwind-merge";
 
 export default function EducationSection(
   { ...props }: React.HTMLAttributes<HTMLElement>,
 ) {
   return (
     <div
-      className={`${props.className} shadow-md flex flex-col gap-6 lg:gap-0 lg:flex-row items-center w-full border rounded-md border-gray-200 dark:border-gray-800 h-full`}
+      className={twMerge(
+        "shadow-md flex flex-col gap-6 lg:gap-0 lg:flex-row items-center w-full border rounded-md border-gray-200 dark:border-gray-800 h-full shadow-gray-200 dark:shadow-gray-800",
+        props.className,
+      )}
     >
       <div className="flex flex-col gap-3 flex-1 border-r border-gray-200 dark:border-gray-800 w-full lg:w-fit h-full">
         <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-200 dark:border-neutral-800 rounded-t-md bg-tertiary dark:bg-tertiary-dark text-base-light dark:text-base-dark lg:rounded-tr-none lg:rounded-tl-md">

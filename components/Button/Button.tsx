@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { twMerge } from "tailwind-merge";
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   type?: string;
@@ -14,7 +15,7 @@ const getTypeClasses = (type?: string): string => {
     case "primary":
       return "bg-primary text-base-light dark:bg-primary-dark dark:text-base-dark";
     case "secondary":
-      return "bg-secondary text-base-light dark:bg-secondary-dark dark:text-base-dark";
+      return "bg-secondary dark:bg-secondary-dark text-base-dark dark:text-base-light";
     case "tertiary":
       return "bg-tertiary text-base-light dark:bg-tertiary-dark dark:text-base-dark";
     case "accent":
@@ -30,7 +31,7 @@ const getTypeClasses = (type?: string): string => {
     case "outline-primary":
       return "border-primary text-primary dark:border-primary-dark dark:text-primary-dark hover:bg-primary dark:hover:bg-primary-dark hover:text-base-light dark:hover:text-base-dark";
     case "outline-secondary":
-      return "border-secondary text-secondary dark:border-secondary-dark dark:text-secondary-dark hover:bg-secondary dark:hover:bg-secondary-dark hover:text-base-light dark:hover:text-base-dark";
+      return "border-secondary text-secondary dark:border-secondary-dark dark:text-secondary-dark hover:bg-secondary dark:hover:bg-secondary-dark";
     case "outline-tertiary":
       return "border-tertiary text-tertiary dark:border-tertiary-dark dark:text-tertiary-dark hover:bg-tertiary dark:hover:bg-tertiary-dark hover:text-base-light dark:hover:text-base-dark";
     case "outline-accent":
@@ -49,27 +50,38 @@ const getTypeClasses = (type?: string): string => {
 };
 
 export default function Button(
-  { disabled, type, actionType, icon, rightIcon, children, className, ...props }:
-    ButtonProps,
+  {
+    disabled,
+    type,
+    actionType,
+    icon,
+    rightIcon,
+    children,
+    className,
+    ...props
+  }: ButtonProps,
 ) {
   return (
     <button
       type={actionType || "button"}
       {...props}
-      className={`${className} 
-            ${
+      className={twMerge(
+        "w-fit flex items-center gap-2 border ease-in-out duration-150 rounded-md px-3 py-2 border-gray-200 dark:border-gray-800",
+        getTypeClasses(type),
         disabled
-          ? ""
-          : "hover:scale-105 active:scale-90 active:opacity-50 shadow-sm"
-      } ${
-        getTypeClasses(type)
-      } w-fit flex items-center gap-2 border ease-in-out 
-            duration-150 rounded-md px-3 py-2 border-gray-200 dark:border-gray-800`}
+          ? "opacity-30 cursor-not-allowed"
+          : "hover:scale-105 active:scale-90 active:opacity-50 shadow-sm",
+        className,
+      )}
       disabled={disabled ? true : false}
     >
-      {!rightIcon && icon ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon> : ""}
+      {!rightIcon && icon
+        ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon>
+        : ""}
       {children ? children : ""}
-      {rightIcon && icon ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon> : ""}
+      {rightIcon && icon
+        ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon>
+        : ""}
     </button>
   );
 }

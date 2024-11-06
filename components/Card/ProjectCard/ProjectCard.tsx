@@ -17,10 +17,10 @@ export default function ProjectCard(
   { src, topics, topicIcons, slug, title, previewLink, ...props }: ProjectCardProps,
 ) {
   return (
-    <Card className={twMerge("p-4 gap-5 rounded-lg", props.className)}>
+    <Card className={twMerge("p-4 gap-5 rounded-lg border-neutral-300 dark:border-neutral-700 dark:shadow-gray-800 shadow-gray-300", props.className)}>
       <Image
         src={src}
-        className="block aspect-video object-cover rounded-md"
+        className="block aspect-video object-cover rounded-md border border-neutral-200 dark:border-neutral-800"
         width={640}
         height={480}
         alt="No image was loaded ..."
@@ -42,9 +42,9 @@ export default function ProjectCard(
         <div className="flex flex-col gap-3">
           <h6 className="font-bold text-3xl tracking-tight">{title}</h6>
 
-          <p className="text-gray-400 line-clamp-3 tracking-wide leading-relaxed">
+          <div className="text-gray-400 line-clamp-3 tracking-wide leading-relaxed">
             {props.children}
-          </p>
+          </div>
         </div>
 
         <div className="flex items-center gap-2 mt-3">
@@ -61,7 +61,7 @@ export default function ProjectCard(
             href={previewLink || ""}
             icon="material-symbols:chevron-right"
             rightIcon
-            type="accent"
+            type="tertiary"
             disabled={previewLink ? false : true}
           >
             Preview

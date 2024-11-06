@@ -2,7 +2,7 @@ import Badge from "@/components/Badge";
 import ImageCard from "@/components/Card/ImageCard";
 import LinkButton from "@/components/LinkButton";
 import { Icon } from "@iconify/react";
-// import Image from "next/image";
+import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
 interface BlogCardProps extends React.HTMLAttributes<HTMLElement> {
@@ -14,14 +14,15 @@ interface BlogCardProps extends React.HTMLAttributes<HTMLElement> {
   date: string;
   desc: string;
   author: string;
+  authorImage?: string;
 }
 
 export default function BlogCard(
-  { title, topic, topicIcon, src, slug, date, desc, author, ...props }:
+  { title, topic, topicIcon, src, slug, date, desc, author, authorImage, ...props }:
     BlogCardProps,
 ) {
   return (
-    <ImageCard src={src} className={twMerge("gap-5", props.className)}>
+    <ImageCard src={src} className={twMerge("gap-5 border-neutral-300 dark:border-neutral-700 dark:shadow-gray-800 shadow-gray-300", props.className)}>
       <div className="flex flex-col gap-3 flex-1">
         <div className="flex items-center justify-between">
           <Badge
@@ -53,7 +54,7 @@ export default function BlogCard(
           <div className="flex items-center justify-between gap-2">
             <LinkButton
               href={`/blog/${slug}`}
-              type="accent"
+              type="tertiary"
               icon="material-symbols:chevron-right"
               rightIcon
             >
@@ -61,13 +62,13 @@ export default function BlogCard(
             </LinkButton>
 
             <div className="flex items-center gap-3">
-              {/* <Image
-                src="https://placehold.co/600x480"
+              <Image
+                src={authorImage || "https://placehold.co/600x480"}
                 className="block aspect-square size-10 object-cover rounded-full"
                 width={640}
                 height={480}
                 alt="No image was loaded ..."
-              /> */}
+              />
 
               <span className="text-accent tracking-wide">
                 {author}

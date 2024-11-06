@@ -1,5 +1,6 @@
 import { PortableTextBlock } from "@portabletext/react";
 import { Slug } from "./sanitySchemas";
+import { Language, Platform } from "./contentUtils";
 
 export type Project = {
     title: string;
@@ -7,7 +8,6 @@ export type Project = {
     slug: Slug;
     repo: string;
     preview: string;
-    summary: string;
     image: string;
     categories: Array<string>;
     icons: Array<string>;
@@ -15,4 +15,12 @@ export type Project = {
     status: string;
     publishedAt: string;
     body: PortableTextBlock;
+
+    languages?: Language[];
+    platforms?: Platform[];
+
+    /**
+     * @deprecated Use `body` with portableText instead.
+     */
+    summary: string;
 };

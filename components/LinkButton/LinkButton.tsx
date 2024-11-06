@@ -34,7 +34,7 @@ const getTypeClasses = (type?: string): string => {
     case "primary":
       return "bg-primary text-base-light dark:bg-primary-dark dark:text-base-dark";
     case "secondary":
-      return "bg-secondary dark:bg-secondary-dark";
+      return "bg-secondary dark:bg-secondary-dark text-base-dark dark:text-base-light";
     case "tertiary":
       return "bg-tertiary text-base-light dark:bg-tertiary-dark dark:text-base-dark";
     case "accent":

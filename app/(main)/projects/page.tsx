@@ -5,6 +5,11 @@ import Pagination from "@/components/Pagination";
 import SearchBox from "@/components/SearchBox";
 import SlideUp from "@/components/Transitions/SlideUp";
 import sanityClient from "@/lib/sanity";
+import { Suspense } from "react";
+import CardLoader from "@/components/Loader/CardLoader";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
+import { PortableText } from "@portabletext/react";
 
 interface ProjectPageProps {
   searchParams: Promise<{ page: number; search: string }>;
@@ -18,7 +23,6 @@ const getProjects = async (start: number, end: number, search?: string) => {
     title,
     slug,
     body,
-    summary,
     preview,
     "image": cover.asset->url,
     "categories": categories[0..2]->title,
@@ -30,7 +34,9 @@ const getProjects = async (start: number, end: number, search?: string) => {
 };
 
 const getMaxPage = async () => {
-  const projectsAmount = await sanityClient.fetch(`count(*[_type == "project"])`);
+  const projectsAmount = await sanityClient.fetch(
+    `count(*[_type == "project"])`,
+  );
   const amount = Math.round(projectsAmount / 6);
 
   return amount < 1 ? 1 : amount;
@@ -66,22 +72,29 @@ export default async function ProjectPage(props: ProjectPageProps) {
             </p>
           </div>
 
-          <SearchBox placeholder="Search for a project ..." className="w-full lg:w-3/4" />
+          <SearchBox
+            placeholder="Search for a project ..."
+            className="w-full lg:w-3/4"
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project, i) => (
-            <SlideUp delay={1+(0.2*i)} key={project.slug.current}>
-              <ProjectCard
-                src={project.image || "https://placehold.co/600x480"}
-                title={project.title}
-                slug={project.slug.current || ""}
-                topics={project.categories}
-                topicIcons={project.icons}
-                previewLink={project.preview}
-              >
-                {project.summary}
-              </ProjectCard>
+            <SlideUp delay={1 + (0.2 * i)} key={project.slug.current}>
+              <ErrorBoundary fallback={<CardFallBack />}>
+                <Suspense fallback={<CardLoader className="w-full" />}>
+                  <ProjectCard
+                    src={project.image || "https://placehold.co/600x480"}
+                    title={project.title}
+                    slug={project.slug.current || ""}
+                    topics={project.categories}
+                    topicIcons={project.icons}
+                    previewLink={project.preview}
+                  >
+                    <PortableText value={project.body} />
+                  </ProjectCard>
+                </Suspense>
+              </ErrorBoundary>
             </SlideUp>
           ))}
         </div>
@@ -89,7 +102,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
         <div className="flex justify-center w-full">
           <Pagination
             currentId={searchParams.page ? currentPage : 1}
-            className={projects.length <= 0 ? 'hidden' : ''}
+            className={projects.length <= 0 ? "hidden" : ""}
             href="/projects"
             maxId={maxPage}
           />
