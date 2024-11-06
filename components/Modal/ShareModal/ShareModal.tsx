@@ -6,11 +6,12 @@ import { Icon } from "@iconify/react";
 import LinkButton from "@/components/LinkButton";
 
 interface ShareModalProps extends ModalProps {
+  title: string;
   path: string;
   handleCopy: CallableFunction
 }
 
-export default function ShareModal({ isOpen, onClose, path, handleCopy }: ShareModalProps) {
+export default function ShareModal({ title, isOpen, onClose, path, handleCopy }: ShareModalProps) {
   return (
     <Modal
       isOpen={isOpen}
@@ -19,7 +20,7 @@ export default function ShareModal({ isOpen, onClose, path, handleCopy }: ShareM
     >
       <div className="flex justify-between items-center gap-8 px-4 py-2">
         <h6 className="text-2xl font-bold">
-          Share this project
+          {title}
         </h6>
 
         <Button onClick={() => onClose()} className="border-0 p-0">
