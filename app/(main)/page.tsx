@@ -14,13 +14,15 @@ import sanityClient from "@/lib/sanity";
 import { Suspense } from "react";
 
 const getSkills = async () => {
-  const skills = await sanityClient.fetch(`*[_type == "skill"] | order(name asc) {
+  const skills = await sanityClient.fetch(
+    `*[_type == "skill"] | order(name asc) {
     name, 
     "icon": icon->icon, 
     "level": level->name, 
     "category": category->title, 
     description
-  }`);
+  }`,
+  );
 
   return skills;
 };
