@@ -1,3 +1,4 @@
+import { ButtonVariants } from "@/types/variants";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
@@ -5,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 interface LinkButtonProps extends React.HTMLAttributes<HTMLAnchorElement> {
   href: string;
   disabled?: boolean;
-  type?: string;
+  type?: ButtonVariants;
   icon?: string;
   rightIcon?: boolean;
   target?: string;

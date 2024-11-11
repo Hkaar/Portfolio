@@ -1,8 +1,9 @@
+import { ButtonVariants } from "@/types/variants";
 import { Icon } from "@iconify/react";
 import { twMerge } from "tailwind-merge";
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  type?: string;
+  type?: ButtonVariants;
   icon?: string;
   rightIcon?: boolean;
   disabled?: boolean;
