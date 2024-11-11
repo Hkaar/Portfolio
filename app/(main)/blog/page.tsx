@@ -10,16 +10,25 @@ import SearchBox from "@/components/SearchBox";
 import { formatDate } from "@/lib/commonUtils";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
+import Badge from "@/components/Badge";
+import Button from "@/components/Button";
+import Search from "@/components/Search";
+import { Category } from "@/types/contentUtils";
 
 interface BlogPageProps {
-  searchParams: Promise<{ page: number; search: string }>;
+  searchParams: Promise<{ page: number; search: string, categories?: string }>;
 }
 
-const getPosts = async (start: number, end: number, search?: string) => {
+const getPosts = async (start: number, end: number, search?: string, categories? : string[]) => {
   const searchQuery = search ? `&& title match "*${search}*"` : "";
+  const categoryQuery = categories && categories[0] !== ''
+    ? `&& count((categories[]->title)[@ in [${
+      categories.map((category) => `"${category}"`)
+    }]]) == ${categories.length}`
+    : "";
 
-  const posts: Array<Blog> = await sanityClient.fetch(
-    `*[_type == "post" ${searchQuery}][${start}..${end}] {
+
+  const query = `*[_type == "post" ${searchQuery} ${categoryQuery}][${start}..${end}] {
     title,
     slug,
     body,
@@ -30,10 +39,22 @@ const getPosts = async (start: number, end: number, search?: string) => {
     "authorImg": author->image.asset->url,
     intro,
     publishedAt  
-  }`,
-  );
+  }`;
+
+  const posts: Array<Blog> = await sanityClient.fetch(query);
 
   return posts;
+};
+
+const getCategories = async () => {
+  const query = `*[_type == "category"] {
+    title,
+    "icon": icon->icon,
+  }`;
+
+  const categories: Category[] = await sanityClient.fetch(query);
+
+  return categories;
 };
 
 const getMaxPage = async () => {
@@ -56,12 +77,13 @@ export default async function BlogPage(props: BlogPageProps) {
     : 0;
   const end = searchParams.page ? 5 * currentPage + 1 : 5;
 
-  const posts = await getPosts(start, end, searchParams.search);
+  const posts = await getPosts(start, end, searchParams.search, searchParams.categories?.split("-"),);
+  const categories = await getCategories();
 
   return (
     <div className="min-h-screen flex">
       <div className="container flex-1 flex flex-col gap-8 py-12">
-        <div className="flex flex-col gap-8 items-center">
+        <div className="flex flex-col gap-5 items-center">
           <div className="flex flex-col gap-2 text-center items-center">
             <h1 className="text-5xl font-bold">
               My Blog
@@ -72,10 +94,7 @@ export default async function BlogPage(props: BlogPageProps) {
             </p>
           </div>
 
-          <SearchBox
-            placeholder="Search for a blog ..."
-            className="w-full lg:w-3/4"
-          />
+          <Search placeholder="Search for a blog ..." categories={categories} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-h-96">
