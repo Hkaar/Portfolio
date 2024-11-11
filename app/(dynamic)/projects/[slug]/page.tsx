@@ -14,6 +14,7 @@ import TableCell from "@/components/Table/TableCell";
 import ProjectHeader from "@/components/ProjectHeader";
 import ProgressBar from "@/components/ProgressBar";
 import ProgressItem from "@/components/ProgressBar/ProgressItem";
+import Button from "@/components/Button";
 
 async function getProject(slug: string) {
   const response: Project = await sanityClient.fetch(
@@ -77,9 +78,16 @@ export default async function ProjectPage(props: ProjectPageProps) {
         <div className="grid grid-cols-6 gap-12">
           <div className="col-span-4 flex flex-col gap-3 md:gap-6 min-h-screen py-4">
             <div className="flex flex-col gap-3">
-              <h3 className="text-3xl font-semibold">
-                About this project
-              </h3>
+              <div className="flex items-center gap-2">
+                <h3 className="text-3xl font-semibold">
+                  About this project
+                </h3>
+
+                <Button
+                  className="border-0 shadow-none p-0"
+                  icon="material-symbols:arrow-right-alt"
+                />
+              </div>
 
               <div className="text-neutral-400">
                 <PortableText value={project.body}></PortableText>
@@ -106,7 +114,10 @@ export default async function ProjectPage(props: ProjectPageProps) {
                     </TableCell>
 
                     <TableCell>
-                      <div className="flex items-center gap-2" style={{color: platform.statusColor || "#a1a1aa"}}>
+                      <div
+                        className="flex items-center gap-2"
+                        style={{ color: platform.statusColor || "#a1a1aa" }}
+                      >
                         <Icon
                           icon={platform.statusIcon || "mdi:close"}
                           fontSize={24}

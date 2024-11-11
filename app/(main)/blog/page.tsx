@@ -6,12 +6,9 @@ import Pagination from "@/components/Pagination/Pagination";
 import sanityClient from "@/lib/sanity";
 import SlideUp from "@/components/Transitions/SlideUp";
 import CardLoader from "@/components/Loader/CardLoader";
-import SearchBox from "@/components/SearchBox";
 import { formatDate } from "@/lib/commonUtils";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
-import Badge from "@/components/Badge";
-import Button from "@/components/Button";
 import Search from "@/components/Search";
 import { Category } from "@/types/contentUtils";
 

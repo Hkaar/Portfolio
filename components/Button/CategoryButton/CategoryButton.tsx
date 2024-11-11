@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Button, { ButtonProps } from "../Button";
 import { twMerge } from "tailwind-merge";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface CategoryButtonProps extends ButtonProps {
   slug: string;
@@ -19,11 +19,14 @@ export default function CategoryButton(
   const categoryParams = useSearchParams();
 
   const previous = categoryParams.get("categories");
-  let categories = previous ? previous.split("-") : [];
+
+  let categories = useMemo(() => {
+    return previous ? previous.split("-") : [];
+  }, [previous]);
 
   useEffect(() => {
     setActive(categories.includes(slug));
-  }, [categoryParams, slug]);
+  }, [categories, slug]);
 
   const handleCategorySearch = (category: string) => {
     if (categories.includes(category)) {

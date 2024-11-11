@@ -9,7 +9,6 @@ import CardLoader from "@/components/Loader/CardLoader";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
 import { PortableText } from "@portabletext/react";
-import Badge from "@/components/Badge";
 import { Category } from "@/types/contentUtils";
 import Search from "@/components/Search";
 
