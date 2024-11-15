@@ -1,16 +1,19 @@
 import { Project } from "@/types/project";
+import { Category } from "@/types/contentUtils";
 
 import ProjectCard from "@/components/Card/ProjectCard";
 import Pagination from "@/components/Pagination";
 import SlideUp from "@/components/Transitions/SlideUp";
-import sanityClient from "@/lib/sanity";
 import { Suspense } from "react";
 import CardLoader from "@/components/Loader/CardLoader";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
 import { PortableText } from "@portabletext/react";
-import { Category } from "@/types/contentUtils";
 import Search from "@/components/Search";
+
+import sanityClient from "@/lib/sanity";
+
+import { getEndIndex, getMaxPage, getStartIndex } from "@/utils/pagination";
 
 interface ProjectPageProps {
   searchParams: Promise<{ page: number; search: string; categories?: string }>;
@@ -23,6 +26,7 @@ const getProjects = async (
   categories?: string[],
 ) => {
   const searchQuery = search ? `&& title match "*${search}*"` : "";
+
   const categoryQuery = categories && categories[0] !== ''
     ? `&& count((categories[]->title)[@ in [${
       categories.map((category) => `"${category}"`)
@@ -56,27 +60,18 @@ const getCategories = async () => {
   return categories;
 };
 
-const getMaxPage = async () => {
-  const projectsAmount = await sanityClient.fetch(
-    `count(*[_type == "project"])`,
-  );
-  const amount = Math.round(projectsAmount / 6);
-
-  return amount < 1 ? 1 : amount;
-};
-
 export const fetchCache = "force-no-store";
 
 export default async function ProjectPage(props: ProjectPageProps) {
   const searchParams = await props.searchParams;
 
-  const currentPage = Number(searchParams.page);
-  const maxPage = await getMaxPage();
+  const totalProjects = await sanityClient.fetch(`count(*[_type == "project"])`);
 
-  const start = searchParams.page && currentPage != 1
-    ? 5 * (currentPage - 1) + 1
-    : 0;
-  const end = searchParams.page ? 5 * currentPage + 1 : 5;
+  const currentPage = Number(searchParams.page);
+  const maxPage = getMaxPage(totalProjects, 5);
+  
+  const start = getStartIndex(5, currentPage);
+  const end = getEndIndex(5, currentPage);
 
   const projects = await getProjects(
     start,

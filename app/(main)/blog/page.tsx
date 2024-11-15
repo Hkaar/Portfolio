@@ -1,16 +1,19 @@
 import { Blog } from "@/types/blog";
+import { Category } from "@/types/contentUtils";
 
 import { Suspense } from "react";
 import BlogCard from "@/components/Card/BlogCard";
 import Pagination from "@/components/Pagination/Pagination";
-import sanityClient from "@/lib/sanity";
 import SlideUp from "@/components/Transitions/SlideUp";
 import CardLoader from "@/components/Loader/CardLoader";
-import { formatDate } from "@/lib/commonUtils";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
 import Search from "@/components/Search";
-import { Category } from "@/types/contentUtils";
+
+import sanityClient from "@/lib/sanity";
+
+import { formatBlogDate } from "@/utils/time";
+import { getEndIndex, getMaxPage, getStartIndex } from "@/utils/pagination";
 
 interface BlogPageProps {
   searchParams: Promise<{ page: number; search: string, categories?: string }>;
@@ -54,25 +57,18 @@ const getCategories = async () => {
   return categories;
 };
 
-const getMaxPage = async () => {
-  const projectsAmount = await sanityClient.fetch(`count(*[_type == "post"])`);
-  const amount = Math.round(projectsAmount / 6);
-
-  return amount < 1 ? 1 : amount;
-};
-
 export const fetchCache = "force-no-store";
 
 export default async function BlogPage(props: BlogPageProps) {
   const searchParams = await props.searchParams;
 
-  const currentPage = Number(searchParams.page);
-  const maxPage = await getMaxPage();
+  const totalPosts = await sanityClient.fetch(`count(*[_type == "post"])`);
 
-  const start = searchParams.page && currentPage != 1
-    ? 5 * (currentPage - 1) + 1
-    : 0;
-  const end = searchParams.page ? 5 * currentPage + 1 : 5;
+  const currentPage = Number(searchParams.page);
+  const maxPage = getMaxPage(totalPosts, 5);
+
+  const start = getStartIndex(5, currentPage);
+  const end = getEndIndex(5, currentPage)
 
   const posts = await getPosts(start, end, searchParams.search, searchParams.categories?.split("-"),);
   const categories = await getCategories();
@@ -103,7 +99,7 @@ export default async function BlogPage(props: BlogPageProps) {
                     src={post.image || "https://placehold.co/600x480"}
                     title={post.title}
                     slug={post.slug.current ? post.slug.current : ""}
-                    date={formatDate(post.publishedAt)}
+                    date={formatBlogDate(post.publishedAt)}
                     author={post.author}
                     authorImage={post.authorImg}
                     desc={post.intro ? post.intro : ""}
