@@ -61,7 +61,7 @@ export default function Pagination(
           className="px-3 py-2"
           key={`paginator-${id}`}
           href={buildUrl(id)}
-          type={id === currentId ? "primary" : "tertiary"}
+          type={id === currentId ? "primary" : "outline-accent"}
         >
           <span
             className={twMerge("px-1", id === currentId ? "bg-opacity-50" : "")}

@@ -6,7 +6,7 @@ import Button from "../Button";
 import { Icon } from "@iconify/react";
 
 import { usePathname } from "next/navigation";
-import { loadStoredTheme } from "@/lib/themeUtils";
+import { loadStoredTheme } from "@/utils/theme";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 

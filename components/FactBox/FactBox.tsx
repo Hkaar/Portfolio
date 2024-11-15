@@ -1,6 +1,6 @@
 "use client";
 
-import { randRange } from "@/lib/commonUtils";
+import { randRange } from "@/utils/common";
 import { useState, useEffect } from "react";
 
 const factList = [
