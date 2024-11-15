@@ -6,10 +6,11 @@ import ArticleHeader from "@/components/Article/ArticleHeader";
 import Profile from "@/components/Profile";
 import Badge from "@/components/Badge";
 import { Icon } from "@iconify/react";
-import sanityClient from "@/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
-import { formatDate } from "@/lib/commonUtils";
+
+import sanityClient from "@/lib/sanity";
+import { formatBlogDate } from "@/utils/time";
 
 interface BlogPageProps {
   params: Promise<{ slug: string }>;
@@ -77,7 +78,7 @@ export default async function BlogPage(props: BlogPageProps) {
                 fontWeight={400}
               />
 
-              {formatDate(blog.publishedAt)}
+              {formatBlogDate(blog.publishedAt)}
             </div>
           </div>
 

@@ -2,11 +2,9 @@ import { Project } from "@/types/project";
 
 import ArticleHeader from "@/components/Article/ArticleHeader";
 import Badge from "@/components/Badge";
-import sanityClient from "@/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { formatDate } from "@/lib/commonUtils";
 import ImagePreview from "@/components/ImagePreview";
 import Table from "@/components/Table";
 import TableRow from "@/components/Table/TableRow";
@@ -15,6 +13,9 @@ import ProjectHeader from "@/components/ProjectHeader";
 import ProgressBar from "@/components/ProgressBar";
 import ProgressItem from "@/components/ProgressBar/ProgressItem";
 import Button from "@/components/Button";
+
+import sanityClient from "@/lib/sanity";
+import { formatBlogDate } from "@/utils/time";
 
 async function getProject(slug: string) {
   const response: Project = await sanityClient.fetch(
@@ -146,7 +147,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                     fontWeight={400}
                   />
 
-                  {formatDate(project.publishedAt)}
+                  {formatBlogDate(project.publishedAt)}
                 </span>
 
                 <span className="flex items-center gap-3">
