@@ -66,158 +66,156 @@ export default async function ProjectPage(props: ProjectPageProps) {
   }
 
   return (
-    <>
-      <div className="container py-4 space-y-4 lg:space-y-6">
-        <ArticleHeader>
-          <ProjectHeader project={project} host={host} />
+    <main className="container py-4 space-y-4 lg:space-y-6">
+      <ArticleHeader>
+        <ProjectHeader project={project} host={host} />
 
-          <div className="space-y-5">
-            <ImagePreview src={project.images} />
-          </div>
-        </ArticleHeader>
+        <div className="space-y-5">
+          <ImagePreview src={project.images} />
+        </div>
+      </ArticleHeader>
 
-        <div className="grid grid-cols-6 gap-12">
-          <div className="col-span-4 flex flex-col gap-3 md:gap-6 min-h-screen py-4">
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-2">
-                <h3 className="text-3xl font-semibold">
-                  About this project
-                </h3>
-
-                <Button
-                  className="border-0 shadow-none p-0"
-                  icon="material-symbols:arrow-right-alt"
-                />
-              </div>
-
-              <div className="text-neutral-400">
-                <PortableText value={project.body}></PortableText>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3">
+      <div className="grid grid-cols-1 lg:grid-cols-6 gap-5 min-h-screen">
+        <div className="lg:col-span-4 flex flex-col gap-3 md:gap-6 py-4">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-2">
               <h3 className="text-3xl font-semibold">
-                Supported platforms
+                About this project
               </h3>
 
-              <Table headings={[{ name: "Platforms" }, { name: "Status" }]}>
-                {project.platforms?.map((platform) => (
-                  <TableRow key={platform.name}>
-                    <TableCell>
-                      <div className="flex items-center gap-2">
-                        <Icon
-                          icon={platform.icon}
-                          fontSize={24}
-                          fontWeight={400}
-                        />
-                        {platform.name}
-                      </div>
-                    </TableCell>
+              <Button
+                className="border-0 shadow-none p-0"
+                icon="material-symbols:arrow-right-alt"
+              />
+            </div>
 
-                    <TableCell>
-                      <div
-                        className="flex items-center gap-2"
-                        style={{ color: platform.statusColor || "#a1a1aa" }}
-                      >
-                        <Icon
-                          icon={platform.statusIcon || "mdi:close"}
-                          fontSize={24}
-                          fontWeight={400}
-                        />
-                        {platform.status || "Unknown"}
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </Table>
+            <div className="text-neutral-400">
+              <PortableText value={project.body}></PortableText>
             </div>
           </div>
 
-          <div className="lg:flex flex-col gap-6 h-fit col-span-2 hidden">
-            <div className="space-y-3">
-              <h5 className="text-xl font-semibold">
-                More info
-              </h5>
+          <div className="flex flex-col gap-3">
+            <h3 className="text-3xl font-semibold">
+              Supported platforms
+            </h3>
 
-              <div className="space-y-3 leading-relaxed">
-                <span className="flex items-center gap-3">
-                  <Icon
-                    icon="mdi:calendar-month-outline"
-                    fontSize={24}
-                    fontWeight={400}
-                  />
+            <Table headings={[{ name: "Platforms" }, { name: "Status" }]}>
+              {project.platforms?.map((platform) => (
+                <TableRow key={platform.name}>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      <Icon
+                        icon={platform.icon}
+                        fontSize={24}
+                        fontWeight={400}
+                      />
+                      {platform.name}
+                    </div>
+                  </TableCell>
 
-                  {formatBlogDate(project.publishedAt)}
-                </span>
-
-                <span className="flex items-center gap-3">
-                  <Icon icon="octicon:law-24" fontSize={24} fontWeight={400} />
-
-                  {project.license}
-                </span>
-
-                <span className="flex items-center gap-3">
-                  <Icon
-                    icon="pajamas:status-health"
-                    fontSize={24}
-                    fontWeight={400}
-                  />
-
-                  {project.status}
-                </span>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <h5 className="text-xl font-semibold">
-                Categories
-              </h5>
-
-              <div className="text-neutral-400">
-                <div className="flex flex-wrap items-center gap-2">
-                  {project.categories.map((category, i) => (
-                    <Badge
-                      key={category}
-                      icon={project.icons[i] || "material-symbols-light:tag"}
-                      className="px-3 py-2"
+                  <TableCell>
+                    <div
+                      className="flex items-center gap-2"
+                      style={{ color: platform.statusColor || "#a1a1aa" }}
                     >
-                      <span className="text-sm text-gray-500">{category}</span>
-                    </Badge>
-                  ))}
-                </div>
+                      <Icon
+                        icon={platform.statusIcon || "mdi:close"}
+                        fontSize={24}
+                        fontWeight={400}
+                      />
+                      {platform.status || "Unknown"}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </Table>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-5 h-fit col-span-2">
+          <div className="space-y-3">
+            <h5 className="text-xl font-semibold">
+              More info
+            </h5>
+
+            <div className="space-y-3 leading-relaxed">
+              <span className="flex items-center gap-3">
+                <Icon
+                  icon="mdi:calendar-month-outline"
+                  fontSize={24}
+                  fontWeight={400}
+                />
+
+                {formatBlogDate(project.publishedAt)}
+              </span>
+
+              <span className="flex items-center gap-3">
+                <Icon icon="octicon:law-24" fontSize={24} fontWeight={400} />
+
+                {project.license}
+              </span>
+
+              <span className="flex items-center gap-3">
+                <Icon
+                  icon="pajamas:status-health"
+                  fontSize={24}
+                  fontWeight={400}
+                />
+
+                {project.status}
+              </span>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <h5 className="text-xl font-semibold">
+              Categories
+            </h5>
+
+            <div className="text-neutral-400">
+              <div className="flex flex-wrap items-center gap-2">
+                {project.categories.map((category, i) => (
+                  <Badge
+                    key={category}
+                    icon={project.icons[i] || "material-symbols-light:tag"}
+                    className="px-3 py-2"
+                  >
+                    <span className="text-sm text-gray-500">{category}</span>
+                  </Badge>
+                ))}
               </div>
             </div>
+          </div>
 
-            <div className="space-y-3">
-              <h5 className="text-xl font-semibold">
-                Languages
-              </h5>
+          <div className="space-y-3">
+            <h5 className="text-xl font-semibold">
+              Languages
+            </h5>
 
-              <ProgressBar className="p-0">
-                {project.languages?.map((language, i) => (
-                  <ProgressItem
-                    style={{ backgroundColor: language.color }}
-                    key={`${language}${i}`}
-                    value={language.percentage || 0}
-                    className="p-1"
-                  />
-                ))}
-              </ProgressBar>
+            <ProgressBar className="p-0">
+              {project.languages?.map((language, i) => (
+                <ProgressItem
+                  style={{ backgroundColor: language.color }}
+                  key={`${language}${i}`}
+                  value={language.percentage || 0}
+                  className="p-1"
+                />
+              ))}
+            </ProgressBar>
 
-              <ul className="grid grid-cols-2 list-disc list-d px-4">
-                {project.languages?.map((language, i) => (
-                  <li
-                    style={{ color: language.color }}
-                    key={`text-${language}${i}`}
-                  >
-                    {language.name} {language.percentage}%
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className="grid grid-cols-2 list-disc list-d px-4">
+              {project.languages?.map((language, i) => (
+                <li
+                  style={{ color: language.color }}
+                  key={`text-${language}${i}`}
+                >
+                  {language.name} {language.percentage}%
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }

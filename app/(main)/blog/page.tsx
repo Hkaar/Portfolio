@@ -74,7 +74,7 @@ export default async function BlogPage(props: BlogPageProps) {
   const categories = await getCategories();
 
   return (
-    <div className="min-h-screen flex">
+    <main className="min-h-screen flex">
       <div className="container flex-1 flex flex-col gap-8 py-12">
         <div className="flex flex-col gap-5 items-center">
           <div className="flex flex-col gap-2 text-center items-center">
@@ -82,7 +82,7 @@ export default async function BlogPage(props: BlogPageProps) {
               My Blog
             </h1>
 
-            <p className="text-lg text-gray-400">
+            <p className="text-sm lg:text-base text-gray-400 dark:text-neutral-500">
               Here`s my personal blog where you can see what i`m up to recently
             </p>
           </div>
@@ -90,7 +90,7 @@ export default async function BlogPage(props: BlogPageProps) {
           <Search placeholder="Search for a blog ..." categories={categories} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-h-96">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {posts.map((post, i) => (
             <SlideUp delay={1 + (0.2 * i)} key={post.slug.current}>
               <ErrorBoundary fallback={<CardFallBack />}>
@@ -121,6 +121,6 @@ export default async function BlogPage(props: BlogPageProps) {
           />
         </div>
       </div>
-    </div>
+    </main>
   );
 }

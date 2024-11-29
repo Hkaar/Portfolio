@@ -82,24 +82,24 @@ export default async function ProjectPage(props: ProjectPageProps) {
   const categories = await getCategories();
 
   return (
-    <div className="min-h-screen flex">
+    <main className="min-h-screen flex">
       <div className="container flex-1 flex flex-col gap-8 py-12">
         <div className="flex flex-col gap-5 items-center">
           <div className="flex flex-col gap-2 text-center items-center">
-            <h1 className="text-5xl font-bold">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl tracking-tight font-bold">
               My Projects
             </h1>
 
-            <p className="text-lg text-gray-400">
+            <p className="text-sm lg:text-base text-gray-400 dark:text-neutral-500">
               Here are some of the projects that i have worked on as a software
               developer
             </p>
           </div>
 
-          <Search  placeholder="Search for a project ..." categories={categories} />
+          <Search placeholder="Search for a project ..." categories={categories} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {projects.map((project, i) => (
             <SlideUp delay={1 + (0.2 * i)} key={project.slug.current}>
               <ErrorBoundary fallback={<CardFallBack />}>
@@ -129,6 +129,6 @@ export default async function ProjectPage(props: ProjectPageProps) {
           />
         </div>
       </div>
-    </div>
+    </main>
   );
 }
