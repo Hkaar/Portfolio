@@ -22,7 +22,7 @@ export default function JobCard(
 ) {
   return (
     <Card className={`${props.className} gap-5 px-6 py-4 border-l-[6px] border-neutral-300 dark:border-neutral-700 border-l-primary dark:border-l-primary-dark dark:shadow-gray-800 shadow-gray-300`}>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between lg:gap-2">
           <h5 className="font-bold text-xl tracking-tight">
             {title}

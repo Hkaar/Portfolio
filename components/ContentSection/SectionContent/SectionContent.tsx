@@ -20,7 +20,7 @@ export default function SectionContent(
     >
       {title
         ? (
-          <h3 className="font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl w-3/4">
+          <h3 className="font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl w-3/4">
             {title}
           </h3>
         )

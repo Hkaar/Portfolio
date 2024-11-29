@@ -35,10 +35,10 @@ export default function Header() {
 
   return (
     <header
-      className={`py-4 bg-base-light dark:bg-base-dark sticky top-0 z-40
+      className={`py-3 bg-base-light dark:bg-base-dark sticky top-0 z-40 border-b border-gray-200 dark:border-neutral-700
             ${
         isScrolled
-          ? "border-b border-neutral-200 dark:border-neutral-800 drop-shadow-md" // (THIS IS CURRENTLY DISABLED 'KAY?) bg-opacity-20 dark:bg-base-light dark:bg-opacity-[7%] backdrop-blur-lg drop-shadow-lg
+          ? "drop-shadow-md" // (THIS IS CURRENTLY DISABLED 'KAY?) bg-opacity-20 dark:bg-base-light dark:bg-opacity-[7%] backdrop-blur-lg drop-shadow-lg
           : ""
       }`}
     >
@@ -52,9 +52,9 @@ export default function Header() {
             >
             </Icon>
 
-            <h5 className="font-semibold text-2xl d-flex items-center">
+            <h1 className="font-bold text-xl d-flex items-center tracking-tighter">
               Shava Jaya
-            </h5>
+            </h1>
           </Link>
 
           <Button

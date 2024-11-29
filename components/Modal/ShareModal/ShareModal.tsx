@@ -16,7 +16,7 @@ export default function ShareModal({ title, isOpen, onClose, path, handleCopy }:
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      className="p-2 flex flex-col gap-3"
+      className="p-2 flex flex-col gap-3 w-11/12 max-w-[24rem]"
     >
       <div className="flex justify-between items-center gap-8 px-4 py-2">
         <h6 className="text-2xl font-bold">

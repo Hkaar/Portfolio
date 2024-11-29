@@ -19,17 +19,13 @@ export default function Search({ placeholder, categories }: SearchProps) {
 
   return (
     <>
-      <div className="flex justify-center items-center gap-2 w-full">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-2 w-full">
         <SearchBox
           placeholder={placeholder}
-          className="w-full lg:w-2/4"
+          className="w-full lg:w-3/4"
         />
 
         <div className="flex items-center gap-2">
-          <Button icon="mdi:sort" type="outline-info">
-            Sort
-          </Button>
-
           <Button icon="mdi:filter-outline" type="outline-info" onClick={openModal}>
             Filter
           </Button>

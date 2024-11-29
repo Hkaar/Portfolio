@@ -22,7 +22,7 @@ export default function BlogCard(
     BlogCardProps,
 ) {
   return (
-    <ImageCard src={src} className={twMerge("gap-5 border-neutral-300 dark:border-neutral-700 dark:shadow-gray-800 shadow-gray-300", props.className)}>
+    <ImageCard src={src} className={twMerge("gap-5 border-gray-200 dark:border-neutral-700 shadow-none hover:shadow-xl transition-all duration-300 ease-in-out", props.className)}>
       <div className="flex flex-col gap-3 flex-1">
         <div className="flex items-center justify-between">
           <Badge

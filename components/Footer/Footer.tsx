@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="py-4 border-t bg-base-light dark:bg-base-dark shadow-md border-gray-200 dark:border-gray-800">
       <div className="container flex md:items-center flex-col md:flex-row gap-3 justify-between">
-        <span className="font-semibold text-lg">
+        <span className="font-semibold text-sm">
           Copyright &#169; 2024 Shava Jaya. All rights reserved.
         </span>
 
@@ -31,10 +31,6 @@ export default function Footer() {
               <Icon icon="mdi:github" className="size-6"></Icon>
             </Link>
           </div>
-
-          <Badge icon="material-symbols-light:shoppingmode-outline" className="px-3 py-2 shadow-none border-neutral-200 dark:border-neutral-800">
-            {process.env.APP_VERSION ? process.env.APP_VERSION : "1.0"}
-          </Badge>
         </div>
       </div>
     </footer>

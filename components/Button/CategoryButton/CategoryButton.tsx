@@ -48,7 +48,7 @@ export default function CategoryButton(
       onClick={() => handleCategorySearch(slug)}
       icon={props.icon}
       className={twMerge(
-        "justify-center",
+        "justify-center hover:bg-gray-200 dark:hover:bg-neutral-700 hover:scale-100",
         active ? "bg-opacity-20 bg-gray-300 dark:bg-neutral-700" : "",
         props.className,
       )}
