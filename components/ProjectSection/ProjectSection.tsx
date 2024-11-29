@@ -31,7 +31,7 @@ export default async function ProjectSection() {
 
   return (
     <div className="flex flex-col gap-6 justify-center items-center">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {projects.map((project, i) => (
           <SlideUp delay={1 + (0.2 * i)} key={project.slug.current}>
             <ErrorBoundary fallback={<CardFallBack />}>

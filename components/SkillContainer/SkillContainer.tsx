@@ -108,7 +108,7 @@ export default function SkillContainer(
             tab === 0 ? null : "hidden opacity-0"
           } border-r border-gray-200 opacity-100 transition-all duration-200 ease-in-out dark:border-gray-800`}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 overflow-y-auto max-h-[36rem]">
             {languages.map((item, i) => (
               <SlideUp key={item.name} delay={1 + (0.2 * i)}>
                 <SkillCard
@@ -140,7 +140,7 @@ export default function SkillContainer(
             tab === 1 ? null : "hidden opacity-0"
           } border-r border-gray-200 opacity-100 transition-all duration-200 ease-in-out dark:border-gray-800`}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 overflow-y-auto max-h-[36rem]">
             {frameworks.map((item, i) => (
               <SlideUp key={item.name} delay={1 + (0.2 * i)}>
                 <SkillCard
@@ -172,7 +172,7 @@ export default function SkillContainer(
             tab === 2 ? null : "hidden opacity-0"
           } border-r border-gray-200 opacity-100 transition-all duration-200 ease-in-out dark:border-gray-800`}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 overflow-y-auto max-h-[36rem]">
             {tools.map((item, i) => (
               <SlideUp key={item.name} delay={1 + (0.2 * i)}>
                 <SkillCard

@@ -12,3 +12,8 @@ export type Platform = {
     statusIcon?: string;
     statusColor?: string;
 }
+
+export type Category = {
+    title: string;
+    icon?: string;
+}

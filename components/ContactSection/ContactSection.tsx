@@ -11,11 +11,11 @@ export default function ContactSection() {
       <div className="flex flex-col gap-6 flex-1 justify-center">
         <SlideRight>
           <SectionContent className="flex-none">
-            <h3 className="font-bold text-3xl md:text-4xl lg:text-5xl w-3/4">
+            <h3 className="font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
               Need help for your project?
             </h3>
 
-            <span className="mt-3 md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed">
+            <span className="mt-3 text-sm md:text-base text-gray-400 dark:text-neutral-600 tracking-wide leading-relaxed">
               Let’s talk, and create something together.
             </span>
           </SectionContent>

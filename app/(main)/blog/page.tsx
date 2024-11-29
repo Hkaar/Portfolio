@@ -1,25 +1,34 @@
 import { Blog } from "@/types/blog";
+import { Category } from "@/types/contentUtils";
 
 import { Suspense } from "react";
 import BlogCard from "@/components/Card/BlogCard";
 import Pagination from "@/components/Pagination/Pagination";
-import sanityClient from "@/lib/sanity";
 import SlideUp from "@/components/Transitions/SlideUp";
 import CardLoader from "@/components/Loader/CardLoader";
-import SearchBox from "@/components/SearchBox";
-import { formatDate } from "@/lib/commonUtils";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
+import Search from "@/components/Search";
+
+import sanityClient from "@/lib/sanity";
+
+import { formatBlogDate } from "@/utils/time";
+import { getEndIndex, getMaxPage, getStartIndex } from "@/utils/pagination";
 
 interface BlogPageProps {
-  searchParams: Promise<{ page: number; search: string }>;
+  searchParams: Promise<{ page: number; search: string, categories?: string }>;
 }
 
-const getPosts = async (start: number, end: number, search?: string) => {
+const getPosts = async (start: number, end: number, search?: string, categories? : string[]) => {
   const searchQuery = search ? `&& title match "*${search}*"` : "";
+  const categoryQuery = categories && categories[0] !== ''
+    ? `&& count((categories[]->title)[@ in [${
+      categories.map((category) => `"${category}"`)
+    }]]) == ${categories.length}`
+    : "";
 
-  const posts: Array<Blog> = await sanityClient.fetch(
-    `*[_type == "post" ${searchQuery}][${start}..${end}] {
+
+  const query = `*[_type == "post" ${searchQuery} ${categoryQuery}][${start}..${end}] {
     title,
     slug,
     body,
@@ -30,17 +39,22 @@ const getPosts = async (start: number, end: number, search?: string) => {
     "authorImg": author->image.asset->url,
     intro,
     publishedAt  
-  }`,
-  );
+  }`;
+
+  const posts: Array<Blog> = await sanityClient.fetch(query);
 
   return posts;
 };
 
-const getMaxPage = async () => {
-  const projectsAmount = await sanityClient.fetch(`count(*[_type == "post"])`);
-  const amount = Math.round(projectsAmount / 6);
+const getCategories = async () => {
+  const query = `*[_type == "category"] {
+    title,
+    "icon": icon->icon,
+  }`;
 
-  return amount < 1 ? 1 : amount;
+  const categories: Category[] = await sanityClient.fetch(query);
+
+  return categories;
 };
 
 export const fetchCache = "force-no-store";
@@ -48,37 +62,35 @@ export const fetchCache = "force-no-store";
 export default async function BlogPage(props: BlogPageProps) {
   const searchParams = await props.searchParams;
 
+  const totalPosts = await sanityClient.fetch(`count(*[_type == "post"])`);
+
   const currentPage = Number(searchParams.page);
-  const maxPage = await getMaxPage();
+  const maxPage = getMaxPage(totalPosts, 5);
 
-  const start = searchParams.page && currentPage != 1
-    ? 5 * (currentPage - 1) + 1
-    : 0;
-  const end = searchParams.page ? 5 * currentPage + 1 : 5;
+  const start = getStartIndex(5, currentPage);
+  const end = getEndIndex(5, currentPage)
 
-  const posts = await getPosts(start, end, searchParams.search);
+  const posts = await getPosts(start, end, searchParams.search, searchParams.categories?.split("-"),);
+  const categories = await getCategories();
 
   return (
-    <div className="min-h-screen flex">
+    <main className="min-h-screen flex">
       <div className="container flex-1 flex flex-col gap-8 py-12">
-        <div className="flex flex-col gap-8 items-center">
+        <div className="flex flex-col gap-5 items-center">
           <div className="flex flex-col gap-2 text-center items-center">
             <h1 className="text-5xl font-bold">
               My Blog
             </h1>
 
-            <p className="text-lg text-gray-400">
+            <p className="text-sm lg:text-base text-gray-400 dark:text-neutral-500">
               Here`s my personal blog where you can see what i`m up to recently
             </p>
           </div>
 
-          <SearchBox
-            placeholder="Search for a blog ..."
-            className="w-full lg:w-3/4"
-          />
+          <Search placeholder="Search for a blog ..." categories={categories} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-h-96">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {posts.map((post, i) => (
             <SlideUp delay={1 + (0.2 * i)} key={post.slug.current}>
               <ErrorBoundary fallback={<CardFallBack />}>
@@ -87,7 +99,7 @@ export default async function BlogPage(props: BlogPageProps) {
                     src={post.image || "https://placehold.co/600x480"}
                     title={post.title}
                     slug={post.slug.current ? post.slug.current : ""}
-                    date={formatDate(post.publishedAt)}
+                    date={formatBlogDate(post.publishedAt)}
                     author={post.author}
                     authorImage={post.authorImg}
                     desc={post.intro ? post.intro : ""}
@@ -109,6 +121,6 @@ export default async function BlogPage(props: BlogPageProps) {
           />
         </div>
       </div>
-    </div>
+    </main>
   );
 }

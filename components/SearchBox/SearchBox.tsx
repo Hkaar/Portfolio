@@ -4,8 +4,9 @@ import { twMerge } from "tailwind-merge";
 import InputField from "../InputField";
 import Button from "../Button";
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useState } from "react";
+import { Icon } from "@iconify/react";
 
 interface SearchBoxProps extends React.HTMLAttributes<HTMLElement> {
   placeholder?: string;
@@ -17,7 +18,7 @@ export default function SearchBox({ placeholder, ...props }: SearchBoxProps) {
   const pathName = usePathname();
   const searchParams = useSearchParams();
 
-  const previous = searchParams.get('search');
+  const previous = searchParams.get("search");
   const [search, setSearch] = useState(previous ? previous : "");
 
   const handleSearch = () => {
@@ -25,11 +26,11 @@ export default function SearchBox({ placeholder, ...props }: SearchBoxProps) {
     queries.set("search", search);
 
     router.push(`${pathName}?${queries}`);
-  }  
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-  }
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const key = e.key.toLowerCase();
@@ -37,18 +38,34 @@ export default function SearchBox({ placeholder, ...props }: SearchBoxProps) {
     if (key === "enter" || key === "return") {
       handleSearch();
     }
-  }
+  };
 
   return (
     <div {...props} className={twMerge("flex items-center", props.className)}>
-      <InputField onChange={handleChange} onKeyDown={handleKeyDown}
-        value={search}
-        className="flex-1 rounded-none rounded-s-md focus:ring-0 dark:focus:ring-0"
-        placeholder={placeholder || "Start searching here!"}
-      />
+      <div className="relative w-full">
+        <InputField
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          value={search}
+          className="flex-1 rounded-none rounded-s-md focus:ring-0 dark:focus:ring-0 ps-11"
+          placeholder={placeholder || "Start searching here!"}
+        />
 
-      <Button icon="material-symbols:search" onClick={handleSearch} type="primary" className="rounded-none rounded-e-md">
-        <span className="hidden md:block">Search</span>
+        <div className="absolute start-0 inset-y-2.5 ps-3">
+          <Icon
+            icon="material-symbols:search"
+            fontSize={24}
+            className="text-gray-500 dark:text-neutral-600"
+          />
+        </div>
+      </div>
+
+      <Button
+        onClick={handleSearch}
+        type="primary"
+        className="rounded-none rounded-e-md"
+      >
+        Search
       </Button>
     </div>
   );

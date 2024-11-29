@@ -19,6 +19,7 @@ export default function AboutSection(
           <div className="flex-1 grid place-items-center">
             <SlideUp>
               <Image
+                priority
                 src="/images/cat2.png"
                 alt="Image was not loaded..."
                 width={1920}

@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { twMerge } from "tailwind-merge";
 
-interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
+export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
   icon?: string;
 }
 

@@ -1,0 +1,17 @@
+export type ButtonVariants =
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "accent"
+    | "success"
+    | "danger"
+    | "warning"
+    | "info"
+    | "outline-primary"
+    | "outline-secondary"
+    | "outline-tertiary"
+    | "outline-accent"
+    | "outline-success"
+    | "outline-danger"
+    | "outline-warning"
+    | "outline-info";

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --turbo --port 3000",
+    "dev": "next dev --turbopack --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -19,7 +19,7 @@
     "@std/text": "npm:@jsr/std__text@^1.0.7",
     "framer-motion": "^11.11.9",
     "groq": "^3.61.0",
-    "next": "14.2.16",
+    "next": "14.2.18",
     "react": "^18",
     "react-dom": "^18",
     "sharp": "^0.33.5",

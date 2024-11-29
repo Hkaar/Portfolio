@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section className="min-h-[90vh] flex">
       <div className="container flex-1 flex text-center lg:text-start flex-col-reverse lg:flex-row justify-between gap-6 items-center">
-        <div className="flex flex-col h-full justify-center items-center lg:items-start gap-6 lg:gap-10 flex-1">
+        <div className="flex flex-col h-full justify-center items-center lg:items-start gap-6 lg:gap-8 flex-1">
           <div className="flex flex-col gap-3">
             <SlideDown>
               <h1 className="font-bold text-lg md:text-xl lg:text-2xl text-gray-400 tracking-wide">
@@ -67,6 +67,7 @@ export default function Hero() {
 
         <div className="hidden lg:grid flex-1 place-items-center">
           <Image
+            priority
             src="/images/cat1.png"
             alt="No image was available..."
             width={1920}

@@ -1,6 +1,6 @@
 "use client";
 
-import { getAppTheme, setAppTheme } from "@/lib/themeUtils";
+import { getAppTheme, setAppTheme } from "@/utils/theme";
 import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {

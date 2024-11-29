@@ -43,14 +43,14 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
         alt="No Image available"
         width={1920}
         height={1080}
-        className="w-full h-[40rem] object-cover aspect-video rounded-md border-2 border-neutral-200 dark:border-neutral-800"
+        className="w-full h-52 lg:h-[40rem] object-cover aspect-video rounded-md border-2 border-neutral-200 dark:border-neutral-800"
       />
 
       <div className="flex">
         <Button
           icon="material-symbols:chevron-left"
           onClick={handlePrev}
-          className="rounded-none rounded-s-md border-0"
+          className="rounded-none rounded-s-md border-0 hidden md:block"
           type="secondary"
         >
         </Button>
@@ -76,7 +76,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
               slidesPerView: src.length / 3 > 1 ? 3.2 : 1,
             },
           }}
-          className="max-w-full h-56 flex-1"
+          className="max-w-full h-44 lg:h-56 flex-1"
         >
           {src.map((img) => (
             <SwiperSlide
@@ -102,7 +102,7 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
         <Button
           icon="material-symbols:chevron-right"
           onClick={handleNext}
-          className="rounded-none rounded-e-md border-0"
+          className="rounded-none rounded-e-md border-0 hidden md:block"
           type="secondary"
         >
         </Button>

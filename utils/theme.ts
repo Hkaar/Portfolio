@@ -1,3 +1,6 @@
+/**
+ * Loads the theme stored in local storage
+ */
 export function loadStoredTheme() {
   const theme = localStorage.getItem("theme");
 
@@ -8,17 +11,26 @@ export function loadStoredTheme() {
   }
 }
 
+/**
+ * Get the current app theme
+ *
+ * @returns string
+ */
 export function getAppTheme() {
   const theme = localStorage.getItem("theme");
 
   if (theme) return theme;
 
   const root = document.querySelector("html") as HTMLElement;
-
   return root.classList.contains("dark") ? "dark" : "light";
 }
 
-export function setAppTheme(theme: string) {
+/**
+ * Sets the current app theme to the given theme
+ * 
+ * @param theme - The theme to be set in the app
+ */
+export function setAppTheme(theme: "dark" | "light") {
   const root = document.querySelector("html") as HTMLElement;
 
   if (theme === "dark") {

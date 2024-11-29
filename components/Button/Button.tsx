@@ -1,8 +1,9 @@
+import { ButtonVariants } from "@/types/variants";
 import { Icon } from "@iconify/react";
 import { twMerge } from "tailwind-merge";
 
-interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  type?: string;
+export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+  type?: ButtonVariants;
   icon?: string;
   rightIcon?: boolean;
   disabled?: boolean;
@@ -78,7 +79,7 @@ export default function Button(
       {!rightIcon && icon
         ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon>
         : ""}
-      {children ? children : ""}
+      {children}
       {rightIcon && icon
         ? <Icon icon={icon} fontSize={24} fontWeight={300}></Icon>
         : ""}

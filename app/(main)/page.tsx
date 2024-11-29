@@ -14,13 +14,15 @@ import sanityClient from "@/lib/sanity";
 import { Suspense } from "react";
 
 const getSkills = async () => {
-  const skills = await sanityClient.fetch(`*[_type == "skill"] | order(name asc) {
+  const skills = await sanityClient.fetch(
+    `*[_type == "skill"] | order(name asc) {
     name, 
     "icon": icon->icon, 
     "level": level->name, 
     "category": category->title, 
     description
-  }`);
+  }`,
+  );
 
   return skills;
 };
@@ -38,7 +40,7 @@ export default async function HomePage() {
 
       <ContentSection id="skills" centered>
         <SectionContent title="Skills" centered>
-          <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed">
+          <span className="text-sm lg:text-base text-gray-400 dark:text-neutral-600 tracking-wide leading-relaxed">
             Here are some of the languages and tools i use to develop software
           </span>
         </SectionContent>
@@ -50,7 +52,7 @@ export default async function HomePage() {
 
       <ContentSection id="experience" centered>
         <SectionContent title="Experiences" centered>
-          <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed">
+          <span className="text-sm lg:text-base text-gray-400 dark:text-neutral-600 tracking-wide leading-relaxed">
             Here is a list of my experiences, related to software development
           </span>
         </SectionContent>
@@ -64,7 +66,7 @@ export default async function HomePage() {
 
       <ContentSection id="projects" centered>
         <SectionContent title="Projects" centered>
-          <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed">
+          <span className="text-sm lg:text-base text-gray-400 dark:text-neutral-600 tracking-wide leading-relaxed">
             Here are some of the projects that i have worked on over the years
           </span>
         </SectionContent>
@@ -79,7 +81,7 @@ export default async function HomePage() {
           title="Education"
           centered
         >
-          <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed w-3/4">
+          <span className="text-sm lg:text-base text-gray-400 dark:text-neutral-600 tracking-wide leading-relaxed w-3/4">
             Here is a brief timeline of what education and anything related to
             academics that i have achieved
           </span>
@@ -94,7 +96,7 @@ export default async function HomePage() {
 
       <ContentSection id="blog" centered>
         <SectionContent title="The Blog" centered>
-          <span className="md:text-lg lg:text-xl text-gray-400 tracking-wide leading-relaxed">
+          <span className="text-sm lg:text-base text-gray-400 dark:text-neutral-600 tracking-wide leading-relaxed">
             Here’s my personal blog where you can see what i’m up to recently
           </span>
         </SectionContent>

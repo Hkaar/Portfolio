@@ -36,7 +36,7 @@ export default function ProjectHeader({ project, host }: ProjectHeaderProps) {
       <div className="flex flex-col gap-3 px-6 py-4 bg-primary dark:bg-primary-dark text-base-light dark:text-base-dark rounded-lg shadow shadow-gray-300 dark:shadow-gray-700">
         <div className="flex flex-col lg:flex-row lg:items-center gap-3">
           <div className="flex items-center gap-2">
-            <h1 className="text-3xl font-bold tracking-tighter flex-1">
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tighter flex-1">
               {project.title}
             </h1>
 
