@@ -1,8 +1,5 @@
 import Link from "next/link";
-import Badge from "../Badge";
-
 import { Icon } from "@iconify/react";
-import process from "node:process";
 
 export default function Footer() {
   return (

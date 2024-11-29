@@ -52,9 +52,9 @@ export default function Header() {
             >
             </Icon>
 
-            <h1 className="font-bold text-xl d-flex items-center tracking-tighter">
+            <span className="font-bold text-xl d-flex items-center tracking-tighter">
               Shava Jaya
-            </h1>
+            </span>
           </Link>
 
           <Button

@@ -6,7 +6,7 @@ import ContactCard from "@/components/Card/ContactCard";
 export default function ContactPage() {
   return (
     <>
-      <div className="min-h-screen flex">
+      <main className="min-h-screen flex">
         <div className="container flex-1 flex flex-col items-center lg:flex-row justify-between gap-16 py-12">
           <div className="flex flex-col gap-5 flex-1 justify-center">
             <SectionContent className="flex-none">
@@ -61,7 +61,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }

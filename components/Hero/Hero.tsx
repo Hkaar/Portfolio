@@ -67,6 +67,7 @@ export default function Hero() {
 
         <div className="hidden lg:grid flex-1 place-items-center">
           <Image
+            priority
             src="/images/cat1.png"
             alt="No image was available..."
             width={1920}
