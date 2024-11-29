@@ -11,6 +11,7 @@ export default function SlideRight(
 ) {
   return (
     <motion.div
+      className={twMerge("w-full", className)}
       initial={{ x: -50, opacity: 0, z: 30 }}
       whileInView={{
         x: 0,
@@ -20,9 +21,7 @@ export default function SlideRight(
       }}
       viewport={{ once: repeat ? false : true }}
     >
-      <div className={twMerge("w-full", className)}>
-        {children}
-      </div>
+      {children}
     </motion.div>
   );
 }
