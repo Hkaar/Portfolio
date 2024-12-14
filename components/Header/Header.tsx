@@ -1,14 +1,16 @@
 "use client";
 
-import Menu from "./Menu";
-import ThemeToggle from "./ThemeToggle";
-import Button from "../Button";
-import { Icon } from "@iconify/react";
+import { useEffect, useState } from "react";
 
 import { usePathname } from "next/navigation";
 import { loadStoredTheme } from "@/utils/theme";
-import { useEffect, useState } from "react";
 import Link from "next/link";
+
+import { Box, Cat, House, MenuIcon, Phone, ScrollText } from "lucide-react";
+
+import Menu from "@/components/Header/Menu";
+import ThemeToggle from "@/components/Header/ThemeToggle";
+import Button from "@/components/Button";
 
 export default function Header() {
   const path = usePathname();
@@ -43,14 +45,12 @@ export default function Header() {
       }`}
     >
       <div className="container flex items-center flex-col gap-4 lg:flex-row justify-between">
-        <div className="flex justify-between w-full lg:w-fit lg:justify-start">
-          <Link href="/" className="flex lg:items-center justify-center lg:justify-start gap-2">
-            <Icon
-              icon="material-symbols-light:code-blocks"
-              fontSize={36}
-              fontWeight={300}
-            >
-            </Icon>
+        <div className="flex justify-between items-center w-full lg:w-fit lg:justify-start">
+          <Link
+            href="/"
+            className="flex justify-center lg:justify-start gap-2 items-center"
+          >
+            <Cat size={24} strokeWidth={2} />
 
             <span className="font-bold text-xl d-flex items-center tracking-tighter">
               Shava Jaya
@@ -59,11 +59,12 @@ export default function Header() {
 
           <Button
             className="lg:hidden"
-            icon="mdi-light:menu"
             onClick={handleCollapse}
-          />
+          >
+            <MenuIcon size={24} strokeWidth={1.5} />
+          </Button>
         </div>
-        
+
         <div
           id="navMenu"
           className={`flex lg:items-center flex-col lg:flex-row gap-3 w-full lg:w-fit transition-all ease-linear duration-200 ${
@@ -74,32 +75,32 @@ export default function Header() {
             <Menu
               href="/"
               active={path === "/"}
-              icon="material-symbols-light:home-outline"
             >
+              <House size={18} strokeWidth={1.5} />
               Home
             </Menu>
 
             <Menu
               href="/projects"
               active={path.startsWith("/projects")}
-              icon="material-symbols-light:deployed-code-outline"
             >
+              <Box size={18} strokeWidth={1.5} />
               Projects
             </Menu>
 
             <Menu
               href="/blog"
               active={path.startsWith("/blog")}
-              icon="material-symbols-light:newspaper"
             >
+              <ScrollText size={18} strokeWidth={1.5} />
               Blog
             </Menu>
-            
+
             <Menu
               href="/contact"
               active={path.startsWith("/contact")}
-              icon="mdi-light:phone"
             >
+              <Phone size={18} strokeWidth={1.5} />
               Contact
             </Menu>
           </nav>
