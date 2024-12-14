@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "selector",
+  darkMode: "class",
   mode: "jit",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -15,14 +15,12 @@ const config: Config = {
         padding: "2rem",
       },
       colors: {
-        "primary": "#070f2c",
-        "secondary": "#a5b0d9",
-        "tertiary": "#566083",
-        "accent": "#607bdc",
-        "primary-dark": "#d3dbf8",
-        "secondary-dark": "#26315a",
-        "tertiary-dark": "#7a84a8",
-        "accent-dark": "#233e9f",
+        "primary": "#17153c",
+        "secondary": "#2e236c",
+        "accent": "#433d8a",
+        "primary-dark": "#C8ACD6",
+        "secondary-dark": "#433D8B",
+        "accent-dark": "#2E236C",
         "base-light": "#f9fafb",
         "base-dark": "#040506",
         "danger": "#dc2626",
@@ -33,6 +31,10 @@ const config: Config = {
         "warning-dark": "#fde047",
         "success": "#16a34a",
         "success-dark": "#4ade80",
+        "body-light": "#fbfbfe",
+        "text-light": "#040316",
+        "body-dark": "#010104",
+        "text-dark": "#eae9fc",
       },
       animation: {
         "float-down": "float-down 2.5s ease-in-out infinite",
