@@ -1,10 +1,10 @@
-import { Icon } from "@iconify/react";
+import { CalendarRange, Circle } from "lucide-react";
 
 interface TimePoint extends React.HTMLAttributes<HTMLElement> {
   title: string;
   date?: string;
   desc?: string;
-  icon?: string;
+  icon?: React.ReactNode;
 }
 
 export default function TimePoint(
@@ -30,20 +30,15 @@ export default function TimePoint(
         {date
         ? (
           <span className="text-gray-400 tracking-wide leading-snug flex items-center gap-2">
-            <Icon icon="material-symbols-light:calendar-month-outline"></Icon>
+            <CalendarRange size={16} strokeWidth={1.5} /> 
             {date}
           </span>
         )
         : null}
       </div>
 
-      <div className="grid place-items-center absolute top-0 -left-8 z-10 border-gray-200 dark:border-gray-800 border bg-gray-50 dark:bg-gray-950 rounded-full p-2">
-        <Icon
-          icon={icon ? icon : "mdi:triangle"}
-          fontSize={20}
-          fontWeight={300}
-        >
-        </Icon>
+      <div className="grid place-items-center absolute top-0 -left-[1.85rem] z-10 border-gray-200 dark:border-gray-800 border bg-gray-50 dark:bg-gray-950 rounded-full p-2">
+        {icon || <Circle size={16} strokeWidth={1.5} />}
       </div>
     </div>
   );
