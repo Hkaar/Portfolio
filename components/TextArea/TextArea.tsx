@@ -25,7 +25,7 @@ export default function TextArea(
         <textarea
           placeholder={placeholder}
           className={`${className} block rounded-md bg-inherit outline-none border px-3 py-2 border-gray-200 dark:border-gray-800 
-                    shadow-sm focus:ring focus:ring-accent dark:focus:ring-primary-dark text-base-dark dark:bg-base-dark dark:text-base-light`}
+                    shadow-sm focus:ring focus:ring-accent dark:focus:ring-primary-dark text-base-dark dark:text-base-light`}
           name={name}
           id={props.id}
           cols={3}
