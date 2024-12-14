@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import Button from "../Button";
+
+import Button from "@/components/Button";
+import { ArrowUp } from "lucide-react";
 
 export default function PageUpButton(
   { className, ...props }: React.HTMLAttributes<HTMLButtonElement>,
@@ -31,12 +33,12 @@ export default function PageUpButton(
 
   return (
     <Button
-      icon="mdi:arrow-up"
       {...props}
-      type="secondary"
+      variant="secondary"
       onClick={scrollToTop}
-      className={twMerge("z-30 right-8 bottom-6 fixed px-3 py-3", isScrolled ? 'block' : 'hidden', className)}
+      className={twMerge("z-30 right-8 bottom-6 fixed p-3 shadow-md", isScrolled ? 'block' : 'hidden', className)}
     >
+      <ArrowUp size={24} strokeWidth={1.5} />
     </Button>
   );
 }

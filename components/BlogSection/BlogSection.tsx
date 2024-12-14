@@ -1,13 +1,16 @@
 import { Blog } from "@/types/blog";
 
 import { Suspense } from "react";
-import BlogCard from "../Card/BlogCard";
-import LinkButton from "../LinkButton";
-import CardLoader from "../Loader/CardLoader";
-import SlideUp from "../Transitions/SlideUp";
 import sanityClient from "@/lib/sanity";
-import ErrorBoundary from "../ErrorBoundary";
-import CardFallBack from "../ErrorFallBack/CardFallBack";
+
+import { ArrowRight } from "lucide-react";
+
+import BlogCard from "@/components/Card/BlogCard";
+import LinkButton from "@/components/LinkButton";
+import CardLoader from "@/components/Loader/CardLoader";
+import SlideUp from "@/components/Transitions/SlideUp";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
 
 const formatDate = (date: string) => {
   const d = new Date(date);
@@ -47,7 +50,7 @@ export default async function BlogSection(
       {...props}
       className={`${props.className} flex flex-col gap-6 justify-center items-center`}
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {posts.map((post, i) => (
           <SlideUp delay={1 + (0.2 * i)} key={post.slug.current}>
             <ErrorBoundary fallback={<CardFallBack />}>
@@ -71,11 +74,11 @@ export default async function BlogSection(
 
       <LinkButton
         href="/blog"
-        type="secondary"
-        icon="material-symbols:arrow-right-alt"
+        variant="secondary"
         rightIcon
       >
         See more
+        <ArrowRight size={18} strokeWidth={1.5} />
       </LinkButton>
     </div>
   );

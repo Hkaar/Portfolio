@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Button from "../Button";
-import FilterModal from "../Modal/FilterModal";
-import SearchBox from "../SearchBox";
 import { Category } from "@/types/contentUtils";
+
+import { Filter } from "lucide-react";
+
+import Button from "@/components/Button";
+import FilterModal from "@/components/Modal/FilterModal";
+import SearchBox from "@/components/SearchBox";
 
 interface SearchProps {
   placeholder?: string;
@@ -26,7 +29,8 @@ export default function Search({ placeholder, categories }: SearchProps) {
         />
 
         <div className="flex items-center gap-2">
-          <Button icon="mdi:filter-outline" type="outline-info" onClick={openModal}>
+          <Button variant="outline-info" className="text-sm" onClick={openModal}>
+            <Filter size={18} strokeWidth={1.5} />
             Filter
           </Button>
         </div>

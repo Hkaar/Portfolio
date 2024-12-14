@@ -19,7 +19,7 @@ export default function Badge({ icon, className, ...props }: BadgeProps) {
           <Icon
             icon={icon}
             fontWeight={300}
-            fontSize={24}
+            fontSize={18}
             className="dark:fill-base-dark"
           >
           </Icon>

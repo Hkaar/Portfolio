@@ -9,6 +9,7 @@ import Button from "../Button";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import ShareModal from "../Modal/ShareModal";
+import { BookMarked, Eye, EyeOff, Share2 } from "lucide-react";
 
 interface ProjectHeaderProps {
   project: Project;
@@ -43,9 +44,9 @@ export default function ProjectHeader({ project, host }: ProjectHeaderProps) {
             <LinkButton
               href="#"
               onClick={openModal}
-              icon="material-symbols:share-outline"
               className="lg:hidden border-none shadow-none"
             >
+              <Share2 size={24} strokeWidth={1.5} />
               Share
             </LinkButton>
           </div>
@@ -53,29 +54,29 @@ export default function ProjectHeader({ project, host }: ProjectHeaderProps) {
           <div className="flex items-center gap-2 flex-1 lg:justify-end">
             <Button
               onClick={openModal}
-              icon="material-symbols:share-outline"
               className="hidden lg:flex border-none shadow-none"
             >
+              <Share2 size={24} strokeWidth={1.5} />
               Share
             </Button>
 
             <LinkButton
               href={project.repo || "#"}
-              type="outline-accent"
-              icon="material-symbols:collections-bookmark-outline"
+              variant="outline-accent"
               target={project.repo ? "_blank" : ""}
               disabled={project.repo ? false : true}
             >
+              <BookMarked size={24} strokeWidth={1.5} />
               Repository
             </LinkButton>
 
             <LinkButton
               href={project.preview || "#"}
-              type="primary"
+              variant="outline-secondary"
               target={project.preview ? "_blank" : ""}
-              icon={project.preview ? "mdi:eye-outline" : "mdi:eye-off-outline"}
               disabled={project.preview ? false : true}
             >
+              { project.preview ? <Eye size={24} strokeWidth={1.5} /> : <EyeOff size={24} strokeWidth={1.5} /> }
               Preview
             </LinkButton>
           </div>

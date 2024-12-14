@@ -1,12 +1,12 @@
 "use client";
 
 import { twMerge } from "tailwind-merge";
-import InputField from "../InputField";
-import Button from "../Button";
+import InputField from "@/components/InputField";
+import Button from "@/components/Button";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useState } from "react";
-import { Icon } from "@iconify/react";
+import { Search } from "lucide-react";
 
 interface SearchBoxProps extends React.HTMLAttributes<HTMLElement> {
   placeholder?: string;
@@ -51,18 +51,14 @@ export default function SearchBox({ placeholder, ...props }: SearchBoxProps) {
           placeholder={placeholder || "Start searching here!"}
         />
 
-        <div className="absolute start-0 inset-y-2.5 ps-3">
-          <Icon
-            icon="material-symbols:search"
-            fontSize={24}
-            className="text-gray-500 dark:text-neutral-600"
-          />
+        <div className="absolute start-0 inset-y-3 ps-3">
+          <Search size={18} strokeWidth={1.5} />
         </div>
       </div>
 
       <Button
         onClick={handleSearch}
-        type="primary"
+        variant="primary"
         className="rounded-none rounded-e-md"
       >
         Search

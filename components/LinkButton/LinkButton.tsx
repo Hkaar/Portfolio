@@ -6,40 +6,20 @@ import { twMerge } from "tailwind-merge";
 interface LinkButtonProps extends React.HTMLAttributes<HTMLAnchorElement> {
   href: string;
   disabled?: boolean;
-  type?: ButtonVariants;
+  variant?: ButtonVariants;
   icon?: string;
   rightIcon?: boolean;
   target?: string;
 }
 
-// FOR SOME REASON THIS SOMETIMES DOESNT RENDER THE COLORS
-// const getTypeClasses = (type?: string): string => {
-//   const baseClass = type && type.startsWith("outline") ? "border" : "bg";
-//   const color = type?.replace("outline-", "") || "inherit";
-
-//   const hoverClasses = type?.startsWith("outline-")
-//     ? `hover:bg-${color} dark:hover:bg-${color}-dark hover:text-base-light dark:hover:text-base-dark`
-//     : `hover:bg-${color} dark:hover:bg-${color}-dark`;
-
-//   const textClasses = type
-//     ? type.startsWith("outline-")
-//       ? `text-${color} dark:text-${color}-dark`
-//       : "text-base-light dark:text-base-dark"
-//     : "text-base-dark dark:text-base-light";
-
-//   return `${baseClass}-${color} dark:${baseClass}-${color}-dark ${textClasses} ${hoverClasses}`.trim();
-// };
-
-const getTypeClasses = (type?: string): string => {
-  switch (type) {
+const getTypeClasses = (variant?: string): string => {
+  switch (variant) {
     case "primary":
       return "bg-primary text-base-light dark:bg-primary-dark dark:text-base-dark";
     case "secondary":
-      return "bg-secondary dark:bg-secondary-dark text-base-dark dark:text-base-light";
-    case "tertiary":
-      return "bg-tertiary text-base-light dark:bg-tertiary-dark dark:text-base-dark";
+      return "bg-secondary dark:bg-secondary-dark text-base-light dark:text-base-dark";
     case "accent":
-      return "bg-accent dark:bg-accent-dark";
+      return "bg-accent dark:bg-accent-dark text-body-light dark:text-text-dark";
     case "success":
       return "bg-success text-base-light dark:bg-success-dark";
     case "info":
@@ -49,28 +29,26 @@ const getTypeClasses = (type?: string): string => {
     case "danger":
       return "bg-danger text-base-light dark:bg-danger-dark";
     case "outline-primary":
-      return "border-primary text-primary dark:border-primary-dark dark:text-primary-dark hover:bg-primary dark:hover:bg-primary-dark hover:text-base-light dark:hover:text-base-dark";
+      return "border-primary dark:border-primary-dark hover:bg-primary dark:hover:bg-primary-dark";
     case "outline-secondary":
-      return "border-secondary text-secondary dark:border-secondary-dark dark:text-secondary-dark hover:bg-secondary dark:hover:bg-secondary-dark";
-    case "outline-tertiary":
-      return "border-tertiary text-tertiary dark:border-tertiary-dark dark:text-tertiary-dark hover:bg-tertiary dark:hover:bg-tertiary-dark hover:text-base-light dark:hover:text-base-dark";
+      return "border-secondary dark:border-secondary-dark hover:bg-secondary dark:hover:bg-secondary-dark";
     case "outline-accent":
-      return "border-accent hover:bg-accent dark:border-accent-dark dark:hover:bg-accent-dark";
+      return "border-accent hover:bg-accent hover:text-body-light dark:hover:text-text-dark dark:border-accent-dark dark:hover:bg-accent-dark";
     case "outline-success":
-      return "border-success text-success dark:border-success-dark hover:bg-success dark:hover:bg-success-dark hover:text-base-light dark:hover:text-base-dark";
+      return "border-success dark:border-success-dark hover:bg-success dark:hover:bg-success-dark";
     case "outline-info":
-      return "border-info text-info dark:border-info-dark dark:text-info-dark hover:bg-info dark:hover:bg-info-dark hover:text-base-light dark:hover:text-base-dark";
+      return "border-info dark:border-info-dark hover:bg-info dark:hover:bg-info-dark";
     case "outline-warning":
-      return "border-warning text-warning hover:bg-warning dark:hover:bg-warning-dark hover:text-base-light dark:hover:text-base-dark";
+      return "border-warning hover:bg-warning dark:hover:bg-warning-dark";
     case "outline-danger":
-      return "border-danger text-danger dark:border-danger-dark hover:bg-danger dark:hover:bg-danger-dark hover:text-base-light dark:hover:text-base-dark";
+      return "border-danger dark:border-danger-dark hover:bg-danger dark:hover:bg-danger-dark";
     default:
       return "border-gray-200 dark:border-gray-800";
   }
 };
 
 export default function LinkButton(
-  { href, disabled, type, target, icon, rightIcon, ...props }: LinkButtonProps,
+  { href, disabled, variant, target, icon, rightIcon, ...props }: LinkButtonProps,
 ) {
   return (
     <Link
@@ -83,7 +61,7 @@ export default function LinkButton(
         disabled
           ? "opacity-30 cursor-not-allowed"
           : "hover:scale-105 active:scale-90 active:opacity-50 shadow-md",
-        getTypeClasses(type),
+        getTypeClasses(variant),
         props.className,
       )}
     >

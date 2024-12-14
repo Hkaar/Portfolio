@@ -6,6 +6,7 @@ import InputField from "../InputField";
 import TextArea from "../TextArea";
 
 import { FormEvent, useState } from "react";
+import { SendHorizontal } from "lucide-react";
 
 export default function ContactForm(
   { ...props }: React.HTMLAttributes<HTMLFormElement>,
@@ -70,6 +71,7 @@ export default function ContactForm(
             <InputField
               title="Name"
               name="name"
+              className="bg-body-light dark:bg-body-dark"
               datatype="text"
               placeholder="Enter your name ..."
               required
@@ -81,7 +83,7 @@ export default function ContactForm(
               title="Email"
               name="email"
               datatype="email"
-              className="w-full"
+              className="w-full bg-body-light dark:bg-body-dark"
               placeholder="Enter your email address ..."
               required
             />
@@ -92,6 +94,7 @@ export default function ContactForm(
               title="Subject"
               name="subject"
               datatype="text"
+              className="bg-body-light dark:bg-body-dark"
               placeholder="What do you want to discuss?"
               required
             />
@@ -101,7 +104,7 @@ export default function ContactForm(
             <TextArea
               title="Message"
               name="message"
-              className="w-full"
+              className="w-full bg-body-light dark:bg-body-dark"
               placeholder="Enter your message here ..."
             />
           </div>
@@ -111,12 +114,11 @@ export default function ContactForm(
 
         <div className="flex items-center gap-2">
           <Button
-            icon="material-symbols-light:send-outline"
-            type="primary"
-            rightIcon
-            actionType="submit"
+            variant="primary"
+            type="submit"
           >
             Send message
+            <SendHorizontal size={24} strokeWidth={1.5} />
           </Button>
         </div>
       </div>

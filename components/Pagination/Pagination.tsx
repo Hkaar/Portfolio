@@ -1,8 +1,11 @@
 "use client";
 
 import { twMerge } from "tailwind-merge";
-import LinkButton from "../LinkButton";
 import { useSearchParams } from "next/navigation";
+
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+import LinkButton from "@/components/LinkButton";
 
 interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
   currentId: number;
@@ -48,8 +51,10 @@ export default function Pagination(
         <LinkButton
           className="px-3 py-2"
           href={buildUrl(currentId - 1)}
-          icon="mdi-light:arrow-left"
+          variant="secondary"
         >
+          <ChevronLeft size={24} strokeWidth={1.5} />
+
           <span className="hidden lg:block">
             Previous
           </span>
@@ -61,7 +66,8 @@ export default function Pagination(
           className="px-3 py-2"
           key={`paginator-${id}`}
           href={buildUrl(id)}
-          type={id === currentId ? "primary" : "outline-accent"}
+          disabled={id === currentId}
+          variant={id === currentId ? "primary" : undefined}
         >
           <span
             className={twMerge("px-1", id === currentId ? "bg-opacity-50" : "")}
@@ -75,12 +81,12 @@ export default function Pagination(
         <LinkButton
           className="px-4 py-2"
           href={buildUrl(currentId + 1)}
-          icon="mdi-light:arrow-right"
-          rightIcon
+          variant="secondary"
         >
           <span className="hidden lg:block">
             Next
           </span>
+          <ChevronRight size={24} strokeWidth={1.5} />
         </LinkButton>
       )}
     </div>

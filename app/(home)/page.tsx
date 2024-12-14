@@ -95,7 +95,7 @@ export default async function HomePage() {
       </ContentSection>
 
       <ContentSection id="blog" centered>
-        <SectionContent title="The Blog" centered>
+        <SectionContent title="My Blog" centered>
           <span className="text-sm lg:text-base text-gray-400 dark:text-neutral-600 tracking-wide leading-relaxed">
             Here’s my personal blog where you can see what i’m up to recently
           </span>

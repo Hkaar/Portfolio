@@ -14,6 +14,7 @@ import Button from "../Button";
 import { MutableRefObject, useRef } from "react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ImagePreviewProps {
   src: Array<string>;
@@ -43,16 +44,16 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
         alt="No Image available"
         width={1920}
         height={1080}
-        className="w-full h-52 lg:h-[40rem] object-cover aspect-video rounded-md border-2 border-neutral-200 dark:border-neutral-800"
+        className="w-full h-52 lg:h-[42rem] object-cover aspect-video rounded-md border-2 border-neutral-200 dark:border-neutral-800"
       />
 
       <div className="flex">
         <Button
-          icon="material-symbols:chevron-left"
           onClick={handlePrev}
           className="rounded-none rounded-s-md border-0 hidden md:block"
-          type="secondary"
+          variant="accent"
         >
+          <ChevronLeft size={24} strokeWidth={1.5} />
         </Button>
 
         <Swiper
@@ -100,11 +101,11 @@ export default function ImagePreview({ src }: ImagePreviewProps) {
         </Swiper>
 
         <Button
-          icon="material-symbols:chevron-right"
           onClick={handleNext}
           className="rounded-none rounded-e-md border-0 hidden md:block"
-          type="secondary"
+          variant="accent"
         >
+          <ChevronRight size={24} strokeWidth={1.5} />
         </Button>
       </div>
     </>

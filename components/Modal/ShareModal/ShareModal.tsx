@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import Modal from "../Modal";
 import { Icon } from "@iconify/react";
 import LinkButton from "@/components/LinkButton";
+import { CircleX, Clipboard } from "lucide-react";
 
 interface ShareModalProps extends ModalProps {
   title: string;
@@ -24,7 +25,7 @@ export default function ShareModal({ title, isOpen, onClose, path, handleCopy }:
         </h6>
 
         <Button onClick={() => onClose()} className="border-0 p-0">
-          <Icon icon="mdi:close" fontSize={28} fontWeight={300} />
+          <CircleX size={24} strokeWidth={1.5} className="stroke-danger dark:stroke-danger-dark" />
         </Button>
       </div>
 
@@ -72,10 +73,10 @@ export default function ShareModal({ title, isOpen, onClose, path, handleCopy }:
           </span>
 
           <Button
-            icon="material-symbols:content-copy-outline-rounded"
-            type="secondary"
+            variant="primary"
             onClick={() => handleCopy()}
           >
+            <Clipboard size={24} strokeWidth={1.5} />
             Copy
           </Button>
         </div>
