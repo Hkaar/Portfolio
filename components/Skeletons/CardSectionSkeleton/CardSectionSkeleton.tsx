@@ -19,7 +19,7 @@ export default function CardSectionSkeleton({ ...props }: React.HTMLAttributes<H
 
       <LinkButton
         href="/blog"
-        type="tertiary"
+        variant="tertiary"
         icon="material-symbols-light:arrow-right-alt"
         rightIcon
       >
