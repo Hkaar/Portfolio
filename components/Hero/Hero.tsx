@@ -1,9 +1,10 @@
-import { Icon } from "@iconify/react";
-import LinkButton from "../LinkButton";
+import { Download, ArrowUpRight, ArrowDown } from 'lucide-react';
 import Image from "next/image";
-import SlideDown from "../Transitions/SlideDown";
-import SlideRight from "../Transitions/SlideRight";
-import SlideUp from "../Transitions/SlideUp";
+
+import LinkButton from "@/components/LinkButton";
+import SlideDown from "@/components/Transitions/SlideDown";
+import SlideRight from "@/components/Transitions/SlideRight";
+import SlideUp from "@/components/Transitions/SlideUp";
 
 export default function Hero() {
   return (
@@ -28,36 +29,28 @@ export default function Hero() {
             <SlideUp delay={1.6} className="w-fit">
               <LinkButton
                 target="_blank"
-                className="w-full md:w-fit justify-center"
+                className="w-full md:w-fit justify-center gap-3"
                 href="https://drive.google.com/uc?export=download&id=1vE1oHvbLALgxjM6YkxE5zSMnil4E4At2"
-                type="primary"
-                icon="material-symbols-light:download"
+                variant="primary"
               >
+                <Download size={20} strokeWidth={1.5} />
                 Download CV
               </LinkButton>
             </SlideUp>
 
             <SlideUp delay={2} className="w-fit">
               <LinkButton
-                className="w-full md:w-fit justify-center"
+                className="w-full md:w-fit justify-center bg-gray-100 dark:bg-neutral-900 gap-3"
                 href="/contact"
-                icon="material-symbols-light:arrow-right-alt"
-                rightIcon={true}
-                type="secondary"
               >
                 Get in touch
+                <ArrowUpRight size={20} strokeWidth={1.5} />
               </LinkButton>
             </SlideUp>
           </div>
 
           <div className="hidden lg:flex items-center gap-2">
-            <Icon
-              icon="mdi-light:arrow-down"
-              className="animate-float-down"
-              fontSize={40}
-              fontWeight={300}
-            >
-            </Icon>
+            <ArrowDown size={24} strokeWidth={1.5} className="animate-float-down" />
 
             <span className="font-semibold">
               Scroll down for more
@@ -68,11 +61,11 @@ export default function Hero() {
         <div className="hidden lg:grid flex-1 place-items-center">
           <Image
             priority
-            src="/images/cat1.png"
+            src="/images/cat-food.svg"
             alt="No image was available..."
             width={1920}
             height={1920}
-            className="size-full object-contain aspect-square"
+            className="size-11/12 object-contain aspect-square"
           />
         </div>
       </div>
