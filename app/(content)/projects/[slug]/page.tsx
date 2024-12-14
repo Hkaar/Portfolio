@@ -75,8 +75,8 @@ export default async function ProjectPage(props: ProjectPageProps) {
         </div>
       </ArticleHeader>
 
-      <div className="grid grid-cols-1 lg:grid-cols-6 gap-5 min-h-screen">
-        <div className="lg:col-span-4 flex flex-col gap-3 md:gap-6 py-4">
+      <div className="grid grid-cols-1 lg:grid-cols-6 gap-5 lg:gap-12 min-h-screen">
+        <div className="lg:col-span-3 xl:col-span-4 flex flex-col gap-3 md:gap-6 py-4">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <h3 className="text-3xl font-semibold">
@@ -132,7 +132,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 h-fit col-span-2">
+        <div className="hidden lg:flex flex-col gap-5 h-fit lg:col-span-3 xl:col-span-2 bg-gray-50 dark:bg-neutral-950 rounded-xl px-6 py-5 border border-gray-200 dark:border-neutral-700 shadow-lg">
           <div className="space-y-3">
             <h5 className="text-xl font-semibold">
               More info
