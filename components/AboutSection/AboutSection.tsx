@@ -1,9 +1,11 @@
-import Image from "next/image";
-import SectionContent from "../ContentSection/SectionContent";
 import { twMerge } from "tailwind-merge";
-import SlideUp from "../Transitions/SlideUp";
-import SlideDown from "../Transitions/SlideDown";
-import SlideRight from "../Transitions/SlideRight";
+
+import Image from "next/image";
+
+import SectionContent from "@/components/ContentSection/SectionContent";
+import SlideUp from "@/components/Transitions/SlideUp";
+import SlideDown from "@/components/Transitions/SlideDown";
+import SlideRight from "@/components/Transitions/SlideRight";
 
 export default function AboutSection(
   { ...props }: React.HTMLAttributes<HTMLElement>,
@@ -20,42 +22,45 @@ export default function AboutSection(
             <SlideUp>
               <Image
                 priority
-                src="/images/cat2.png"
+                src="/images/cat-bed.svg"
                 alt="Image was not loaded..."
                 width={1920}
                 height={1920}
-                className="size-full object-contain aspect-square"
+                className="size-3/4 object-contain aspect-square"
               />
             </SlideUp>
           </div>
 
           <SectionContent className="lg:gap-6 text-center lg:text-start">
             <SlideDown delay={1.6}>
-              <h3 className="hidden lg:block font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl w-3/4 text-primary-700 dark:text-primary-100">
-                About me
-              </h3>
+              <span className="flex items-center gap-2">
+                <h3 className="hidden lg:block font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl w-3/4 text-primary-700 dark:text-primary-100">
+                  About me
+                </h3>
+              </span>
             </SlideDown>
 
-            <SlideRight delay={1.4}>
-              <p className="text-lg md:text-xl lg:text-2xl leading-relaxed border rounded-md border-l-4 border-l-tertiary dark:border-l-tertiary-dark border-neutral-200 dark:border-neutral-800 px-4 py-3 shadow-md shadow-gray-300 dark:shadow-gray-800">
-                Hey there! I’m{" "}
-                <span className="font-bold text-tertiary dark:text-tertiary-dark">
-                  Shava Jaya
-                </span>, a{" "}
-                <span className="font-bold text-tertiary dark:text-tertiary-dark">
-                  full-stack software developer
-                </span>{" "}
-                from Indonesia.
-              </p>
-            </SlideRight>
+            <SlideRight delay={2}>
+              <div className="flex flex-col gap-3 border border-l-[6px] border-l-accent dark:border-l-accent-dark border-gray-200 dark:border-neutral-800 px-6 py-5 shadow rounded-md">
+                <p className="text-base md:text-lg lg:text-xl leading-relaxed font-medium">
+                  Hey there! I’m{" "}
+                  <span className="font-bold text-accent dark:text-accent-dark">
+                    Shava Jaya
+                  </span>, a{" "}
+                  <span className="font-bold text-accent dark:text-accent-dark">
+                    full-stack software developer
+                  </span>{" "}
+                  from Indonesia.
+                </p>
 
-            <SlideUp delay={1.8}>
-              <p className="text-sm md:text-lg tracking-wide leading-relaxed">
-                I enjoy solving complex problems related to software development
-                and computer science in general. This is demonstrated by the
-                projects I have created to showcase my skills.
-              </p>
-            </SlideUp>
+                <p className="text-sm md:text-base">
+                  I enjoy solving complex problems related to software
+                  development and computer science in general. This is
+                  demonstrated by the projects I have created to showcase my
+                  skills.
+                </p>
+              </div>
+            </SlideRight>
           </SectionContent>
         </div>
       </div>

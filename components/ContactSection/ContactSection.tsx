@@ -1,9 +1,10 @@
-import SectionContent from "../ContentSection/SectionContent";
-import { Icon } from "@iconify/react";
-import ContactForm from "../ContactForm";
-import ContactCard from "../Card/ContactCard";
-import SlideRight from "../Transitions/SlideRight";
-import SlideUp from "../Transitions/SlideUp";
+import SectionContent from "@/components/ContentSection/SectionContent";
+import ContactForm from "@/components/ContactForm";
+import ContactCard from "@/components/Card/ContactCard";
+import SlideRight from "@/components/Transitions/SlideRight";
+import SlideUp from "@/components/Transitions/SlideUp";
+
+import { Send } from "lucide-react";
 
 export default function ContactSection() {
   return (
@@ -11,7 +12,7 @@ export default function ContactSection() {
       <div className="flex flex-col gap-6 flex-1 justify-center">
         <SlideRight>
           <SectionContent className="flex-none">
-            <h3 className="font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+            <h3 className="font-extrabold text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
               Need help for your project?
             </h3>
 
@@ -52,19 +53,13 @@ export default function ContactSection() {
       </div>
 
       <SlideUp className="flex-1 w-full h-full grid place-items-center">
-        <div className="flex-1 w-full px-8 py-6 border border-gray-200 dark:border-gray-800 rounded-md shadow-md flex flex-col gap-7 shadow-gray-200 dark:shadow-gray-800">
+        <div className="flex-1 w-full px-8 py-6 border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-neutral-950 rounded-md shadow-md flex flex-col gap-7">
           <div className="flex items-center gap-3">
             <h6 className="text-xl md:text-2xl lg:text-3xl font-bold text-tertiary dark:text-tertiary-dark">
               Send me a message
             </h6>
 
-            <Icon
-              icon="fa:send-o"
-              className="text-secondary dark:text-secondary-dark"
-              fontSize={32}
-              fontWeight={400}
-            >
-            </Icon>
+            <Send size={32} strokeWidth={2} className="text-secondary dark:text-secondary-dark" />
           </div>
 
           <ContactForm className="border-none shadow-none px-0 py-0 w-full" />

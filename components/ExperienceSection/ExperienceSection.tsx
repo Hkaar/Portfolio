@@ -17,6 +17,7 @@ export default function ExperienceSection(
         topics={[
           { name: "Next.js", icon: "nextjs" },
           { name: "Tailwind CSS", icon: "tailwindcss" },
+          { name: "React Native", icon: "react" },
         ]}
       />
     </div>

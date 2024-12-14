@@ -1,14 +1,18 @@
 import { Project } from "@/types/project";
 
-import LinkButton from "../LinkButton";
-import ProjectCard from "../Card/ProjectCard";
-import SlideUp from "../Transitions/SlideUp";
-import sanityClient from "@/lib/sanity";
 import { Suspense } from "react";
-import CardLoader from "../Loader/CardLoader";
-import ErrorBoundary from "../ErrorBoundary";
-import CardFallBack from "../ErrorFallBack/CardFallBack";
+
+import { ArrowRight } from "lucide-react";
 import { PortableText } from "@portabletext/react";
+
+import LinkButton from "@/components/LinkButton";
+import ProjectCard from "@/components/Card/ProjectCard";
+import SlideUp from "@/components/Transitions/SlideUp";
+import CardLoader from "@/components/Loader/CardLoader";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import CardFallBack from "@/components/ErrorFallBack/CardFallBack";
+
+import sanityClient from "@/lib/sanity";
 
 const getProjects = async () => {
   const projects: Array<Project> = await sanityClient.fetch(
@@ -31,7 +35,7 @@ export default async function ProjectSection() {
 
   return (
     <div className="flex flex-col gap-6 justify-center items-center">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {projects.map((project, i) => (
           <SlideUp delay={1 + (0.2 * i)} key={project.slug.current}>
             <ErrorBoundary fallback={<CardFallBack />}>
@@ -54,11 +58,10 @@ export default async function ProjectSection() {
 
       <LinkButton
         href="/projects"
-        type="secondary"
-        icon="material-symbols:arrow-right-alt"
-        rightIcon
+        variant="secondary"
       >
         See more
+        <ArrowRight size={18} strokeWidth={1.5} />
       </LinkButton>
     </div>
   );
