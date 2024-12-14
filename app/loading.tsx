@@ -8,7 +8,7 @@ export default function Loading() {
         <div className="flex flex-col items-center gap-3">
           <LoadSpinner />
 
-          <FactBox className="text-xl text-center font-semibold text-tertiary dark:text-tertiary-dark" />
+          <FactBox className="text-lg text-center font-semibold text-primary dark:text-primary-dark" />
         </div>
       </div>
     </div>

@@ -10,9 +10,9 @@ export default function Layout({
 }>) {
   return (
     <>
-      <Header></Header>
+      <Header />
       {children}
-      <Footer></Footer>
+      <Footer />
 
       <PageUpButton />
     </>
